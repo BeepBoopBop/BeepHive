@@ -17,4 +17,7 @@ $ cmake ..
 ```
 $ make
 ```
-
+* Build documetation
+```
+$ make doc
+```
