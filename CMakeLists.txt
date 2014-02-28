@@ -2,7 +2,30 @@ cmake_minimum_required(VERSION 2.6)
 project(BeepHive)
 set(BeepHive_VERSION_MAJOR 0)
 set(BeepHive_VERSION_MINOR 0)
-add_executable(BeepHive src/main.cpp)
+
+set(BEEPHIVE_SOURCES
+  src/DiscreteTimeModel.cpp
+  src/Event.cpp
+  src/main.cpp
+  src/Model.cpp
+)
+
+set(BEEPHIVE_HEADERS
+  include/DiscreteTimeModel.h
+  include/Event.h
+  include/Model.h
+)
+
+#SOURCES ${BEEPHIVE_SOURCES}
+#HEADERS ${BEEPHIVE_HEADERS}
+#DEFINES ${BEEPHIVE_DEFS}
+INCLUDE_DIRECTORIES(
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
+)
+
+add_executable(BeepHive 
+               ${BEEPHIVE_SOURCES}
+              )
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
