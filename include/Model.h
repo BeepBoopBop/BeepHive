@@ -16,7 +16,7 @@ class Model {
     double getTime();
     void setTime(double new_time);
 
-    virtual void updateModel() = 0;
+    virtual void update() = 0;
     virtual Event getNextEvent() = 0;
 
   protected:

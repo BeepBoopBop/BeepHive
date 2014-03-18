@@ -17,6 +17,6 @@ bool Event::operator<(Event& event)
 void Event::updateModel()
 {
   if(model!=0){
-    model->updateModel();
+    model->update();
   }
 }

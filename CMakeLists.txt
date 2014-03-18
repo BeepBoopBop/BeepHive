@@ -3,6 +3,8 @@ project(BeepHive)
 set(BeepHive_VERSION_MAJOR 0)
 set(BeepHive_VERSION_MINOR 0)
 
+set(EXECUTABLE BeepHive)
+
 set(BEEPHIVE_SOURCES
   src/DiscreteTimeModel.cpp
   src/Event.cpp
@@ -14,6 +16,9 @@ set(BEEPHIVE_HEADERS
   include/DiscreteTimeModel.h
   include/Event.h
   include/Model.h
+  include/World.h
+  include/BeepModel.h
+  include/Beep.h
 )
 
 #SOURCES ${BEEPHIVE_SOURCES}
@@ -23,7 +28,7 @@ INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
 
-add_executable(BeepHive 
+add_executable(${EXECUTABLE} 
                ${BEEPHIVE_SOURCES}
               )
 
@@ -58,3 +63,5 @@ add_custom_target(
   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/manual.pdf
 )
 
+enable_testing()
+add_test(mpi mpirun -np 2 ${EXECUTABLE})
