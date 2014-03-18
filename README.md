@@ -11,7 +11,7 @@ $ cd build
 ```
 ### Configure the build system
 ```
-$ cmake ..
+$ cmake -D CMAKE_CXX_COMPILER=mpicxx -D CMAKE_C_COMPILER=mpicc ..
 ```
 ### Build the project
 ```
