@@ -22,6 +22,4 @@ $ make
 $ make doc
 ```
 ## Dependencies
-### Overture
-The overture libraries can be found here:
-http://computation.llnl.gov/casc/Overture/henshaw/overtureDownload/overtureDownload.html
+
