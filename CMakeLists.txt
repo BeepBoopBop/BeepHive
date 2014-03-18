@@ -37,3 +37,24 @@ if(DOXYGEN_FOUND)
     COMMENT "Generating API documentation with Doxygen" VERBATIM
     )
 endif(DOXYGEN_FOUND)
+
+add_custom_command(
+  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.pdf
+  DEPENDS doc
+  COMMAND make
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/latex
+  COMMENT "Building LaTeX docs" VERBATIM
+)
+
+add_custom_command(
+  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/manual.pdf
+  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.pdf
+  COMMAND ${CMAKE_COMMAND} -E copy latex/refman.pdf manual.pdf
+  WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
+)
+
+add_custom_target(
+  latex
+  DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/manual.pdf
+)
+
