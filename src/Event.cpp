@@ -18,7 +18,7 @@ bool Event::operator<(const Event& event) const
 void Event::updateModel()
 {
   if(model!=0){
-    model->update();
+    model->update(this);
   }
 }
 
@@ -27,4 +27,18 @@ void Event::updateModel()
 bool EventComparator::operator()(const Event* first, const Event* second) const
 {
   return *first < *second;
+}
+
+
+
+void Event::setTime(double time)
+{
+  this->time=time;
+}
+
+
+
+double Event::getTime()
+{
+  return time;
 }

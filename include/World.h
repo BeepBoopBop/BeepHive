@@ -7,15 +7,16 @@
 #include "BeepHive.h"
 #include "Event.h"
 #include "Model.h"
+#include "BeepModel.h"
 
 
 typedef std::vector<Model*> ModelArray;
-typedef std::priority_queue<Event*,std::vector<Event*>,EventComparator> EventQueue;
+typedef std::priority_queue<Event> EventQueue;
 
 class World {
   public:
     World();
-    ~World();
+    virtual ~World();
     void step();
   private:
     ModelArray model_array;

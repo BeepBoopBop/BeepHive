@@ -12,11 +12,12 @@ class Event;
 class Model {
   public:
     Model();
+    virtual ~Model();
 
     double getTime();
-    void setTime(double new_time);
+    virtual void setTime(double new_time);
 
-    virtual void update() = 0;
+    virtual void update(Event* event);
     virtual Event getNextEvent() = 0;
 
   protected:

@@ -5,7 +5,12 @@
 
 
 
-World::World() : model_array(), event_queue() {}
+World::World() : model_array(), event_queue() 
+{
+  Model* beep_model=new BeepModel;
+  model_array.push_back(beep_model);
+  event_queue.push(beep_model->getNextEvent());
+}
 
 
 

@@ -16,8 +16,10 @@ class BeepHiveConfigs
     void parseArgs(const int argc, char** argv);
   private:
     BeepHiveConfigs();
-    BeepHiveConfigs(const BeepHiveConfigs& copy); //! Do not implement
-    BeepHiveConfigs& operator=(const BeepHiveConfigs& copy); //! Do not impleent
+    //! Do not implement
+    BeepHiveConfigs(const BeepHiveConfigs& copy);
+    //! Do not implement
+    BeepHiveConfigs& operator=(const BeepHiveConfigs& copy);
 };
 
 #endif /* BEEPHIVECONFIGS_H_H */

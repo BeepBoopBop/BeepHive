@@ -17,6 +17,9 @@ class Event {
 
     void updateModel();
 
+    void setTime(double time);
+    double getTime();
+
   private:
     double time;
     Model* model;

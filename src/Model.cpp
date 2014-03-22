@@ -7,6 +7,9 @@ Model::Model()
 
 
 
+Model::~Model() {}
+
+
 double Model::getTime()
 { 
   return time; 
@@ -17,4 +20,11 @@ double Model::getTime()
 void Model::setTime(double new_time)
 { 
   time = new_time;
+}
+
+
+
+void Model::update(Event* event)
+{
+  this->setTime(event->getTime());
 }

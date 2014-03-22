@@ -9,7 +9,15 @@
  */
 class DiscreteTimeModel : public Model {
   public:
+    DiscreteTimeModel();
+    DiscreteTimeModel(double event_frequency);
+    virtual ~DiscreteTimeModel();
+
     virtual Event getNextEvent();
+    virtual void update(Event* event);
+
+    virtual double getEventFrequency();
+    virtual void setEventFrequency(double event_frequency);
 
   protected:
     double event_frequency;
