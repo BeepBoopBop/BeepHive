@@ -4,33 +4,62 @@ set(BeepHive_VERSION_MAJOR 0)
 set(BeepHive_VERSION_MINOR 0)
 
 set(EXECUTABLE BeepHive)
+set(LIBRARY Beep)
+set(LIBRARY_TYPE SHARED)
 
 set(BEEPHIVE_SOURCES
+  src/BeepHiveConfigs.cpp
   src/DiscreteTimeModel.cpp
   src/Event.cpp
-  src/main.cpp
   src/Model.cpp
+  src/World.cpp
 )
 
 set(BEEPHIVE_HEADERS
+  include/Beep.h
+  include/BeepHive.h
+  include/BeepHiveConfigs.h
+  include/BeepModel.h
   include/DiscreteTimeModel.h
   include/Event.h
   include/Model.h
   include/World.h
-  include/BeepModel.h
-  include/Beep.h
 )
 
-#SOURCES ${BEEPHIVE_SOURCES}
-#HEADERS ${BEEPHIVE_HEADERS}
-#DEFINES ${BEEPHIVE_DEFS}
+set(BEEPHIVE_EXECUTABLE_SOURCES
+  src/main.cpp
+)
+
+find_package(Boost COMPONENTS mpi REQUIRED)
+
 INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_SOURCE_DIR}/include
+  ${Boost_INCLUDE_DIR}
 )
 
-add_executable(${EXECUTABLE} 
-               ${BEEPHIVE_SOURCES}
-              )
+add_library(
+  ${LIBRARY}
+  ${LIBRARY_TYPE}
+  ${BEEPHIVE_SOURCES}
+  ${BEEPHIVE_HEADERS}
+)
+set_target_properties(
+  ${LIBRARY}
+  PROPERTIES
+  LIBRARY_OUTPUT_DIRECTORY
+  lib
+)
+
+add_executable(
+  ${EXECUTABLE} 
+  ${BEEPHIVE_EXECUTABLE_SOURCES}
+)
+
+target_link_libraries(
+  ${EXECUTABLE}
+  ${Boost_LIBRARIES} 
+  ${LIBRARY}
+)
 
 # add a target to generate API documentation with Doxygen
 find_package(Doxygen)
