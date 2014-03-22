@@ -23,12 +23,14 @@ This will build both the library libBeep and the main BeepHive executable
 $ make doc
 ```
 ## Dependencies
-#Boost
+###Boost
 Make sure that Boost is installed, including:
 * Boost-mpi: Boost-mpi simplifies the dirty work of mpi and makes developments
     of plugins easier
-#Doxygen
+
+###Doxygen
 We use Doxygen to generate documentation of our source code.
 This is not necessary to get the project to build though
-#pdflatex
+
+###pdflatex
 If you would like to build a pdf of the documentation you will need pdflatex
