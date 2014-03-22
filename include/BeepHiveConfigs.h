@@ -1,0 +1,23 @@
+#ifndef BEEPHIVECONFIGS_H_H
+#define BEEPHIVECONFIGS_H_H 
+
+#include "BeepHive.h"
+
+/*!
+ * Singleton configuration class for use by BeepHive
+ *
+ * Information contained here includes global information on processes,
+ * information contained in startup parameters, and how to run simulations
+ */
+class BeepHiveConfigs
+{
+  public:
+    static BeepHiveConfigs& getInstance();
+    void parseArgs(const int argc, char** argv);
+  private:
+    BeepHiveConfigs();
+    BeepHiveConfigs(const BeepHiveConfigs& copy); //! Do not implement
+    BeepHiveConfigs& operator=(const BeepHiveConfigs& copy); //! Do not impleent
+};
+
+#endif /* BEEPHIVECONFIGS_H_H */
