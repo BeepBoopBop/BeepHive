@@ -1,0 +1,2 @@
+/home/andrew/Desktop/test/CMakeFiles/helloworld.dir
+/home/andrew/Desktop/test/CMakeFiles/helloworld_automoc.dir
