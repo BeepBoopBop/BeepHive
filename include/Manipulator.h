@@ -5,16 +5,16 @@
 class Manipulator 
 {
   public:
-    Manipulator(Layer* e){environment = e;}
+    Manipulator(Model* m){model = m;}
     virtual ~Manipulator() = 0;
 
-    //alter the environment layer that is pointed to, specific implementation decides how
-    virtual void alterEnvironment(float delta) = 0;
+    //alter the model layer that is pointed to, specific implementation decides how
+    virtual void alterModel(float delta) = 0;
 
 
   protected:
     //the layer that this manipulator can affect
-    Layer* environment;
+    Model* model;
 
 }
 

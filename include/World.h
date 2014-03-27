@@ -1,5 +1,5 @@
-#ifndef WORLD_H_H
-#define WORLD_H_H 
+#ifndef WORLD_H
+#define WORLD_H 
 
 #include <vector>
 #include <queue>
@@ -18,9 +18,12 @@ class World {
     World();
     virtual ~World();
     void step();
+
+    void addModel(Model *,std::string model_name);
+    Model* getModel(std::string model_name);
   private:
-    ModelArray model_array;
+    Map<Model*> models;
     EventQueue event_queue;
 };
 
-#endif /* WORLD_H_H */
+#endif /* WORLD_H */

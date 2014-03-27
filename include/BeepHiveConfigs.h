@@ -1,5 +1,5 @@
-#ifndef BEEPHIVECONFIGS_H_H
-#define BEEPHIVECONFIGS_H_H 
+#ifndef BEEPHIVECONFIGS_H
+#define BEEPHIVECONFIGS_H 
 
 #include "BeepHive.h"
 
@@ -22,4 +22,4 @@ class BeepHiveConfigs
     BeepHiveConfigs& operator=(const BeepHiveConfigs& copy);
 };
 
-#endif /* BEEPHIVECONFIGS_H_H */
+#endif /* BEEPHIVECONFIGS_H */

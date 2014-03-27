@@ -1,4 +1,4 @@
-#ifndef BEEPMODEL_H_H
+#ifndef BEEPMODEL_H
 
 #include "DiscreteTimeModel.h"
 
@@ -16,5 +16,5 @@ class BeepModel : public DiscreteTimeModel {
     BeepTree beep_tree;
 };
 
-#define BEEPMODEL_H_H 
-#endif /* BEEPMODEL_H_H */
+#define BEEPMODEL_H 
+#endif /* BEEPMODEL_H */

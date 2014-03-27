@@ -14,6 +14,7 @@ set(BEEPHIVE_SOURCES
   src/Event.cpp
   src/Model.cpp
   src/World.cpp
+  src/LightSensor.cpp
 )
 
 set(BEEPHIVE_HEADERS
@@ -25,6 +26,8 @@ set(BEEPHIVE_HEADERS
   include/Event.h
   include/Model.h
   include/World.h
+  include/Sensor.h
+  include/Manipulator.h
 )
 
 set(BEEPHIVE_EXECUTABLE_SOURCES
