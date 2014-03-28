@@ -12,9 +12,10 @@ set(BEEPHIVE_SOURCES
   src/BeepModel.cpp
   src/DiscreteTimeModel.cpp
   src/Event.cpp
-  src/Model.cpp
-  src/World.cpp
   src/LightSensor.cpp
+  src/Model.cpp
+  src/SyncModel.cpp
+  src/World.cpp
 )
 
 set(BEEPHIVE_HEADERS
@@ -24,10 +25,11 @@ set(BEEPHIVE_HEADERS
   include/BeepModel.h
   include/DiscreteTimeModel.h
   include/Event.h
-  include/Model.h
-  include/World.h
-  include/Sensor.h
   include/Manipulator.h
+  include/Model.h
+  include/Sensor.h
+  include/SyncModel.h
+  include/World.h
 )
 
 set(BEEPHIVE_EXECUTABLE_SOURCES
