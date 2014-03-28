@@ -18,10 +18,10 @@
     << " has not yet been implemented!" << std::endl; \
   }
 
-#ifdef DEBUG
-#define DEBUG_OUT(x) {fprintf(stderr,"FILE: %s LINE: %d MSG: %s\n",__FILE__, __LINE__,x);}
+#ifndef NDEBUG
+#define DEBUG(x) {fprintf(stderr,"FILE: %s LINE: %d MSG: %s\n",__FILE__, __LINE__,x);}
 #else
-#define DEBUG_OUT(x) ((void)0)
+#define DEBUG(x) ((void)0)
 #endif
 
 

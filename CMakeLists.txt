@@ -104,4 +104,4 @@ add_custom_target(
 )
 
 enable_testing()
-add_test(mpi mpirun -np 2 ${EXECUTABLE})
+add_test(mpi mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/${EXECUTABLE})
