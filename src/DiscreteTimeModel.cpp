@@ -1,7 +1,7 @@
 #include "DiscreteTimeModel.h"
 #include "Event.h"
 
-DiscreteTimeModel::DiscreteTimeModel() : Model(), event_frequency(0) {}
+DiscreteTimeModel::DiscreteTimeModel() : Model(), event_frequency(1) {}
 
 
 
@@ -21,7 +21,7 @@ Event DiscreteTimeModel::getNextEvent()
 
 
 
-void DiscreteTimeModel::update(Event* event)
+void DiscreteTimeModel::update(const Event* event)
 {
   Model::update(event);
 }

@@ -14,10 +14,10 @@ class Model {
     Model();
     virtual ~Model();
 
-    double getTime();
+    double getTime() const;
     virtual void setTime(double new_time);
 
-    virtual void update(Event* event);
+    virtual void update(const Event* event);
     virtual Event getNextEvent() = 0;
 
   protected:

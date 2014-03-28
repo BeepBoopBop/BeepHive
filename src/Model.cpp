@@ -10,8 +10,8 @@ Model::Model()
 Model::~Model() {}
 
 
-double Model::getTime()
-{ 
+double Model::getTime() const
+{
   return time; 
 }
 
@@ -24,7 +24,8 @@ void Model::setTime(double new_time)
 
 
 
-void Model::update(Event* event)
+void Model::update(const Event* event)
 {
   this->setTime(event->getTime());
+  std::cout << "Model updating! Time is now: " << event->getTime() << std::endl;
 }

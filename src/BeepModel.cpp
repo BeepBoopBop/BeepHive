@@ -13,7 +13,8 @@ BeepModel::~BeepModel() {}
 
 
 
-void BeepModel::update(Event* event)
+void BeepModel::update(const Event* event)
 {
   DiscreteTimeModel::update(event);
+  DEBUG("Updating BeepModel");
 }

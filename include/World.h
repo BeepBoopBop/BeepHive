@@ -11,15 +11,16 @@
 
 
 typedef std::vector<Model*> ModelArray;
-typedef std::priority_queue<Event> EventQueue;
+typedef std::priority_queue<Event,std::vector<Event>,EventComparator> EventQueue;
 
 class World {
   public:
     World();
     virtual ~World();
-    void step();
+    int step();
+    int start();
 
-    void addModel(Model *,std::string model_name);
+    void addModel(Model* model,std::string model_name, double start_time=0);
     Model* getModel(std::string model_name);
   private:
     Map<Model*> models;

@@ -10,7 +10,7 @@ class BeepModel : public DiscreteTimeModel {
     BeepModel(double event_frequency);
     virtual ~BeepModel();
 
-    virtual void update(Event* event);
+    virtual void update(const Event* event);
 
   private:
     BeepTree beep_tree;

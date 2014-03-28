@@ -24,9 +24,16 @@ void Event::updateModel()
 
 
 
-bool EventComparator::operator()(const Event* first, const Event* second) const
+Event Event::getNextEvent()
 {
-  return *first < *second;
+  return model->getNextEvent();
+}
+
+
+
+bool EventComparator::operator()(const Event first, const Event second) const
+{
+  return second < first;
 }
 
 
@@ -38,7 +45,7 @@ void Event::setTime(double time)
 
 
 
-double Event::getTime()
+double Event::getTime() const
 {
   return time;
 }

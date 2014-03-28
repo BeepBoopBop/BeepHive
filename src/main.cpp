@@ -16,17 +16,22 @@ int main(int argc, char** argv)
   BeepHiveConfigs::getInstance().parseArgs(argc,argv);
 
   if(comm.rank()==0){
-    std::cout << "I am the GUI!" << std::endl;
+    DEBUG("I am the GUI!");
+    //while(1){
+    for(int i=0;i<11;++i){
+      comm.barrier();
+      sleep(1);
+    }
+    DEBUG("Exiting frontend");
     return 0;
   }else{
     World world;
-    world.step();
-    std::cout << "Hello World" << std::endl;
+    world.start();
+    DEBUG("Exiting backend");
     return 0;
   }
 
-  std::cout << "This should never print. Either gui or back-end should have returned"
-            << std::endl;
+  DEBUG("This should never print. Either gui or back-end should have returned");
   return 0;
 }
 

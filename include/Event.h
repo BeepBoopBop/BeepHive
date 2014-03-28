@@ -16,9 +16,10 @@ class Event {
     bool operator<(const Event& event) const;
 
     void updateModel();
+    Event getNextEvent();
 
     void setTime(double time);
-    double getTime();
+    double getTime() const;
 
   private:
     double time;
@@ -28,7 +29,7 @@ class Event {
 class EventComparator
 {
   public:
-    bool operator()(const Event* first, const Event* second) const;
+    bool operator()(const Event first, const Event second) const;
 };
 
 #endif /* EVENT_H */

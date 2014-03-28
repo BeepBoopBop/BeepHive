@@ -3,18 +3,19 @@
 
 #include "Model.h"
 
-/*
+/*!
  * Base model for all discrete time-stepping models.
  * For the most part, this should be the only kind of model used.
  */
-class DiscreteTimeModel : public Model {
+class DiscreteTimeModel : public Model
+{
   public:
     DiscreteTimeModel();
     DiscreteTimeModel(double event_frequency);
     virtual ~DiscreteTimeModel();
 
     virtual Event getNextEvent();
-    virtual void update(Event* event);
+    virtual void update(const Event* event);
 
     virtual double getEventFrequency();
     virtual void setEventFrequency(double event_frequency);

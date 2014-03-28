@@ -8,6 +8,8 @@
 
 #include <iostream>
 #include <map>
+#include <stdio.h>
+#include <boost/mpi.hpp>
 
 #include "BeepHiveConfigs.h"
 
