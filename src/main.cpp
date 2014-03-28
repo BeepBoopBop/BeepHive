@@ -10,7 +10,7 @@ namespace mpi=boost::mpi;
 
 int main(int argc, char** argv)
 {
-  mpi::environment env
+  mpi::environment env;
   mpi::communicator comm;
 
   BeepHiveConfigs::getInstance().parseArgs(argc,argv);
