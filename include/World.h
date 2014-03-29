@@ -20,7 +20,7 @@ class World {
     int step();
     int start();
 
-    void addModel(Model* model,std::string model_name, double start_time=0);
+    void addModel(std::string model_name, Model* model, double start_time=0);
     Model* getModel(std::string model_name);
   private:
     Map<Model*> models;

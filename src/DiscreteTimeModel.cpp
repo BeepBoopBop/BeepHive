@@ -14,6 +14,13 @@ DiscreteTimeModel::~DiscreteTimeModel() {}
 
 
 
+double DiscreteTimeModel::timeSinceLastUpdate()
+{
+  return this->event_frequency;
+}
+
+
+
 Event DiscreteTimeModel::getNextEvent()
 { 
   return Event(this,time + event_frequency);

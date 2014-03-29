@@ -22,6 +22,12 @@ void Model::setTime(double new_time)
   time = new_time;
 }
 
+//! this is just here to make the compiler happy
+double Model::timeSinceLastUpdate()
+{
+  return -1;
+}
+
 
 
 void Model::update(const Event* event)

@@ -16,6 +16,7 @@ class DiscreteTimeModel : public Model
 
     virtual Event getNextEvent();
     virtual void update(const Event* event);
+    double timeSinceLastUpdate();
 
     virtual double getEventFrequency();
     virtual void setEventFrequency(double event_frequency);

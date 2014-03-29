@@ -10,6 +10,7 @@
 #include <map>
 #include <stdio.h>
 #include <boost/mpi.hpp>
+#include <assert.h>
 
 #include "BeepHiveConfigs.h"
 

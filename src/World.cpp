@@ -10,9 +10,9 @@
 World::World() : models(), event_queue() 
 {
   Model* sync_model=new SyncModel;
-  this->addModel(sync_model,"sync");
+  this->addModel("sync",sync_model);
   Model* beep_model=new BeepModel;
-  this->addModel(beep_model,"beep");
+  this->addModel("beep",beep_model);
 }
 
 
@@ -51,7 +51,7 @@ int World::start()
 
 
 
-void World::addModel(Model* model,std::string model_name, double start_time){
+void World::addModel(std::string model_name, Model* model, double start_time){
   models[model_name]=model;
   event_queue.push(Event(model,start_time));
 }
