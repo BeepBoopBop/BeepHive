@@ -8,12 +8,15 @@ set(LIBRARY Beep)
 set(LIBRARY_TYPE SHARED)
 
 set(BEEPHIVE_SOURCES
+  src/Beep.cpp
   src/BeepHiveConfigs.cpp
   src/BeepModel.cpp
   src/DiscreteTimeModel.cpp
   src/Event.cpp
   src/LightSensor.cpp
+  src/Manipulator.cpp
   src/Model.cpp
+  src/OmegaVelocityManipulator.cpp
   src/SyncModel.cpp
   src/World.cpp
 )
@@ -27,6 +30,7 @@ set(BEEPHIVE_HEADERS
   include/Event.h
   include/Manipulator.h
   include/Model.h
+  include/OmegaVelocityManipulator.h
   include/Sensor.h
   include/SyncModel.h
   include/World.h
