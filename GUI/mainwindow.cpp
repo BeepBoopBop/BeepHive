@@ -2,12 +2,6 @@
 #include "ui_mainwindow.h"
 
 
-int randInt(int low, int high)
-{
-    // Random number between low and high
-    return qrand() % ((high + 1) - low) + low;
-}
-
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,31 +13,24 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->graphicsView->setScene(scene);
     setCentralWidget(ui->graphicsView);
 
-    QBrush greenBrush(Qt::green);
-    QPen outlinePen(Qt::black);
-    outlinePen.setWidth(2);
+    //automatically trigger updates for now
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(timeToStep()));
+    timer->start(10);
+
+    connect(ui->actionStep,SIGNAL(triggered()),this,SLOT(timeToStep()));
 
 
-    /*QGraphicsRectItem* tempEllipse = new QGraphicsRectItem();
+    QGraphicsEllipseItem *tempEllipse = new QGraphicsEllipseItem();
     for(int i = 0; i < 10; i++){
+        Robot tempRobot = Robot();
+        tempRobot.setBody(tempEllipse);
+        robots.push_back(tempRobot);
+    }
 
-        //generate starting locations
-        int tempX = randInt(0,400);
-        xPosition.push_back(tempX);
-        int tempY = randInt(0,400);
-        yPosition.push_back(tempY);
-
-        //draw the agents
-        tempEllipse= scene->addRect(tempX, tempY, 10, 10, outlinePen, greenBrush);
-        tempEllipse->setFlag(QGraphicsItem::ItemIsMovable);
-        ellipse.push_back(tempEllipse);
-
-        //generate starting velocities
-        int randomNumber = randInt(0, 2) - 1;
-        xVelocity.push_back(randomNumber);
-        randomNumber = randInt(0,2) - 1;
-        yVelocity.push_back(randomNumber);
-    }*/
+    for(int i = 0; i<robots.size(); i++){
+        robots[i].updateDrawPosition(scene);
+    }
 
 }
 
@@ -54,4 +41,14 @@ MainWindow::~MainWindow()
 
 void MainWindow::moveAgents(){
     scene->clear();
+}
+
+void MainWindow::timeToStep(){
+    if(scene) delete scene;
+    scene = new QGraphicsScene(this);
+    ui->graphicsView->setScene(scene);
+
+    for(int i = 0; i<robots.size(); i++){
+        robots[i].randUpdateDrawPosition(scene);
+    }
 }

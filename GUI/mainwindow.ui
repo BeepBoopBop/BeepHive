@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>417</width>
-    <height>354</height>
+    <width>509</width>
+    <height>407</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,24 +23,14 @@
    <widget class="QGraphicsView" name="graphicsView">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>70</y>
+      <x>70</x>
+      <y>100</y>
       <width>351</width>
       <height>141</height>
      </rect>
     </property>
-   </widget>
-   <widget class="QSplitter" name="splitter">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>230</y>
-      <width>301</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Horizontal</enum>
+    <property name="autoFillBackground">
+     <bool>false</bool>
     </property>
    </widget>
   </widget>
@@ -49,7 +39,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>417</width>
+     <width>509</width>
      <height>20</height>
     </rect>
    </property>
@@ -80,6 +70,7 @@
      <addaction name="menuEnvironment"/>
     </widget>
     <addaction name="menuAdd"/>
+    <addaction name="actionStep"/>
    </widget>
    <widget class="QMenu" name="menuAgents">
     <property name="title">
@@ -139,6 +130,11 @@
   <action name="actionWall">
    <property name="text">
     <string>Wall</string>
+   </property>
+  </action>
+  <action name="actionStep">
+   <property name="text">
+    <string>Step</string>
    </property>
   </action>
  </widget>

@@ -1,7 +1,5 @@
 #include "mainwindow.h"
 #include <QApplication>
-#include <QTime>
- #include <QDebug>
 
 int main(int argc, char *argv[])
 {
@@ -9,9 +7,5 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    for(int i =0; i < 100; i++)
-        w.moveAgents();
     return a.exec();
-
 }
-

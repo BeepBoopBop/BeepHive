@@ -18,7 +18,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMenuBar>
-#include <QtWidgets/QSplitter>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QToolBar>
 #include <QtWidgets/QWidget>
@@ -34,9 +33,9 @@ public:
     QAction *actionAgent;
     QAction *actionSource;
     QAction *actionWall;
+    QAction *actionStep;
     QWidget *centralWidget;
     QGraphicsView *graphicsView;
-    QSplitter *splitter;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
@@ -52,7 +51,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(417, 354);
+        MainWindow->resize(509, 407);
         actionSave = new QAction(MainWindow);
         actionSave->setObjectName(QStringLiteral("actionSave"));
         actionOpen = new QAction(MainWindow);
@@ -65,6 +64,8 @@ public:
         actionSource->setObjectName(QStringLiteral("actionSource"));
         actionWall = new QAction(MainWindow);
         actionWall->setObjectName(QStringLiteral("actionWall"));
+        actionStep = new QAction(MainWindow);
+        actionStep->setObjectName(QStringLiteral("actionStep"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -74,15 +75,12 @@ public:
         centralWidget->setSizePolicy(sizePolicy);
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(20, 70, 351, 141));
-        splitter = new QSplitter(centralWidget);
-        splitter->setObjectName(QStringLiteral("splitter"));
-        splitter->setGeometry(QRect(50, 230, 301, 23));
-        splitter->setOrientation(Qt::Horizontal);
+        graphicsView->setGeometry(QRect(70, 100, 351, 141));
+        graphicsView->setAutoFillBackground(false);
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 417, 20));
+        menuBar->setGeometry(QRect(0, 0, 509, 20));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuEdit = new QMenu(menuBar);
@@ -114,6 +112,7 @@ public:
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionExit);
         menuEdit->addAction(menuAdd->menuAction());
+        menuEdit->addAction(actionStep);
         menuAdd->addAction(actionAgent);
         menuAdd->addAction(menuEnvironment->menuAction());
         menuEnvironment->addAction(actionSource);
@@ -133,6 +132,7 @@ public:
         actionAgent->setText(QApplication::translate("MainWindow", "Agent", 0));
         actionSource->setText(QApplication::translate("MainWindow", "Source", 0));
         actionWall->setText(QApplication::translate("MainWindow", "Wall", 0));
+        actionStep->setText(QApplication::translate("MainWindow", "Step", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0));
         menuAdd->setTitle(QApplication::translate("MainWindow", "Add", 0));

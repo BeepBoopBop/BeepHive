@@ -1,14 +1,10 @@
+#define MAINWINDOW_
 #ifndef MAINWINDOW_H
-#define MAINWINDOW_H
 
-#include <QMainWindow>
-#include <QDialog>
-#include <QGraphicsScene>
-#include <QGraphicsView>
-#include <QGraphicsItem>
-#include <vector>
-#include <QDebug>
-#include <QPropertyAnimation>
+#include "gui_includes.h"
+#include "robot.h"
+
+
 
 namespace Ui {
 class MainWindow;
@@ -23,16 +19,15 @@ public:
     ~MainWindow();
     void moveAgents();
 
+
+public slots:
+    void timeToStep();
+
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
-    std::vector <QGraphicsRectItem*> ellipse;
-    std::vector <int> xPosition;
-    std::vector <int> yPosition;
-    std::vector <int> xVelocity;
-    std::vector <int> yVelocity;
-    QGraphicsRectItem *rectangle;
-
+    std::vector<Robot> robots;
+    QTimer *timer;
 };
 
 #endif // MAINWINDOW_H

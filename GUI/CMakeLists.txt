@@ -12,7 +12,7 @@ set(CMAKE_MODULE_PATH /home/andrew/Qt/5.2.1/gcc_64/lib/cmake/Qt5Widgets)
 find_package(Qt5Widgets)
 
 # Tell CMake to create the helloworld executable
-add_executable(helloworld main.cpp mainwindow.cpp)
+add_executable(helloworld main.cpp mainwindow.cpp robot.cpp)
 
 # Use the Widgets module from Qt 5.
 qt5_use_modules(helloworld Widgets)
