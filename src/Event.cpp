@@ -1,9 +1,9 @@
 #include "BeepHive.h"
 #include "Event.h"
-#include "Model.h"
+#include "Layer.h"
 
 
-Event::Event(Model* model, double time)
+Event::Event(Layer* model, double time)
   : time(time), model(model) {}
 
 
@@ -15,7 +15,7 @@ bool Event::operator<(const Event& event) const
 
 
 
-void Event::updateModel()
+void Event::updateLayer()
 {
   if(model!=0){
     model->update(this);

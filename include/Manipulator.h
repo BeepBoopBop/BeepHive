@@ -3,7 +3,7 @@
 
 #include <vector>
 
-#include "Model.h"
+#include "Layer.h"
 #include "Beep.h"
 
 class Beep;
@@ -11,7 +11,7 @@ class Beep;
 class Manipulator 
 {
   public:
-    Manipulator(Beep* b, Model* m){beep = b; model = m;}
+    Manipulator(Beep* b, Layer* m){beep = b; model = m;}
     //virtual ~Manipulator() = 0;
 
     //! Set manipulator inputs
@@ -24,7 +24,7 @@ class Manipulator
 
   protected:
     //!the layer that this manipulator can affect
-    Model* model;
+    Layer* model;
     Beep* beep;
     std::vector<double> inputs;
 

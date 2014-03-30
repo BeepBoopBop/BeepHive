@@ -1,14 +1,14 @@
 #ifndef BEEPMODEL_H
 
-#include "DiscreteTimeModel.h"
+#include "DiscreteTimeLayer.h"
 
 typedef char BeepTree;
 
-class BeepModel : public DiscreteTimeModel {
+class BeepLayer : public DiscreteTimeLayer {
   public:
-    BeepModel();
-    BeepModel(double event_frequency);
-    virtual ~BeepModel();
+    BeepLayer();
+    BeepLayer(double event_frequency);
+    virtual ~BeepLayer();
 
     virtual void update(const Event* event);
 

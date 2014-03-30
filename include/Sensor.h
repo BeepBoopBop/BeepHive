@@ -2,23 +2,23 @@
 #define SENSOR_H 
 
 #include "BeepHive.h"
-#include "Model.h"
+#include "Layer.h"
 
 class Sensor 
 {
   public:
 
-    Sensor(Model* m){model = m;}
+    Sensor(Layer* m){model = m;}
     //decontructor
     virtual ~Sensor() = 0;
 
     //get reading from the model that is readible
-    virtual float readModel() = 0;
+    virtual float readLayer() = 0;
 
   
   protected:
     //the layer that the sensor can read from
-    Model* model;
+    Layer* model;
 };
 
 #endif /* SENSOR_H */

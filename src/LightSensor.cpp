@@ -9,7 +9,7 @@ class LightSensor : public Sensor
 {
   public:
     //create the sensor with a layer as well as an xyz location
-    LightSensor(int x, int y, int z, Model* m) : Sensor(m)
+    LightSensor(int x, int y, int z, Layer* m) : Sensor(m)
     {
       x_loc = x;
       y_loc = y;

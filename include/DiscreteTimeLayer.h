@@ -1,18 +1,18 @@
 #ifndef DISCRETETIMEMODEL_H
 #define DISCRETETIMEMODEL_H 
 
-#include "Model.h"
+#include "Layer.h"
 
 /*!
  * Base model for all discrete time-stepping models.
  * For the most part, this should be the only kind of model used.
  */
-class DiscreteTimeModel : public Model
+class DiscreteTimeLayer : public Layer
 {
   public:
-    DiscreteTimeModel();
-    DiscreteTimeModel(double event_frequency);
-    virtual ~DiscreteTimeModel();
+    DiscreteTimeLayer();
+    DiscreteTimeLayer(double event_frequency);
+    virtual ~DiscreteTimeLayer();
 
     virtual Event getNextEvent();
     virtual void update(const Event* event);

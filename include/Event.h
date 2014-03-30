@@ -2,20 +2,20 @@
 #define EVENT_H 
 
 #include "BeepHive.h"
-#include "Model.h"
+#include "Layer.h"
 
-class Model;
+class Layer;
 
 /*!
  * Event class for use in discrete time simulator.
  */
 class Event {
   public:
-    Event(Model* model, double time);
+    Event(Layer* model, double time);
 
     bool operator<(const Event& event) const;
 
-    void updateModel();
+    void updateLayer();
     Event getNextEvent();
 
     void setTime(double time);
@@ -23,7 +23,7 @@ class Event {
 
   private:
     double time;
-    Model* model;
+    Layer* model;
 };
 
 class EventComparator

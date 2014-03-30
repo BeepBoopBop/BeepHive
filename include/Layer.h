@@ -1,5 +1,5 @@
 /*!
- * \class Model
+ * \class Layer
  * \brief Base model class for use in discrete time simulator.
  */
 #ifndef MODEL_H
@@ -9,10 +9,10 @@
 
 class Event;
 
-class Model {
+class Layer {
   public:
-    Model();
-    virtual ~Model();
+    Layer();
+    virtual ~Layer();
 
     double getTime() const;
     virtual void setTime(double new_time);

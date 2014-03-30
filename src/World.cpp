@@ -1,18 +1,18 @@
 #include <iostream>
 
 #include "BeepHive.h"
-#include "BeepModel.h"
-#include "SyncModel.h"
+#include "BeepLayer.h"
+#include "SyncLayer.h"
 #include "World.h"
 
 
 
 World::World() : models(), event_queue() 
 {
-  Model* sync_model=new SyncModel;
-  this->addModel("sync",sync_model);
-  Model* beep_model=new BeepModel;
-  this->addModel("beep",beep_model);
+  Layer* sync_model=new SyncLayer;
+  this->addLayer("sync",sync_model);
+  Layer* beep_model=new BeepLayer;
+  this->addLayer("beep",beep_model);
 }
 
 
@@ -26,7 +26,7 @@ int World::step()
   Event event=event_queue.top();
 
   event_queue.pop();
-  event.updateModel();
+  event.updateLayer();
   event_queue.push(event.getNextEvent());
 
   //temporarilly have automatic exit
@@ -51,7 +51,7 @@ int World::start()
 
 
 
-void World::addModel(std::string model_name, Model* model, double start_time){
+void World::addLayer(std::string model_name, Layer* model, double start_time){
   models[model_name]=model;
   event_queue.push(Event(model,start_time));
 }
