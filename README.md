@@ -11,7 +11,8 @@ $ cd build
 ```
 ### Configure the build system
 ```
-$ cmake -D CMAKE_CXX_COMPILER=mpicxx -D CMAKE_C_COMPILER=mpicc ..
+$ cmake -D CMAKE_CXX_COMPILER=mpicxx -D CMAKE_C_COMPILER=mpicc -D
+Qt5Widgets_DIR=$QT_INSTALL_PATH/Qt/5.2.1/gcc_64/lib/cmake/Qt5Widgets ..
 ```
 ### Build the project
 ```

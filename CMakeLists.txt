@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.9)
 project(BeepHive)
 set(BeepHive_VERSION_MAJOR 0)
 set(BeepHive_VERSION_MINOR 0)
@@ -6,6 +6,8 @@ set(BeepHive_VERSION_MINOR 0)
 set(EXECUTABLE BeepHive)
 set(LIBRARY Beep)
 set(LIBRARY_TYPE SHARED)
+
+add_subdirectory(GUI)
 
 set(BEEPHIVE_SOURCES
   src/Beep.cpp
