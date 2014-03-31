@@ -13,7 +13,7 @@
  */
 void OmegaVelocityManipulator::update()
 {
-  double delta_t = model->timeSinceLastUpdate();
+  double delta_t = layer->timeSinceLastUpdate();
   double omega = inputs[0];
   double velocity = inputs[1];
   double theta = beep->getState("theta");

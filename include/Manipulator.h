@@ -11,7 +11,7 @@ class Beep;
 class Manipulator 
 {
   public:
-    Manipulator(Beep* b, Layer* m){beep = b; model = m;}
+    Manipulator(Beep* b, Layer* m){beep = b; layer = m;}
     //virtual ~Manipulator() = 0;
 
     //! Set manipulator inputs
@@ -24,7 +24,7 @@ class Manipulator
 
   protected:
     //!the layer that this manipulator can affect
-    Layer* model;
+    Layer* layer;
     Beep* beep;
     std::vector<double> inputs;
 

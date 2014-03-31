@@ -1,6 +1,6 @@
 /*!
  * \class Layer
- * \brief Base model class for use in discrete time simulator.
+ * \brief Base layer class for use in discrete time simulator.
  */
 #ifndef MODEL_H
 #define MODEL_H 

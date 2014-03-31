@@ -20,10 +20,10 @@ class World {
     int step();
     int start();
 
-    void addLayer(std::string model_name, Layer* model, double start_time=0);
-    Layer* getLayer(std::string model_name);
+    void addLayer(std::string layer_name, Layer* layer, double start_time=0);
+    Layer* getLayer(std::string layer_name);
   private:
-    Map<Layer*> models;
+    Map<Layer*> layers;
     EventQueue event_queue;
 };
 

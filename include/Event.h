@@ -11,7 +11,7 @@ class Layer;
  */
 class Event {
   public:
-    Event(Layer* model, double time);
+    Event(Layer* layer, double time);
 
     bool operator<(const Event& event) const;
 
@@ -23,7 +23,7 @@ class Event {
 
   private:
     double time;
-    Layer* model;
+    Layer* layer;
 };
 
 class EventComparator

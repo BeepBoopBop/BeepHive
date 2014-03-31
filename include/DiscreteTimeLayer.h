@@ -4,8 +4,8 @@
 #include "Layer.h"
 
 /*!
- * Base model for all discrete time-stepping models.
- * For the most part, this should be the only kind of model used.
+ * Base layer for all discrete time-stepping layers.
+ * For the most part, this should be the only kind of layer used.
  */
 class DiscreteTimeLayer : public Layer
 {

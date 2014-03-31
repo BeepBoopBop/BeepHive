@@ -3,8 +3,8 @@
 #include "Layer.h"
 
 
-Event::Event(Layer* model, double time)
-  : time(time), model(model) {}
+Event::Event(Layer* layer, double time)
+  : time(time), layer(layer) {}
 
 
 
@@ -17,8 +17,8 @@ bool Event::operator<(const Event& event) const
 
 void Event::updateLayer()
 {
-  if(model!=0){
-    model->update(this);
+  if(layer!=0){
+    layer->update(this);
   }
 }
 
@@ -26,7 +26,7 @@ void Event::updateLayer()
 
 Event Event::getNextEvent()
 {
-  return model->getNextEvent();
+  return layer->getNextEvent();
 }
 
 

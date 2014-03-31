@@ -1,3 +1,4 @@
+#include "BeepHive.h"
 #include "DiscreteTimeLayer.h"
 #include "Event.h"
 

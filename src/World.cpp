@@ -7,12 +7,12 @@
 
 
 
-World::World() : models(), event_queue() 
+World::World() : layers(), event_queue() 
 {
-  Layer* sync_model=new SyncLayer;
-  this->addLayer("sync",sync_model);
-  Layer* beep_model=new BeepLayer;
-  this->addLayer("beep",beep_model);
+  Layer* sync_layer=new SyncLayer;
+  this->addLayer("sync",sync_layer);
+  Layer* beep_layer=new BeepLayer;
+  this->addLayer("beep",beep_layer);
 }
 
 
@@ -51,7 +51,7 @@ int World::start()
 
 
 
-void World::addLayer(std::string model_name, Layer* model, double start_time){
-  models[model_name]=model;
-  event_queue.push(Event(model,start_time));
+void World::addLayer(std::string layer_name, Layer* layer, double start_time){
+  layers[layer_name]=layer;
+  event_queue.push(Event(layer,start_time));
 }

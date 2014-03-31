@@ -8,17 +8,17 @@ class Sensor
 {
   public:
 
-    Sensor(Layer* m){model = m;}
+    Sensor(Layer* m){layer = m;}
     //decontructor
     virtual ~Sensor() = 0;
 
-    //get reading from the model that is readible
+    //get reading from the layer that is readible
     virtual float readLayer() = 0;
 
   
   protected:
     //the layer that the sensor can read from
-    Layer* model;
+    Layer* layer;
 };
 
 #endif /* SENSOR_H */
