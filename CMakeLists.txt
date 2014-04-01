@@ -19,6 +19,7 @@ set(BEEPHIVE_SOURCES
   src/Manipulator.cpp
   src/Layer.cpp
   src/OmegaVelocityManipulator.cpp
+  #src/Serializeable.cpp
   src/SyncLayer.cpp
   src/World.cpp
 )
@@ -34,6 +35,7 @@ set(BEEPHIVE_HEADERS
   include/Layer.h
   include/OmegaVelocityManipulator.h
   include/Sensor.h
+  #include/Serializeable.h
   include/SyncLayer.h
   include/World.h
 )
@@ -42,7 +44,7 @@ set(BEEPHIVE_EXECUTABLE_SOURCES
   src/main.cpp
 )
 
-find_package(Boost COMPONENTS mpi REQUIRED)
+find_package(Boost COMPONENTS mpi serialization REQUIRED)
 
 INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_SOURCE_DIR}/include
