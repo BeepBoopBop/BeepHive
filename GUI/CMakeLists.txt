@@ -15,11 +15,14 @@ set(GUI_HEADERS
   include/mainwindow.h
   include/robot.h
   include/ui_mainwindow.h
+  include/ui_debugwindow.h
+  include/debugwindow.h
 )
 set(GUI_SOURCES
   src/main.cpp
   src/mainwindow.cpp
   src/robot.cpp
+  src/debugwindow.cpp
 )
 
 

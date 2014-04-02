@@ -11,5 +11,9 @@
 #include <QPropertyAnimation>
 #include <QGraphicsItem>
 #include <QTimer>
+#include <QMouseEvent>
+#include <string>
+#include <sstream>
+#include <QString>
 
 #endif // GUI_INCLUDES_H

@@ -3,6 +3,7 @@
 
 #include "gui_includes.h"
 #include "robot.h"
+#include "debugwindow.h"
 
 
 
@@ -12,22 +13,24 @@ class MainWindow;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+  Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
-    void moveAgents();
+  explicit MainWindow(QWidget *parent = 0);
+  ~MainWindow();
+  void moveAgents();
+  void mousePressEvent(QMouseEvent *event);
 
 
 public slots:
-    void timeToStep();
+  void timeToStep();
 
 private:
-    Ui::MainWindow *ui;
-    QGraphicsScene *scene;
-    std::vector<Robot> robots;
-    QTimer *timer;
+  Ui::MainWindow *ui;
+  QGraphicsScene *scene;
+  std::vector<Robot> robots;
+  QTimer *timer;
+  DebugWindow* newDebug;
 };
 
 #endif // MAINWINDOW_H
