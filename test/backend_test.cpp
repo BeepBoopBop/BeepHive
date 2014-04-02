@@ -4,9 +4,6 @@
 #include <boost/mpi.hpp>
 #include <iostream>
 
-#include "mainwindow.h"
-#include <QApplication>
-
 #include "BeepHive.h"
 #include "World.h"
 
