@@ -2,10 +2,9 @@
 #define SERIALIZEABLE_H
 
 
-#include <fstream>
-#include <string>
-#include <boost/archive/text_iarchive.hpp>
-#include <boost/archive/text_oarchive.hpp>
+#include <boost/archive/xml_oarchive.hpp>
+#include <boost/archive/xml_iarchive.hpp>
+#include <boost/serialization/nvp.hpp>
 
 #include "BeepHive.h"
 
@@ -19,16 +18,16 @@ class Serializeable{
    std::string name;
 
     friend class boost::serialization::access;
-    template<class archive>
 
-    //used by save and load in an ambidextrous manner to send member variables to and from xml
-    virtual void serialize(archive& ar, const unsigned int version) = 0;
+    //used by save and load in an two-way manner to send member variariables via xml
+    template<class Archive>
+    void serialize(Archive& ar, const unsigned int version);
 
 
     void save(const Serializeable& sw, const std::string& file_name);
 
     //should return the class and user is responsible for casting to the subclass
-    Serializeable load(const std::string& file_name);
+    Serializeable* load(const std::string& file_name);
 
 };
 

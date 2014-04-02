@@ -10,7 +10,7 @@ class Sensor
 
     Sensor(Layer* m){layer = m;}
     //decontructor
-    virtual ~Sensor() = 0;
+    //virtual ~Sensor() = 0;
 
     //get reading from the layer that is readible
     virtual float readLayer() = 0;
