@@ -1,8 +1,14 @@
-#ifndef BEEPMODEL_H
+#ifndef BEEPLAYER_H
+#define BEEPLAYER_H 
+
+#include <vector>
 
 #include "DiscreteTimeLayer.h"
+#include "Beep.h"
 
-typedef char BeepTree;
+class Beep;
+
+typedef std::vector<Beep*> Beeps;
 
 /*!
  * The beep layer is responsible for initiating updates to all beeps
@@ -16,7 +22,7 @@ class BeepLayer : public DiscreteTimeLayer {
   public:
     virtual ~BeepLayer();
 
-    virtual void update(const Event* event);
+    virtual void update(const Event* event, World* world);
 
   private:
     BeepLayer();
@@ -24,8 +30,7 @@ class BeepLayer : public DiscreteTimeLayer {
     BeepLayer(const BeepLayer& copy);
     BeepLayer& operator=(const BeepLayer& copy);
 
-    BeepTree beep_tree;
+    Beeps beeps;
 };
 
-#define BEEPMODEL_H 
-#endif /* BEEPMODEL_H */
+#endif /* BEEPLAYER_H */

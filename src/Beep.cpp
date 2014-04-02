@@ -1,6 +1,34 @@
 #include "BeepHive.h"
 #include "Beep.h"
 
+Beep::Beep() : controller(0), sensors(), manipulators(), states() {}
+
+
+
+void Beep::readSensors(World* world)
+{
+  Map<Sensor*>::iterator it;
+  for(it=sensors.begin(); it!=sensors.end(); ++it){
+    //(*(it.second))->
+  }
+}
+
+
+
+void Beep::runController()
+{
+  if(this->controller){
+    controller->run(this);
+  }
+}
+
+void Beep::runManipulators(World* world)
+{
+  Map<Manipulator*>::iterator it;
+  for(it=manipulators.begin(); it!=manipulators.end(); ++it){
+    it->second->update();
+  }
+}
 
 
 void Beep::addSensor(std::string sensor_name, Sensor* sensor)

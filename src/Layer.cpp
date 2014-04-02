@@ -30,7 +30,7 @@ double Layer::timeSinceLastUpdate()
 
 
 
-void Layer::update(const Event* event)
+void Layer::update(const Event* event, World* world)
 {
   this->setTime(event->getTime());
   std::cout << "Layer updating! Time is now: " << event->getTime() << std::endl;

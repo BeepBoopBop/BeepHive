@@ -15,10 +15,10 @@ bool Event::operator<(const Event& event) const
 
 
 
-void Event::updateLayer()
+void Event::updateLayer(World* world)
 {
   if(layer!=0){
-    layer->update(this);
+    layer->update(this,world);
   }
 }
 
@@ -27,13 +27,6 @@ void Event::updateLayer()
 Event Event::getNextEvent()
 {
   return layer->getNextEvent();
-}
-
-
-
-bool EventComparator::operator()(const Event first, const Event second) const
-{
-  return second < first;
 }
 
 

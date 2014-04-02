@@ -6,8 +6,10 @@
 #define MODEL_H 
 
 #include "Event.h"
+#include "World.h"
 
 class Event;
+class World;
 
 class Layer {
   public:
@@ -18,7 +20,7 @@ class Layer {
     virtual void setTime(double new_time);
     virtual double timeSinceLastUpdate();
 
-    virtual void update(const Event* event);
+    virtual void update(const Event* event, World* world);
     virtual Event getNextEvent() = 0;
 
   protected:

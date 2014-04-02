@@ -15,7 +15,7 @@ class DiscreteTimeLayer : public Layer
     virtual ~DiscreteTimeLayer();
 
     virtual Event getNextEvent();
-    virtual void update(const Event* event);
+    virtual void update(const Event* event, World* world);
     double timeSinceLastUpdate();
 
     virtual double getEventFrequency();

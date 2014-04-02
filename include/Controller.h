@@ -10,10 +10,7 @@ class Beep;
 
 class Controller {
   public:
-    virtual void run();
-    virtual void update();
-  private:
-    Beep* beep;
+    virtual void run(Beep* beep) = 0;
 };
 
 #endif /* CONTROLLER_H */

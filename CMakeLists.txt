@@ -14,6 +14,7 @@ set(LIB_BEEPGUI BeepGui)
 set(LIBRARY_TYPE SHARED)
 
 set(BEEPHIVE_HEADERS
+  include/BasicController.h
   include/Beep.h
   include/BeepHive.h
   include/BeepHiveConfigs.h
@@ -27,9 +28,11 @@ set(BEEPHIVE_HEADERS
   #include/Serializeable.h
   include/SyncLayer.h
   include/World.h
+  include/Controller.h
 )
 
 set(BEEPHIVE_SOURCES
+  src/BasicController.cpp
   src/Beep.cpp
   src/BeepHiveConfigs.cpp
   src/BeepLayer.cpp

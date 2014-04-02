@@ -3,8 +3,10 @@
 
 #include "BeepHive.h"
 #include "Layer.h"
+#include "World.h"
 
 class Layer;
+class World;
 
 /*!
  * Event class for use in discrete time simulator.
@@ -15,7 +17,7 @@ class Event {
 
     bool operator<(const Event& event) const;
 
-    void updateLayer();
+    void updateLayer(World* world);
     Event getNextEvent();
 
     void setTime(double time);
@@ -24,12 +26,6 @@ class Event {
   private:
     double time;
     Layer* layer;
-};
-
-class EventComparator
-{
-  public:
-    bool operator()(const Event first, const Event second) const;
 };
 
 #endif /* EVENT_H */

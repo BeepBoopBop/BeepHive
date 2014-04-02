@@ -6,6 +6,12 @@
 #include "World.h"
 
 
+bool EventComparator::operator()(const Event first, const Event second) const
+{
+  return second < first;
+}
+
+
 
 World::World() : layers(), event_queue() 
 {
@@ -13,6 +19,7 @@ World::World() : layers(), event_queue()
   this->addLayer("sync",sync_layer);
   Layer* beep_layer=new BeepLayer;
   this->addLayer("beep",beep_layer);
+  //Beep* beep=new Beep(
 }
 
 
@@ -26,7 +33,7 @@ int World::step()
   Event event=event_queue.top();
 
   event_queue.pop();
-  event.updateLayer();
+  event.updateLayer(this);
   event_queue.push(event.getNextEvent());
 
   //temporarilly have automatic exit

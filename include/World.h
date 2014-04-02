@@ -7,11 +7,19 @@
 #include "BeepHive.h"
 #include "Event.h"
 #include "Layer.h"
-#include "BeepLayer.h"
 
+class Layer;
+class Event;
+
+class EventComparator
+{
+  public:
+    bool operator()(const Event first, const Event second) const;
+};
 
 typedef std::vector<Layer*> LayerArray;
 typedef std::priority_queue<Event,std::vector<Event>,EventComparator> EventQueue;
+//typedef std::priority_queue<Event,std::vector<Event> > EventQueue;
 
 class World {
   public:

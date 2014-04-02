@@ -1,4 +1,3 @@
-#include "BeepHive.h"
 #include "DiscreteTimeLayer.h"
 #include "Event.h"
 
@@ -29,9 +28,9 @@ Event DiscreteTimeLayer::getNextEvent()
 
 
 
-void DiscreteTimeLayer::update(const Event* event)
+void DiscreteTimeLayer::update(const Event* event, World* world)
 {
-  Layer::update(event);
+  Layer::update(event, world);
 }
 
 

@@ -5,7 +5,8 @@
 #include "Manipulator.h"
 
 class OmegaVelocityManipulator : public Manipulator {
-  void update();
+  void run();
+  void updateState();
 };
 
 #endif /* OMEGAVELOCITYMANIPULATOR_H */

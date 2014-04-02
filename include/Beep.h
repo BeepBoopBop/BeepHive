@@ -10,13 +10,18 @@
 #include "Controller.h"
 
 class Manipulator;
+class World;
+class Controller;
 
 class Beep {
   public:
     Beep();
     ~Beep();
-    void step();
-    void update();
+    void readSensors(World* world);
+    void runController();
+    void runManipulators(World* world);
+
+    void setController(Controller* controller);
 
     void addSensor(std::string sensor_name, Sensor* sensor);
     Sensor* getSensor(std::string sensor_name);
@@ -29,7 +34,6 @@ class Beep {
     //! Get the value of an existing state variable.
     double getState(std::string state_name);
   private:
-    World* world;
     Controller* controller;
     Map<Sensor*> sensors;
     Map<Manipulator*> manipulators;

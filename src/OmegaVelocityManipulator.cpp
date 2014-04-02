@@ -11,7 +11,7 @@
  * omega is in the counterclockwise direction
  * velocity is in the local X direction
  */
-void OmegaVelocityManipulator::update()
+void OmegaVelocityManipulator::updateState()
 {
   double delta_t = layer->timeSinceLastUpdate();
   double omega = inputs[0];

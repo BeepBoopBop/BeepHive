@@ -9,10 +9,10 @@ SyncLayer::SyncLayer() : DiscreteTimeLayer(1) {}
 
 SyncLayer::SyncLayer(double event_frequency) : DiscreteTimeLayer(event_frequency) {}
 
-void SyncLayer::update(const Event* event)
+void SyncLayer::update(const Event* event, World* world)
 {
   DEBUG("Updating SyncLayer");
-  DiscreteTimeLayer::update(event);
+  DiscreteTimeLayer::update(event, world);
   boost::mpi::communicator comm;
 
   comm.barrier();
