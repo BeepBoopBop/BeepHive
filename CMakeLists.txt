@@ -60,8 +60,7 @@ set(GUI_SOURCES
 )
 
 set(BEEPHIVE_EXECUTABLE_SOURCES
-#src/main.cpp
-  test/backend_test.cpp
+  src/main.cpp
 )
 
 find_package(Boost COMPONENTS mpi serialization REQUIRED)
@@ -108,6 +107,7 @@ target_link_libraries(
   ${EXECUTABLE}
   ${Boost_LIBRARIES} 
   ${LIB_BEEP}
+  ${LIB_BEEPGUI}
 )
 
 # add a target to generate API documentation with Doxygen
@@ -169,6 +169,7 @@ add_executable(
 target_link_libraries(
   GuiTest
   ${LIB_BEEPGUI}
+  ${Boost_LIBRARIES} 
 )
 
 enable_testing()
@@ -176,3 +177,4 @@ add_test(mpi mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
 
 qt5_use_modules(GuiTest Widgets)
 qt5_use_modules(${LIB_BEEPGUI} Widgets)
+qt5_use_modules(${EXECUTABLE} Widgets)

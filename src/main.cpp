@@ -22,6 +22,11 @@ int main(int argc, char** argv)
   BeepHiveConfigs::getInstance().parseArgs(argc,argv);
 
   if(comm.rank()==0){
+  QApplication a(argc, argv);
+  MainWindow w;
+  w.show();
+  return a.exec();
+#if 0
     DEBUG("I am the GUI!");
     std::vector<std::string> updates;
     bool run=true;
@@ -54,6 +59,7 @@ int main(int argc, char** argv)
     
     DEBUG("Exiting frontend");
     return 0;
+#endif
   }else{
     World world;
     world.start();

@@ -30,9 +30,9 @@ int World::step()
   event_queue.push(event.getNextEvent());
 
   //temporarilly have automatic exit
-  if(event.getTime() > 9){
-    return 1;
-  }
+  //if(event.getTime() > 9){
+    //return 1;
+  //}
   
   return 0;
 }
