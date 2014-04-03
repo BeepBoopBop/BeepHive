@@ -3,6 +3,14 @@
 #include "BeepHive.h"
 #include "OmegaVelocityManipulator.h"
 
+OmegaVelocityManipulator::OmegaVelocityManipulator() : Manipulator()
+{
+  inputs.push_back(0);
+  inputs.push_back(0);
+}
+
+
+
 /*!
  * This method updates the state based on a radial and linear velocity
  *
@@ -11,18 +19,22 @@
  * omega is in the counterclockwise direction
  * velocity is in the local X direction
  */
-void OmegaVelocityManipulator::updateState()
+void OmegaVelocityManipulator::updateState(Beep* beep, World* world)
 {
-  double delta_t = layer->timeSinceLastUpdate();
+  DEBUG("running manipulator")
+  double delta_t = world->getLayer("BeepLayer")->timeSinceLastUpdate();
+  std::cout << "Delta: " <<  delta_t << std::endl;
   double omega = inputs[0];
   double velocity = inputs[1];
   double theta = beep->getState("theta");
   double x = beep->getState("x");
   double y = beep->getState("y");
 
+  std::cout << "Vel: " << velocity << " Omg: " << omega << std::endl;
+
 
   //Calculate change in position in the local frame
-  double delta_theta = theta * delta_t;
+  double delta_theta = omega * delta_t;
   double radius = velocity / omega;
   // alpha is the angle of the vector to the new position in the local reference
   // frame
@@ -36,7 +48,13 @@ void OmegaVelocityManipulator::updateState()
   //Transform to global frame
   double delta_x = (cos(theta) * local_x - sin(theta) * local_y);
   double delta_y = (sin(theta) * local_x + cos(theta) * local_y);
+  //delta_x=delta_y=1;
   beep->setState("x",x+delta_x);
   beep->setState("y",y+delta_y);
   beep->setState("theta",theta+delta_theta);
+  std::cout << "X: " << x+delta_x << " Y: " << y+delta_y << std::endl;
+}
+int OmegaVelocityManipulator::getInputSize() const
+{
+  return 2;
 }

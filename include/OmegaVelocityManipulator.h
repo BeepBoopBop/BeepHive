@@ -5,8 +5,10 @@
 #include "Manipulator.h"
 
 class OmegaVelocityManipulator : public Manipulator {
-  void run();
-  void updateState();
+  public:
+    OmegaVelocityManipulator();
+    void updateState(Beep* beep, World* world);
+    int getInputSize() const;
 };
 
 #endif /* OMEGAVELOCITYMANIPULATOR_H */

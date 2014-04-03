@@ -9,9 +9,10 @@
 #include "Sensor.h"
 #include "Controller.h"
 
-class Manipulator;
 class World;
 class Controller;
+class Manipulator;
+class Sensor;
 
 class Beep {
   public:

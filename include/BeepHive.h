@@ -20,7 +20,8 @@
   }
 
 #ifndef NDEBUG
-#define DEBUG(x) {fprintf(stderr,"FILE: %s LINE: %d MSG: %s\n",__FILE__, __LINE__,x);}
+//#define DEBUG(x) {fprintf(stderr,"FILE: %s LINE: %d MSG: %s\n",__FILE__, __LINE__,x);}
+#define DEBUG(x) {fprintf(stderr,"LINE: %d MSG: %s\n", __LINE__,x);}
 #else
 #define DEBUG(x) ((void)0)
 #endif

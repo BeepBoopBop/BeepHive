@@ -17,6 +17,7 @@ void Beep::readSensors(World* world)
 
 void Beep::runController()
 {
+  DEBUG("Running Controller");
   if(this->controller){
     controller->run(this);
   }
@@ -26,9 +27,17 @@ void Beep::runManipulators(World* world)
 {
   Map<Manipulator*>::iterator it;
   for(it=manipulators.begin(); it!=manipulators.end(); ++it){
-    it->second->update();
+    it->second->updateState(this,world);
   }
 }
+
+
+
+void Beep::setController(Controller* controller)
+{
+  this->controller=controller;
+}
+
 
 
 void Beep::addSensor(std::string sensor_name, Sensor* sensor)
@@ -68,5 +77,8 @@ void Beep::setState(std::string state_name, double initial_state)
 
 double Beep::getState(std::string state_name)
 {
+  //states default to zero for now
+  if(states.find(state_name) == states.end())
+    states[state_name]=0;
   return states[state_name];
 }

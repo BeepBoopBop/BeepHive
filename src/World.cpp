@@ -5,6 +5,8 @@
 #include "BeepLayer.h"
 #include "SyncLayer.h"
 #include "World.h"
+#include "BasicController.h"
+#include "OmegaVelocityManipulator.h"
 
 
 bool EventComparator::operator()(const Event first, const Event second) const
@@ -17,10 +19,20 @@ bool EventComparator::operator()(const Event first, const Event second) const
 World::World() : layers(), event_queue(), running(true)
 {
   Layer* sync_layer=new SyncLayer;
-  this->addLayer("sync",sync_layer);
+  this->addLayer("SyncLayer",sync_layer);
   Layer* beep_layer=new BeepLayer;
-  this->addLayer("beep",beep_layer);
-  //Beep* beep=new Beep(
+  this->addLayer("BeepLayer",beep_layer);
+
+  Beep* beep=new Beep();
+
+  Controller* controller=new BasicController();
+  assert(controller!=NULL);
+  beep->setController(controller);
+
+  Manipulator* omega_vel=new OmegaVelocityManipulator();
+  beep->addManipulator("OmegaVelocity",omega_vel);
+
+  beeps.push_back(beep);
 }
 
 
@@ -66,6 +78,25 @@ void World::addLayer(std::string layer_name, Layer* layer, double start_time){
 Layer* World::getLayer(std::string layer_name)
 {
   return layers[layer_name];
+}
+
+
+
+World::BeepIterator World::beepBegin()
+{
+  return beeps.begin();
+}
+
+
+
+World::BeepIterator World::beepEnd()
+{
+  return beeps.end();
+}
+
+void World::addBeep(Beep* beep)
+{
+  beeps.push_back(beep);
 }
 
 

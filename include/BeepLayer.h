@@ -8,8 +8,6 @@
 
 class Beep;
 
-typedef std::vector<Beep*> Beeps;
-
 /*!
  * The beep layer is responsible for initiating updates to all beeps
  *
@@ -29,8 +27,6 @@ class BeepLayer : public DiscreteTimeLayer {
     BeepLayer(double event_frequency);
     BeepLayer(const BeepLayer& copy);
     BeepLayer& operator=(const BeepLayer& copy);
-
-    Beeps beeps;
 };
 
 #endif /* BEEPLAYER_H */

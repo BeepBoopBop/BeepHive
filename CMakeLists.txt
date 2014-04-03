@@ -57,7 +57,7 @@ set(GUI_HEADERS
   GUI/include/debugwindow.h
   GUI/include/createenvironment.h
   GUI/include/environmentobject.h
-  GUI/include/ui_createaget.h
+  GUI/include/ui_createagent.h
   GUI/include/ui_createenvironment.h
 )
 

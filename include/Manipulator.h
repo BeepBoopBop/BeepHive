@@ -5,13 +5,16 @@
 
 #include "Layer.h"
 #include "Beep.h"
+#include "World.h"
 
 class Beep;
+class Layer;
+class World;
 
 class Manipulator 
 {
   public:
-    Manipulator(Beep* b, Layer* m){beep = b; layer = m;}
+    Manipulator(){}
     //virtual ~Manipulator() = 0;
 
     //! Set manipulator inputs
@@ -19,13 +22,10 @@ class Manipulator
     //! The size of the input vector that this class takes
     virtual int getInputSize() const = 0;
     //! Update the environment based on input state
-    virtual void update() = 0;
+    virtual void updateState(Beep* beep, World* world) = 0;
 
 
   protected:
-    //!the layer that this manipulator can affect
-    Layer* layer;
-    Beep* beep;
     std::vector<double> inputs;
 
 };
