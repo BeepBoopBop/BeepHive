@@ -8,6 +8,7 @@
 #include <QApplication>
 
 #include "BeepHive.h"
+#include "BeepHiveConfigs.h"
 #include "World.h"
 
 namespace mpi=boost::mpi;

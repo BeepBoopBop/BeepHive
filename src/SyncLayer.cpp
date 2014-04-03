@@ -3,6 +3,7 @@
 #include <boost/mpi.hpp>
 
 #include "BeepHive.h"
+#include "BeepHiveConfigs.h"
 #include "SyncLayer.h"
 
 SyncLayer::SyncLayer() : DiscreteTimeLayer(1) {}
@@ -19,9 +20,15 @@ void SyncLayer::update(const Event* event, World* world)
 
   //Send a message to the GUI
   std::string send="SyncLayer just sent a message";
-  if(event->getTime() > 9){
+
+  //!Exit based on configuration
+  double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();
+  if(time_limit>0 && event->getTime() > time_limit){
+    std::cout << "Exiting: time is: " << event-> getTime() << " which is past " << time_limit << std::endl;
     send="exit";
+    world->quit();
   }
+
   gather(comm,send,&send,0);
 
   //receive updates sent from GUI to all processes

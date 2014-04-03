@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "BeepHive.h"
+#include "BeepHiveConfigs.h"
 #include "World.h"
 
 namespace mpi=boost::mpi;
@@ -16,7 +17,9 @@ int main(int argc, char** argv)
   mpi::environment env;
   mpi::communicator comm;
 
-  BeepHiveConfigs::getInstance().parseArgs(argc,argv);
+  BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
+  configs.parseArgs(argc,argv);
+  configs.setTimeLimit(10);
 
   if(comm.rank()==0){
     DEBUG("I am the GUI!");

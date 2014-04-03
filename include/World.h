@@ -30,9 +30,12 @@ class World {
 
     void addLayer(std::string layer_name, Layer* layer, double start_time=0);
     Layer* getLayer(std::string layer_name);
+
+    void quit();
   private:
     Map<Layer*> layers;
     EventQueue event_queue;
+    bool running;
 };
 
 #endif /* WORLD_H */

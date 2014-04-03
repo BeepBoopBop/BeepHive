@@ -12,8 +12,6 @@
 #include <boost/mpi.hpp>
 #include <assert.h>
 
-#include "BeepHiveConfigs.h"
-
 #define NOT_IMPLEMENTED(foo) \
   /*! This function has not yet been implemented. */\
   foo {\

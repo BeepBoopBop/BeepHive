@@ -3,6 +3,8 @@
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
 
+BeepHiveConfigs::BeepHiveConfigs() : time_limit(-1){}
+
 /*!
  * Provides access to configs singleton
  */
@@ -14,4 +16,16 @@ BeepHiveConfigs& BeepHiveConfigs::getInstance()
 
 NOT_IMPLEMENTED(void BeepHiveConfigs::parseArgs(const int argc, char** argv))
 
-BeepHiveConfigs::BeepHiveConfigs() {}
+
+
+void BeepHiveConfigs::setTimeLimit(double time_limit)
+{
+  this->time_limit=time_limit;
+}
+
+
+
+double BeepHiveConfigs::getTimeLimit()
+{
+  return time_limit;
+}

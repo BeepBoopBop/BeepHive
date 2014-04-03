@@ -1,6 +1,7 @@
 #include <iostream>
 
 #include "BeepHive.h"
+#include "BeepHiveConfigs.h"
 #include "BeepLayer.h"
 #include "SyncLayer.h"
 #include "World.h"
@@ -13,7 +14,7 @@ bool EventComparator::operator()(const Event first, const Event second) const
 
 
 
-World::World() : layers(), event_queue() 
+World::World() : layers(), event_queue(), running(true)
 {
   Layer* sync_layer=new SyncLayer;
   this->addLayer("sync",sync_layer);
@@ -33,15 +34,12 @@ int World::step()
   Event event=event_queue.top();
 
   event_queue.pop();
-  event.updateLayer(this);
-  event_queue.push(event.getNextEvent());
+  Layer* layer=event.getLayer();
+  layer->update(&event,this);
+  event_queue.push(layer->getNextEvent());
 
-  //temporarilly have automatic exit
-  //if(event.getTime() > 9){
-    //return 1;
-  //}
   
-  return 0;
+  return this->running==false;
 }
 
 
@@ -61,4 +59,20 @@ int World::start()
 void World::addLayer(std::string layer_name, Layer* layer, double start_time){
   layers[layer_name]=layer;
   event_queue.push(Event(layer,start_time));
+}
+
+
+
+Layer* World::getLayer(std::string layer_name)
+{
+  return layers[layer_name];
+}
+
+
+
+//! quit allows layers to signal to the world that an end condition has been
+//  reached
+void World::quit()
+{
+  running=false;
 }
