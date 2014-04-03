@@ -1,11 +1,13 @@
 #include <iostream>
 
+#include "AverageSensor.h"
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
 #include "BeepLayer.h"
 #include "SyncLayer.h"
 #include "World.h"
 #include "BasicController.h"
+#include "FlockingController.h"
 #include "OmegaVelocityManipulator.h"
 
 
@@ -27,12 +29,17 @@ World::World() : layers(), event_queue(), running(true)
     for(int j=0;j<20;++j){
       Beep* beep=new Beep();
 
-      Controller* controller=new BasicController();
+      Controller* controller=new FlockingController();
       assert(controller!=NULL);
       beep->setController(controller);
 
       Manipulator* omega_vel=new OmegaVelocityManipulator();
       beep->addManipulator("OmegaVelocity",omega_vel);
+
+      Sensor* sensor=new AverageSensor(beep_layer,"x");
+      beep->addSensor("AverageX",sensor);
+      sensor=new AverageSensor(beep_layer,"y");
+      beep->addSensor("AverageY",sensor);
 
       beep->setState("x",20*i);
       beep->setState("y",20*j);

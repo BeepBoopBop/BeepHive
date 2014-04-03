@@ -11,7 +11,7 @@ void Beep::readSensors(World* world)
 {
   Map<Sensor*>::iterator it;
   for(it=sensors.begin(); it!=sensors.end(); ++it){
-    //(*(it.second))->
+    it->second->readLayer(world);
   }
 }
 

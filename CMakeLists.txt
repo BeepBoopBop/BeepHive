@@ -14,6 +14,7 @@ set(LIB_BEEPGUI BeepGui)
 set(LIBRARY_TYPE SHARED)
 
 set(BEEPHIVE_HEADERS
+  include/AverageSensor.h
   include/BasicController.h
   include/Beep.h
   include/BeepHive.h
@@ -21,6 +22,7 @@ set(BEEPHIVE_HEADERS
   include/BeepLayer.h
   include/DiscreteTimeLayer.h
   include/Event.h
+  include/FlockingController.h
   include/Manipulator.h
   include/Layer.h
   include/OmegaVelocityManipulator.h
@@ -33,12 +35,14 @@ set(BEEPHIVE_HEADERS
 )
 
 set(BEEPHIVE_SOURCES
+  src/AverageSensor.cpp
   src/BasicController.cpp
   src/Beep.cpp
   src/BeepHiveConfigs.cpp
   src/BeepLayer.cpp
   src/DiscreteTimeLayer.cpp
   src/Event.cpp
+  src/FlockingController.cpp
   src/LightSensor.cpp
   src/Manipulator.cpp
   src/Layer.cpp

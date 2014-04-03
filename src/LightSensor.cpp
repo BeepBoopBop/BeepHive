@@ -16,7 +16,7 @@
     }
 
     //read the layer at the given x, y, z
-    float Sensor::readLayer()
+    float Sensor::readLayer(World* world)
     {
       //return environment->getCellValue(x_loc, y_loc, z_loc);
     }
