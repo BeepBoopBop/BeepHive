@@ -200,14 +200,14 @@ void MainWindow::mpiWaitForUpdates()
     }
     std::cout << "In String: " << updates[i] << std::endl;
     std::stringstream data(updates[i]);
-    int i=0;
+    int j=0;
     while(data >> x >> y){
       std::cout << "Setting Position: " << x << " " << y << std::endl;
-      while(i>=robots.size()){
+      while(j>=robots.size()){
         Robot robot=Robot();
         robots.push_back(robot);
       }
-      robots[i++].setPosition(x,y);
+      robots[j++].setPosition(x,y);
     }
   }
 

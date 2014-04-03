@@ -20,6 +20,6 @@ void FlockingController::run(Beep* beep)
   double delta_y=average_y-y;
   double linear=delta_x*cos(theta)+delta_y*sin(theta);
   inputs.push_back(0.1);
-  inputs.push_back(linear/10);
+  inputs.push_back(linear/20);
   omega_velocity->setInputs(inputs);
 }
