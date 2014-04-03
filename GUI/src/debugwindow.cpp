@@ -17,7 +17,7 @@ DebugWindow::~DebugWindow()
 }
 
  void DebugWindow::setRobotToMonitor(Robot *robotToMonitor){
-   this->monitoredRobot = robotToMonitor;
+   monitoredRobot = robotToMonitor;
  }
 
 
@@ -26,6 +26,7 @@ DebugWindow::~DebugWindow()
  }
 
  void DebugWindow::updateText(){
+    if (monitoredRobot == NULL) return;
     std::string temp = monitoredRobot->obtainUpdateString();
     qDebug() << QString::fromStdString( temp );
     ui->textEdit->setText(QString::fromStdString( temp ));

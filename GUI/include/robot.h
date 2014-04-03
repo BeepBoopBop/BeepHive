@@ -8,6 +8,8 @@ class Robot
 {
 public:
     Robot();
+    Robot(int x, int y);
+
     //***********************************************************************
     //self contained updates (for demoing GUI)
     void updateDrawPosition(int x, int y, QGraphicsScene * newScene);
@@ -37,6 +39,8 @@ private:
     int yCoordinate;
     QGraphicsEllipseItem * body;
     QGraphicsScene *scene;
+
+    //used to update debug window
     std::string rawUpdateString;
 
 
