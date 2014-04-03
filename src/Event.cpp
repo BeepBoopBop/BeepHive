@@ -1,4 +1,4 @@
-#include "BeepHive.h"
+//#include "BeepHive.h"
 #include "Event.h"
 #include "Layer.h"
 
@@ -15,21 +15,10 @@ bool Event::operator<(const Event& event) const
 
 
 
-void Event::updateLayer(World* world)
+Layer* Event::getLayer()
 {
-  if(layer!=0){
-    layer->update(this,world);
-  }
+  return layer;
 }
-
-
-
-Event Event::getNextEvent()
-{
-  return layer->getNextEvent();
-}
-
-
 
 void Event::setTime(double time)
 {
@@ -42,3 +31,4 @@ double Event::getTime() const
 {
   return time;
 }
+
