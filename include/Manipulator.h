@@ -28,6 +28,8 @@ class Manipulator
   protected:
     std::vector<double> inputs;
 
+    
+
 };
 
 

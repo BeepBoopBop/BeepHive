@@ -28,6 +28,7 @@ set(BEEPHIVE_HEADERS
   include/Serializeable.h
   include/SyncLayer.h
   include/World.h
+  include/LightSensor.h
   include/Controller.h
 )
 
