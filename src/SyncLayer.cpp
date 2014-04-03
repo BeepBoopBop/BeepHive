@@ -20,6 +20,7 @@ void SyncLayer::update(const Event* event, World* world)
 
   //Send a message to the GUI
   std::string send=world->getMessagesToGui();
+  world->clearMessagesToGui();
 
   //!Exit based on configuration
   double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();

@@ -25,6 +25,12 @@ Robot::Robot(int x, int y){
   green = 0;
 }
 
+void Robot::setPosition(int x, int y)
+{
+  xCoordinate = x;
+  yCoordinate = y;
+}
+
 void Robot::updateDrawPosition(int x, int y, QGraphicsScene *newScene){
   xCoordinate = x;
   yCoordinate = y;

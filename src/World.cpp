@@ -23,16 +23,23 @@ World::World() : layers(), event_queue(), running(true)
   Layer* beep_layer=new BeepLayer;
   this->addLayer("BeepLayer",beep_layer);
 
-  Beep* beep=new Beep();
+  for(int i=0;i<20;++i){
+    for(int j=0;j<20;++j){
+      Beep* beep=new Beep();
 
-  Controller* controller=new BasicController();
-  assert(controller!=NULL);
-  beep->setController(controller);
+      Controller* controller=new BasicController();
+      assert(controller!=NULL);
+      beep->setController(controller);
 
-  Manipulator* omega_vel=new OmegaVelocityManipulator();
-  beep->addManipulator("OmegaVelocity",omega_vel);
+      Manipulator* omega_vel=new OmegaVelocityManipulator();
+      beep->addManipulator("OmegaVelocity",omega_vel);
 
-  beeps.push_back(beep);
+      beep->setState("x",20*i);
+      beep->setState("y",20*j);
+
+      beeps.push_back(beep);
+    }
+  }
 }
 
 
@@ -103,7 +110,7 @@ void World::addBeep(Beep* beep)
 
 void World::addMessageToGui(std::string message)
 {
-  messages_to_gui+=message;
+  messages_to_gui+=message+" ";
 }
 
 

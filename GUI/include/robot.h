@@ -12,6 +12,7 @@ public:
 
     //***********************************************************************
     //self contained updates (for demoing GUI)
+    void setPosition(int x, int y);
     void updateDrawPosition(int x, int y, QGraphicsScene * newScene);
     void updateDrawPosition(QGraphicsScene * newScene);
     void randUpdateDrawPosition(QGraphicsScene * newScene);
