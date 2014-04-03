@@ -29,7 +29,13 @@ World::World() : layers(), event_queue(), running(true)
     for(int j=0;j<20;++j){
       Beep* beep=new Beep();
 
-      Controller* controller=new FlockingController();
+
+      Controller* controller;
+      if((i+j)%2){
+        controller=new FlockingController();
+      } else {
+        controller=new BasicController();
+      }
       assert(controller!=NULL);
       beep->setController(controller);
 
