@@ -48,18 +48,26 @@ set(BEEPHIVE_SOURCES
 )
 
 set(GUI_HEADERS
+  GUI/include/createagent.h
   GUI/include/gui_includes.h
   GUI/include/mainwindow.h
   GUI/include/robot.h
   GUI/include/ui_mainwindow.h
   GUI/include/ui_debugwindow.h
   GUI/include/debugwindow.h
+  GUI/include/createenvironment.h
+  GUI/include/environmentobject.h
+  GUI/include/ui_createaget.h
+  GUI/include/ui_createenvironment.h
 )
 
 set(GUI_SOURCES
   GUI/src/mainwindow.cpp
   GUI/src/robot.cpp
   GUI/src/debugwindow.cpp
+  GUI/src/createagent.cpp
+  GUI/src/createenvironment.cpp
+  GUI/src/environmentobject.cpp
 )
 
 set(BEEPHIVE_EXECUTABLE_SOURCES
