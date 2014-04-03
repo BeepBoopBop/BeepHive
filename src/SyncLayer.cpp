@@ -19,7 +19,7 @@ void SyncLayer::update(const Event* event, World* world)
   comm.barrier();
 
   //Send a message to the GUI
-  std::string send="SyncLayer just sent a message";
+  std::string send=world->getMessagesToGui();
 
   //!Exit based on configuration
   double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();
@@ -34,5 +34,6 @@ void SyncLayer::update(const Event* event, World* world)
   //receive updates sent from GUI to all processes
   std::string recv;
   broadcast(comm,recv,0);
+  world->setMessagesFromGui(recv);
   std::cout << "Received: " << recv << std::endl;
 }

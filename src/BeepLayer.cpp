@@ -1,5 +1,3 @@
-#include <stringstream>
-
 #include "BeepHive.h"
 #include "BeepLayer.h"
 #include "Beep.h"

@@ -101,6 +101,39 @@ void World::addBeep(Beep* beep)
 
 
 
+void World::addMessageToGui(std::string message)
+{
+  messages_to_gui+=message;
+}
+
+
+
+const std::string& World::getMessagesToGui()
+{
+  return messages_to_gui;
+}
+
+
+
+void World::clearMessagesToGui()
+{
+  messages_to_gui="";
+}
+
+
+
+const std::string& World::getMessagesFromGui()
+{
+  return messages_from_gui;
+}
+
+
+
+void World::setMessagesFromGui(std::string messages)
+{
+  messages_from_gui=messages;
+}
+
 //! quit allows layers to signal to the world that an end condition has been
 //  reached
 void World::quit()

@@ -1,3 +1,5 @@
+#include <sstream>
+
 #include "BeepHive.h"
 #include "Beep.h"
 
@@ -29,6 +31,9 @@ void Beep::runManipulators(World* world)
   for(it=manipulators.begin(); it!=manipulators.end(); ++it){
     it->second->updateState(this,world);
   }
+  std::stringstream message;
+  message << getState("x") << " " << getState("y");
+  world->addMessageToGui(message.str());
 }
 
 
