@@ -21,16 +21,14 @@ OmegaVelocityManipulator::OmegaVelocityManipulator() : Manipulator()
  */
 void OmegaVelocityManipulator::updateState(Beep* beep, World* world)
 {
-  DEBUG("running manipulator")
+  DEBUG("running manipulator");
   double delta_t = world->getLayer("BeepLayer")->timeSinceLastUpdate();
-  std::cout << "Delta: " <<  delta_t << std::endl;
+  //-- std::cout << "Delta: " <<  delta_t << std::endl;
   double omega = inputs[0];
   double velocity = inputs[1];
   double theta = beep->getState("theta");
   double x = beep->getState("x");
   double y = beep->getState("y");
-
-  std::cout << "Vel: " << velocity << " Omg: " << omega << std::endl;
 
 
   //Calculate change in position in the local frame
@@ -48,13 +46,15 @@ void OmegaVelocityManipulator::updateState(Beep* beep, World* world)
   //Transform to global frame
   double delta_x = (cos(theta) * local_x - sin(theta) * local_y);
   double delta_y = (sin(theta) * local_x + cos(theta) * local_y);
-  //delta_x=delta_y=1;
+
   beep->setState("x",x+delta_x);
   beep->setState("y",y+delta_y);
   beep->setState("theta",theta+delta_theta);
-  std::cout << "X: " << x+delta_x << " Y: " << y+delta_y << std::endl;
 }
-int OmegaVelocityManipulator::getInputSize() const
+
+
+
+unsigned OmegaVelocityManipulator::getInputSize() const
 {
   return 2;
 }

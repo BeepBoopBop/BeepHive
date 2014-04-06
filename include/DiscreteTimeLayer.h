@@ -1,11 +1,13 @@
-#ifndef DISCRETETIMEMODEL_H
-#define DISCRETETIMEMODEL_H 
+#ifndef DISCRETETIMELAYER_H
+#define DISCRETETIMELAYER_H 
 
 #include "Layer.h"
 
 /*!
  * Base layer for all discrete time-stepping layers.
+ *
  * For the most part, this should be the only kind of layer used.
+ * The discrete uses a set internal update frequency to schedule Events
  */
 class DiscreteTimeLayer : public Layer
 {
@@ -25,4 +27,4 @@ class DiscreteTimeLayer : public Layer
     double event_frequency;
 };
 
-#endif /* DISCRETETIMEMODEL_H */
+#endif /* DISCRETETIMELAYER_H */

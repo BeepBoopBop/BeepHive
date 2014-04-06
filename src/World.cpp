@@ -102,14 +102,14 @@ Layer* World::getLayer(std::string layer_name)
 
 
 
-World::BeepIterator World::beepBegin()
+World::BeepIterator World::beepBegin() const
 {
   return beeps.begin();
 }
 
 
 
-World::BeepIterator World::beepEnd()
+World::BeepIterator World::beepEnd() const
 {
   return beeps.end();
 }

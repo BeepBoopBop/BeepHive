@@ -39,13 +39,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
   QGraphicsEllipseItem *tempEllipse = new QGraphicsEllipseItem();
-  for(int i = 0; i < 2; i++){
+  for(unsigned i = 0; i < 2; i++){
     Robot tempRobot = Robot();
     tempRobot.setBody(tempEllipse);
     robots.push_back(tempRobot);
   }
 
-  for(int i = 0; i<robots.size(); i++){
+  for(unsigned i = 0; i<robots.size(); i++){
     robots[i].updateDrawPosition(scene);
   }
 
@@ -67,7 +67,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
   int yLoc = event->pos().y();
   int minDistance = 9999;
   Robot* minRobot = NULL;
-  for(int i = 0; i < robots.size(); i++){
+  for(unsigned i = 0; i < robots.size(); i++){
     robots[i].resetColor();
     int tempDistance = robots[i].distanceFromPoint(xLoc, yLoc);
     if(tempDistance < minDistance){
@@ -147,13 +147,13 @@ void MainWindow::reDraw(){
   //redraw robots
 
   // NOTE -IF WE FIX UPDATES USE robots[i].updateDrawPosition(scene)
-  for(int i = 0; i<robots.size(); i++){
+  for(unsigned i = 0; i<robots.size(); i++){
     //robots[i].randUpdateDrawPosition(scene);
     robots[i].updateDrawPosition(scene);
    }
 
   //redraw environment objects
-  for(int i = 0; i<environmentObjects.size(); i++){
+  for(unsigned i = 0; i<environmentObjects.size(); i++){
     environmentObjects[i].updateDrawPosition(scene);
   }
 
@@ -193,16 +193,16 @@ void MainWindow::mpiWaitForUpdates()
   //Receive messages from each process
   std::string send;
   gather(comm,send,updates,0);
-  for(int i=1;i<updates.size();++i){
+  for(unsigned i=1;i<updates.size();++i){
     //std::cout << "Rank " << i << " sent: " << updates[i] << std::endl;
     if(updates[i] == "exit"){
       //run=false;
     }
-    std::cout << "In String: " << updates[i] << std::endl;
+    //std::cout << "In String: " << updates[i] << std::endl;
     std::stringstream data(updates[i]);
-    int j=0;
+    unsigned j=0;
     while(data >> x >> y){
-      std::cout << "Setting Position: " << x << " " << y << std::endl;
+      //std::cout << "Setting Position: " << x << " " << y << std::endl;
       while(j>=robots.size()){
         Robot robot=Robot();
         robots.push_back(robot);

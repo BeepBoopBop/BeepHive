@@ -7,6 +7,14 @@
 class Controller;
 class Beep;
 
+/*!
+ * This Controller is intended to implement basic flocking
+ *
+ * Currently, only pseudo-flocking is implemented where robots spin and take
+ * the dot product of orientation to the vector to the average Beep position.
+ *
+ * \todo Finish flocking
+ */
 class FlockingController : public Controller
 {
   public:

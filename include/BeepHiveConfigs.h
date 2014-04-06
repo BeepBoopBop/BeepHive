@@ -8,6 +8,8 @@
  *
  * Information contained here includes global information on processes,
  * information contained in startup parameters, and how to run simulations
+ *
+ * \todo implement parsing of args
  */
 class BeepHiveConfigs
 {

@@ -14,6 +14,12 @@ class Controller;
 class Manipulator;
 class Sensor;
 
+/*!
+ * The Beep class is a template for robots in BeepHive
+ * 
+ * Custom beeps can be created by setting a controller and by adding
+ * Sensors and Manipulators
+ */
 class Beep {
   public:
     Beep();

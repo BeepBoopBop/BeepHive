@@ -1,1 +1,0 @@
-/usr/bin/c++       CMakeFiles/helloworld.dir/main.cpp.o CMakeFiles/helloworld.dir/mainwindow.cpp.o CMakeFiles/helloworld.dir/helloworld_automoc.cpp.o  -o helloworld -rdynamic 

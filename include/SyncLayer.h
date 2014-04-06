@@ -1,5 +1,5 @@
-#ifndef SYNCMODEL_H
-#define SYNCMODEL_H 
+#ifndef SYNCLAYER_H
+#define SYNCLAYER_H 
 
 #include "DiscreteTimeLayer.h"
 #include "Event.h"
@@ -11,7 +11,6 @@
  * is automatically created by the world class if BeepHive was started with a
  * GUI. There is no reason for the existence of multiple SyncLayers, so the user
  * is explicitly prevented from instantiating more.
- *
  */
 class SyncLayer : public DiscreteTimeLayer
 {
@@ -26,4 +25,4 @@ class SyncLayer : public DiscreteTimeLayer
     SyncLayer& operator=(const SyncLayer& copy);
 };
 
-#endif /* SYNCMODEL_H */
+#endif /* SYNCLAYER_H */

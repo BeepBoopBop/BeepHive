@@ -4,11 +4,15 @@
 #include "BeepHive.h"
 #include "Manipulator.h"
 
+/*!
+ * This class is a basic nonholonomic manipulator.
+ * Inputs are the Rotational and Linear velocity of the robot
+ */
 class OmegaVelocityManipulator : public Manipulator {
   public:
     OmegaVelocityManipulator();
     void updateState(Beep* beep, World* world);
-    int getInputSize() const;
+    unsigned getInputSize() const;
 };
 
 #endif /* OMEGAVELOCITYMANIPULATOR_H */

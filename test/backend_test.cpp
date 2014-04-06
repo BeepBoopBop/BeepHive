@@ -31,7 +31,7 @@ int main(int argc, char** argv)
       //Receive messages from each process
       std::string send;
       gather(comm,send,updates,0);
-      for(int i=1;i<updates.size();++i){
+      for(unsigned i=1;i<updates.size();++i){
         std::cout << "Rank " << i << " sent: " << updates[i] << std::endl;
         if(updates[i] == "exit"){
           run=false;

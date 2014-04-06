@@ -8,6 +8,13 @@
 
 class World;
 
+/*!
+ * Sensors are responsible for reading and calculating values from the World and
+ * returning them to the controller.
+ *
+ * All sensors are read before controllers are called. Sensors cannot modify
+ * the World or any layers.
+ */
 class Sensor
 {
   public:
@@ -15,8 +22,9 @@ class Sensor
     Sensor(Layer* m){layer = m;}
 
 
-    //get reading from the layer that is readible
-    virtual float readLayer(World* world) = 0;
+    //! Gets and stores reading from the layer/World
+    virtual void readLayer(const World* world) = 0;
+    //! Returns the last stored reading
     float getReading() {return reading;}
 
 

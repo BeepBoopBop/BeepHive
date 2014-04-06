@@ -25,7 +25,7 @@ void SyncLayer::update(const Event* event, World* world)
   //!Exit based on configuration
   double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();
   if(time_limit>0 && event->getTime() > time_limit){
-    std::cout << "Exiting: time is: " << event-> getTime() << " which is past " << time_limit << std::endl;
+    //-- std::cout << "Exiting: time is: " << event-> getTime() << " which is past " << time_limit << std::endl;
     send="exit";
     world->quit();
   }
@@ -36,5 +36,5 @@ void SyncLayer::update(const Event* event, World* world)
   std::string recv;
   broadcast(comm,recv,0);
   world->setMessagesFromGui(recv);
-  std::cout << "Received: " << recv << std::endl;
+  //-- std::cout << "Received: " << recv << std::endl;
 }

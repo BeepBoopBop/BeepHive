@@ -3,6 +3,9 @@ project(BeepHive)
 set(BeepHive_VERSION_MAJOR 0)
 set(BeepHive_VERSION_MINOR 0)
 
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra"
+    CACHE STRING "" FORCE)
+
 # Find includes in corresponding build directories
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 # Instruct CMake to run moc automatically when needed.
@@ -132,8 +135,10 @@ if(DOXYGEN_FOUND)
   configure_file(${CMAKE_CURRENT_SOURCE_DIR}/Doxyfile.in ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile @ONLY)
   add_custom_target(doc
     ${DOXYGEN_EXECUTABLE} ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile
-    DEPENDS ${EXECUTABLE}
-    DEPENDS ${LIB_BEEP}
+    DEPENDS ${GUI_SOURCES}
+    DEPENDS ${GUI_HEADERS}
+    DEPENDS ${BEEPHIVE_SOURCES}
+    DEPENDS ${BEEPHIVE_HEADERS}
     DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile 
     DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/header.tex 
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
@@ -144,8 +149,9 @@ endif(DOXYGEN_FOUND)
 add_custom_command(
   OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/latex/refman.pdf
   DEPENDS doc
-  DEPENDS ${EXECUTABLE}
-  DEPENDS ${LIB_BEEP}
+  DEPENDS ${GUI_SOURCES} DEPENDS ${GUI_HEADERS}
+  DEPENDS ${BEEPHIVE_SOURCES}
+  DEPENDS ${BEEPHIVE_HEADERS}
   DEPENDS ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile 
   DEPENDS ${CMAKE_CURRENT_SOURCE_DIR}/header.tex 
   COMMAND make

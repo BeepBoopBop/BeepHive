@@ -15,7 +15,7 @@
     }
 
     //read the layer at the given x, y, z
-    float AverageSensor::readLayer(World* world)
+    void AverageSensor::readLayer(const World* world)
     {
       //return environment->getCellValue(x_loc, y_loc, z_loc);
       World::BeepIterator it = world->beepBegin();
