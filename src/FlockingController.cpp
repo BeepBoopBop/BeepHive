@@ -23,3 +23,35 @@ void FlockingController::run(Beep* beep)
   inputs.push_back(linear/20);
   omega_velocity->setInputs(inputs);
 }
+
+FlockingControllerFactory::FlockingControllerFactory() {}
+
+/*
+Factory<Controller>* FlockingControllerFactory::getInstance()
+{
+  static FlockingControllerFactory instance;
+  return &instance;
+}
+*/
+
+std::string FlockingControllerFactory::type()
+{
+  return "FlockingController";
+}
+
+Controller* FlockingControllerFactory::create()
+{
+  return new FlockingController();
+}
+
+Controller* FlockingControllerFactory::create(std::vector<std::string> params)
+{
+  return new FlockingController();
+}
+
+FlockingControllerFactoryProxy::FlockingControllerFactoryProxy()
+{
+  static FlockingControllerFactory instance;
+  Factories<Controller>::getInstance().addFactory(instance);
+}
+FlockingControllerFactoryProxy flocking_controller_factory_proxy;

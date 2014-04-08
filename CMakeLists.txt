@@ -23,18 +23,19 @@ set(BEEPHIVE_HEADERS
   include/BeepHive.h
   include/BeepHiveConfigs.h
   include/BeepLayer.h
+  include/Controller.h
   include/DiscreteTimeLayer.h
   include/Event.h
+  include/Factory.h
   include/FlockingController.h
-  include/Manipulator.h
   include/Layer.h
+  include/LightSensor.h
+  include/Manipulator.h
   include/OmegaVelocityManipulator.h
   include/Sensor.h
   include/Serializeable.h
   include/SyncLayer.h
   include/World.h
-  include/LightSensor.h
-  include/Controller.h
 )
 
 set(BEEPHIVE_SOURCES

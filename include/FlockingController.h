@@ -3,6 +3,7 @@
 
 #include "Controller.h"
 #include "Beep.h"
+#include "Factory.h"
 
 class Controller;
 class Beep;
@@ -20,4 +21,26 @@ class FlockingController : public Controller
   public:
     virtual void run(Beep* beep);
 };
+
+class FlockingControllerFactory : public Factory<Controller> {
+  public:
+    FlockingControllerFactory();
+
+    //virtual Factory<Controller>* getInstance();
+
+    virtual std::string type();
+
+    virtual Controller* create();
+    virtual Controller* create(std::vector<std::string> params);
+  private:
+};
+
+
+
+class FlockingControllerFactoryProxy
+{
+  public:
+    FlockingControllerFactoryProxy();
+};
+
 #endif /* FLOCKINGCONTROLLER_H */
