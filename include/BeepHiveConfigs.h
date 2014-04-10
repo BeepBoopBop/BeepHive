@@ -19,6 +19,7 @@ class BeepHiveConfigs
     
     void setTimeLimit(double time_limit);
     double getTimeLimit();
+    bool guiEnabled();
   private:
     BeepHiveConfigs();
     //! Do not implement
@@ -31,6 +32,7 @@ class BeepHiveConfigs
      * no limit
      */
     double time_limit;
+    bool gui_enabled;
 };
 
 #endif /* BEEPHIVECONFIGS_H */

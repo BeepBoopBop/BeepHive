@@ -3,6 +3,12 @@ project(BeepHive)
 set(BeepHive_VERSION_MAJOR 0)
 set(BeepHive_VERSION_MINOR 0)
 
+#Build types:
+option(GUI "GUI" ON)
+if(GUI)
+  add_definitions(-DGUI)
+endif(GUI)
+
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra"
     CACHE STRING "" FORCE)
 
@@ -13,8 +19,12 @@ set(CMAKE_AUTOMOC ON)
 
 set(EXECUTABLE BeepHive)
 set(LIB_BEEP Beep)
-set(LIB_BEEPGUI BeepGui)
-set(LIBRARY_TYPE SHARED)
+
+if(GUI)
+  set(LIB_BEEPGUI BeepGui)
+  set(LIBRARY_TYPE SHARED)
+endif(GUI)
+
 
 set(BEEPHIVE_HEADERS
   include/AverageSensor.h
@@ -56,35 +66,40 @@ set(BEEPHIVE_SOURCES
   src/World.cpp
 )
 
-set(GUI_HEADERS
-  GUI/include/createagent.h
-  GUI/include/gui_includes.h
-  GUI/include/mainwindow.h
-  GUI/include/robot.h
-  GUI/include/ui_mainwindow.h
-  GUI/include/ui_debugwindow.h
-  GUI/include/debugwindow.h
-  GUI/include/createenvironment.h
-  GUI/include/environmentobject.h
-  GUI/include/ui_createagent.h
-  GUI/include/ui_createenvironment.h
-)
+if(GUI)
+  set(GUI_HEADERS
+    GUI/include/createagent.h
+    GUI/include/gui_includes.h
+    GUI/include/mainwindow.h
+    GUI/include/robot.h
+    GUI/include/ui_mainwindow.h
+    GUI/include/ui_debugwindow.h
+    GUI/include/debugwindow.h
+    GUI/include/createenvironment.h
+    GUI/include/environmentobject.h
+    GUI/include/ui_createagent.h
+    GUI/include/ui_createenvironment.h
+  )
 
-set(GUI_SOURCES
-  GUI/src/mainwindow.cpp
-  GUI/src/robot.cpp
-  GUI/src/debugwindow.cpp
-  GUI/src/createagent.cpp
-  GUI/src/createenvironment.cpp
-  GUI/src/environmentobject.cpp
-)
+  set(GUI_SOURCES
+    GUI/src/mainwindow.cpp
+    GUI/src/robot.cpp
+    GUI/src/debugwindow.cpp
+    GUI/src/createagent.cpp
+    GUI/src/createenvironment.cpp
+    GUI/src/environmentobject.cpp
+  )
+endif(GUI)
 
 set(BEEPHIVE_EXECUTABLE_SOURCES
   src/main.cpp
 )
 
 find_package(Boost COMPONENTS mpi serialization REQUIRED)
-find_package(Qt5Widgets)
+
+if(GUI)
+  find_package(Qt5Widgets)
+endif(GUI)
 
 INCLUDE_DIRECTORIES(
   ${CMAKE_CURRENT_SOURCE_DIR}/include
@@ -105,18 +120,20 @@ set_target_properties(
   lib
 )
 
-add_library(
-  ${LIB_BEEPGUI}
-  ${LIBRARY_TYPE}
-  ${GUI_SOURCES}
-  ${GUI_HEADERS}
-)
-set_target_properties(
-  ${LIB_BEEPGUI}
-  PROPERTIES
-  LIBRARY_OUTPUT_DIRECTORY
-  lib
-)
+if(GUI)
+  add_library(
+    ${LIB_BEEPGUI}
+    ${LIBRARY_TYPE}
+    ${GUI_SOURCES}
+    ${GUI_HEADERS}
+  )
+  set_target_properties(
+    ${LIB_BEEPGUI}
+    PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY
+    lib
+  )
+endif(GUI)
 
 add_executable(
   ${EXECUTABLE} 
@@ -185,19 +202,23 @@ target_link_libraries(
   ${LIB_BEEP}
 )
 
-add_executable(
-  GuiTest
-  GUI/src/main.cpp
-)
-target_link_libraries(
-  GuiTest
-  ${LIB_BEEPGUI}
-  ${Boost_LIBRARIES} 
-)
+if(GUI)
+  add_executable(
+    GuiTest
+    GUI/src/main.cpp
+  )
+  target_link_libraries(
+    GuiTest
+    ${LIB_BEEPGUI}
+    ${Boost_LIBRARIES} 
+  )
+endif(GUI)
 
 enable_testing()
 add_test(mpi mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
 
-qt5_use_modules(GuiTest Widgets)
-qt5_use_modules(${LIB_BEEPGUI} Widgets)
-qt5_use_modules(${EXECUTABLE} Widgets)
+if(GUI)
+  qt5_use_modules(GuiTest Widgets)
+  qt5_use_modules(${LIB_BEEPGUI} Widgets)
+  qt5_use_modules(${EXECUTABLE} Widgets)
+endif(GUI)
