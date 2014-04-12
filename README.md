@@ -48,6 +48,26 @@ Make sure that Boost is installed, including:
 * Boost-mpi: Boost-mpi simplifies the dirty work of mpi and makes developments
     of plugins easier
 
+###Deal.II
+Library to solve PDE's download from here http://www.dealii.org/
+
+Using version 8.1.0 unpack with:
+```
+tar -xvf deal.II-8.1.0.tar.gz
+```
+Install using the following commands:
+```
+$ mkdir build
+$ cd build
+$ make -DCMAKE_INSTALL_PREFIX=/path/to/install/dir -DDEAL_II_WITH_MPI=ON ..
+$ make install
+$ make test
+```
+Be sure that MPI is flagged on otherwise it might not link properly.
+If you have root permissions you can just set the install path to /usr/local.
+
+The make test command will ensure that it installed properly (100% of tests passed).
+
 ###Doxygen
 We use Doxygen to generate documentation of our source code.
 This is not necessary to get the project to build though
