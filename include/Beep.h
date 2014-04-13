@@ -8,6 +8,7 @@
 #include "Manipulator.h"
 #include "Sensor.h"
 #include "Controller.h"
+#include "Factory.h"
 
 class World;
 class Controller;
@@ -46,4 +47,9 @@ class Beep {
     Map<Manipulator*> manipulators;
     Map<double> states;
 };
+
+
+
+DEFINE_FACTORY(Beep, Beep);
+
 #endif /* BEEP_H */

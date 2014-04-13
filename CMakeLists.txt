@@ -34,6 +34,7 @@ set(BEEPHIVE_HEADERS
   include/BeepHiveConfigs.h
   include/BeepLayer.h
   include/Controller.h
+  include/CustomBeepFactory.h
   include/DiscreteTimeLayer.h
   include/Event.h
   include/Factory.h
@@ -54,6 +55,7 @@ set(BEEPHIVE_SOURCES
   src/Beep.cpp
   src/BeepHiveConfigs.cpp
   src/BeepLayer.cpp
+  src/CustomBeepFactory.cpp
   src/DiscreteTimeLayer.cpp
   src/Event.cpp
   src/FlockingController.cpp

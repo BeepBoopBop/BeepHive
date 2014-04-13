@@ -18,4 +18,8 @@ class BasicController : public Controller
   public:
     virtual void run(Beep* beep);
 };
+
+
+DEFINE_FACTORY(BasicController, Controller);
+
 #endif /* BASICCONTROLLER_H */

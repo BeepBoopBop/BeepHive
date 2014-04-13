@@ -15,4 +15,8 @@ class OmegaVelocityManipulator : public Manipulator {
     unsigned getInputSize() const;
 };
 
+
+
+DEFINE_FACTORY(OmegaVelocityManipulator,Manipulator);
+
 #endif /* OMEGAVELOCITYMANIPULATOR_H */

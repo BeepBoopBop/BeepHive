@@ -7,6 +7,7 @@
 #include "Serializeable.h"
 #include "AverageSensor.h"
 #include "World.h"
+#include "Factory.h"
 
     //create the sensor with a layer as well as an xyz location
     AverageSensor::AverageSensor(Layer* beep_layer, std::string state) : Sensor(beep_layer)
@@ -28,3 +29,19 @@
       reading=total;
     }
 
+Sensor* AverageSensorFactory::create()
+{
+  return new AverageSensor(NULL, "");
+}
+
+
+
+Sensor* AverageSensorFactory::create(FactoryParams& params)
+{
+  assert(params.size()>0);
+  return new AverageSensor(NULL,params[0]);
+}
+
+
+
+ADD_TO_FACTORIES(AverageSensor,Sensor);

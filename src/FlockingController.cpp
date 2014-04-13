@@ -4,11 +4,12 @@
 #include "FlockingController.h"
 #include "Beep.h"
 #include "Manipulator.h"
+#include "Factory.h"
 
 void FlockingController::run(Beep* beep)
 {
   DEBUG("Running basic controller");
-  Manipulator* omega_velocity=beep->getManipulator("OmegaVelocity");
+  Manipulator* omega_velocity=beep->getManipulator("OmegaVelocityManipulator");
   std::vector<double> inputs;
 
   double average_x=beep->getSensor("AverageX")->getReading();
@@ -24,34 +25,16 @@ void FlockingController::run(Beep* beep)
   omega_velocity->setInputs(inputs);
 }
 
-FlockingControllerFactory::FlockingControllerFactory() {}
-
-/*
-Factory<Controller>* FlockingControllerFactory::getInstance()
-{
-  static FlockingControllerFactory instance;
-  return &instance;
-}
-*/
-
-std::string FlockingControllerFactory::type()
-{
-  return "FlockingController";
-}
-
 Controller* FlockingControllerFactory::create()
 {
   return new FlockingController();
 }
 
-Controller* FlockingControllerFactory::create(std::vector<std::string> params)
+Controller* FlockingControllerFactory::create(FactoryParams& params)
 {
   return new FlockingController();
 }
 
-FlockingControllerFactoryProxy::FlockingControllerFactoryProxy()
-{
-  static FlockingControllerFactory instance;
-  Factories<Controller>::getInstance().addFactory(instance);
-}
-FlockingControllerFactoryProxy flocking_controller_factory_proxy;
+
+
+ADD_TO_FACTORIES(FlockingController,Controller);

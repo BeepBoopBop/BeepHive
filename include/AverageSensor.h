@@ -23,4 +23,7 @@ class AverageSensor : public Sensor
   protected:
     std::string state;
 };
+
+DEFINE_FACTORY(AverageSensor, Sensor);
+
 #endif /* AVERAGESENSOR_H */

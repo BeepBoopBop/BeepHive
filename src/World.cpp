@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 
 #include "AverageSensor.h"
 #include "BeepHive.h"
@@ -10,6 +11,7 @@
 #include "FlockingController.h"
 #include "Factory.h"
 #include "OmegaVelocityManipulator.h"
+#include "CustomBeepFactory.h"
 
 
 bool EventComparator::operator()(const Event first, const Event second) const
@@ -28,27 +30,45 @@ World::World() : layers(), event_queue(), running(true)
   Layer* beep_layer=new BeepLayer;
   this->addLayer("BeepLayer",beep_layer);
 
+  Factories<Beep>& factories=Factories<Beep>::getInstance();
+
+  Factories<Beep>::iterator it;
+  std::cout << "Factories in factories: " << std::endl;
+  for(it=factories.begin(); it!=factories.end(); ++it){
+    std::cout << it->first << std::endl;
+  }
+
+  CustomBeepFactory* flocking_beep=new CustomBeepFactory("FlockingBeep","Beep");
+
+  FactoryParams x_sensor;
+  x_sensor.push_back("x");
+  flocking_beep->addSensor("AverageX","AverageSensor",x_sensor);
+  FactoryParams y_sensor;
+  y_sensor.push_back("y");
+  flocking_beep->addSensor("AverageY","AverageSensor",y_sensor);
+
+  flocking_beep->setController("FlockingController");
+  flocking_beep->addManipulator("OmegaVelocityManipulator","OmegaVelocityManipulator");
+
+  CustomBeepFactory* simple_beep=new CustomBeepFactory("BasicBeep","Beep");
+  simple_beep->addSensor("AverageX","AverageSensor",x_sensor);
+  simple_beep->addSensor("AverageY","AverageSensor",y_sensor);
+  simple_beep->addManipulator("OmegaVelocityManipulator","OmegaVelocityManipulator");
+  simple_beep->setController("BasicController");
+
+  std::cout << "Factories in factories: " << std::endl;
+  for(it=factories.begin(); it!=factories.end(); ++it){
+    std::cout << it->first << std::endl;
+  }
+
+  Beep* beep;
   for(int i=0;i<20;++i){
     for(int j=0;j<20;++j){
-      Beep* beep=new Beep();
-
-
-      Controller* controller;
       if((i+j)%2){
-        controller=new FlockingController();
+        beep=factories["FlockingBeep"]->create();
       } else {
-        controller=new BasicController();
+        beep=factories["BasicBeep"]->create();
       }
-      assert(controller!=NULL);
-      beep->setController(controller);
-
-      Manipulator* omega_vel=new OmegaVelocityManipulator();
-      beep->addManipulator("OmegaVelocity",omega_vel);
-
-      Sensor* sensor=new AverageSensor(beep_layer,"x");
-      beep->addSensor("AverageX",sensor);
-      sensor=new AverageSensor(beep_layer,"y");
-      beep->addSensor("AverageY",sensor);
 
       beep->setState("x",20*i);
       beep->setState("y",20*j);
@@ -61,6 +81,7 @@ World::World() : layers(), event_queue(), running(true)
 
 
 World::~World() {}
+
 
 
 int World::step()

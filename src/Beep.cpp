@@ -87,3 +87,21 @@ double Beep::getState(std::string state_name)
     states[state_name]=0;
   return states[state_name];
 }
+
+
+
+Beep* BeepFactory::create()
+{
+  return new Beep();
+}
+
+
+
+Beep* BeepFactory::create(FactoryParams& params)
+{
+  return this->create();
+}
+
+
+
+ADD_TO_FACTORIES(Beep,Beep);

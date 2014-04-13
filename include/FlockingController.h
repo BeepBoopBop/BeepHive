@@ -22,25 +22,8 @@ class FlockingController : public Controller
     virtual void run(Beep* beep);
 };
 
-class FlockingControllerFactory : public Factory<Controller> {
-  public:
-    FlockingControllerFactory();
-
-    //virtual Factory<Controller>* getInstance();
-
-    virtual std::string type();
-
-    virtual Controller* create();
-    virtual Controller* create(std::vector<std::string> params);
-  private:
-};
 
 
-
-class FlockingControllerFactoryProxy
-{
-  public:
-    FlockingControllerFactoryProxy();
-};
+DEFINE_FACTORY(FlockingController, Controller);
 
 #endif /* FLOCKINGCONTROLLER_H */

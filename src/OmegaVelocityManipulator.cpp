@@ -2,6 +2,7 @@
 
 #include "BeepHive.h"
 #include "OmegaVelocityManipulator.h"
+#include "Factory.h"
 
 OmegaVelocityManipulator::OmegaVelocityManipulator() : Manipulator()
 {
@@ -58,3 +59,21 @@ unsigned OmegaVelocityManipulator::getInputSize() const
 {
   return 2;
 }
+
+
+
+Manipulator* OmegaVelocityManipulatorFactory::create()
+{
+  return new OmegaVelocityManipulator();
+}
+
+
+
+Manipulator* OmegaVelocityManipulatorFactory::create(FactoryParams& params)
+{
+  return this->create();
+}
+
+
+
+ADD_TO_FACTORIES(OmegaVelocityManipulator,Manipulator);
