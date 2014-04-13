@@ -12,7 +12,7 @@ started, one for the GUI and one for the backend.
 ### Flags
 |Flag|Abbreviation|Description|
 |:----|:------|:-------------|
-|`--nogui`|-n|Disables the GUI for a headless install|
+|`--nogui`|-n|Disables the GUI|
 ## Build Instructions
 ### Make and enter build directory:
 ```
