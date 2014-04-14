@@ -59,7 +59,8 @@ Install using the following commands:
 ```
 $ mkdir build
 $ cd build
-$ make -DCMAKE_INSTALL_PREFIX=/path/to/install/dir -DDEAL_II_WITH_MPI=ON ..
+$ cmake -DCMAKE_INSTALL_PREFIX=/path/to/install/dir -DDEAL_II_WITH_MPI=ON ..
+$ make
 $ make install
 $ make test
 ```
