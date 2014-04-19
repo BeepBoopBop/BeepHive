@@ -9,7 +9,7 @@ if(GUI)
   add_definitions(-DGUI)
 endif(GUI)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra"
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -Wall -Wextra"
     CACHE STRING "" FORCE)
 
 # Find includes in corresponding build directories
@@ -35,10 +35,13 @@ set(BEEPHIVE_HEADERS
   include/BeepLayer.h
   include/Controller.h
   include/CustomBeepFactory.h
+  include/Dealii.h
   include/DiscreteTimeLayer.h
   include/Event.h
   include/Factory.h
   include/FlockingController.h
+  include/HeatEquation.h
+  include/HeatLayer.h
   include/Layer.h
   include/LightSensor.h
   include/Manipulator.h
@@ -59,6 +62,7 @@ set(BEEPHIVE_SOURCES
   src/DiscreteTimeLayer.cpp
   src/Event.cpp
   src/FlockingController.cpp
+  src/HeatLayer.cpp
   src/LightSensor.cpp
   src/Manipulator.cpp
   src/Layer.cpp
@@ -98,6 +102,10 @@ set(BEEPHIVE_EXECUTABLE_SOURCES
 )
 
 find_package(Boost COMPONENTS mpi serialization REQUIRED)
+
+find_package(deal.II 8.0 QUIET
+  HINTS ${deal.II_DIR} ${DEAL_II_DIR} ../ ../../ $ENV{DEAL_II_DIR}
+  )
 
 if(GUI)
   find_package(Qt5Widgets)
