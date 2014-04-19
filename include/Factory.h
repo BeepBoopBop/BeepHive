@@ -42,7 +42,7 @@ class _type##Factory : public Factory<base> \
     virtual base* create(FactoryParams& params); \
   private: \
     _type##Factory() {}; \
-}
+};
 
 
 
@@ -55,8 +55,8 @@ class _type##Factory : public Factory<base> \
 #define ADD_TO_FACTORIES(type,base) \
 /*! \
  * This class automatically generated to add a factory of type to the base \
- * multiton 
- * */\
+ * multiton \
+ * */ \
 class type##FactoryProxy \
 { \
   public: \
@@ -66,7 +66,7 @@ class type##FactoryProxy \
       Factories<base>::getInstance().addFactory(*f); \
     } \
 }; \
-type##FactoryProxy type##_factory_proxy
+type##FactoryProxy type##_factory_proxy;
 
 
 
