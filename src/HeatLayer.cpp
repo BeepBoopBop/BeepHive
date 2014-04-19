@@ -1,11 +1,11 @@
 #include "BeepHive.h"
 #include "HeatLayer.h"
 
-HeatLayer::HeatLayer() : DiscreteTimeLayer() {}
+HeatLayer::HeatLayer() : DiscreteTimeLayer(), initialized(false){}
 
 
 
-HeatLayer::HeatLayer(double event_frequency) : DiscreteTimeLayer(event_frequency) {}
+HeatLayer::HeatLayer(double event_frequency) : DiscreteTimeLayer(event_frequency), initialized(false) {}
 
 
 

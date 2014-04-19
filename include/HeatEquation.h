@@ -11,8 +11,8 @@ class HeatEquation
 public:
   HeatEquation<dim>();
   virtual ~HeatEquation<dim>();
-  void setup_system();
-  void solve_time_step();
+  void setup_system() {};
+  void solve_time_step() {};
   void getValue( int x, int y, int z );
 
 private:
@@ -43,7 +43,6 @@ private:
   
 
 };
-#endif
 
 template<int dim>
 HeatEquation<dim>::HeatEquation ():
@@ -55,3 +54,4 @@ theta(0.5)
 
 template<int dim>
 HeatEquation<dim>::~HeatEquation (){}
+#endif
