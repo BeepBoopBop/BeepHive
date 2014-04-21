@@ -9,6 +9,7 @@
 #include "Sensor.h"
 #include "Controller.h"
 #include "Factory.h"
+#include "Stateful.h"
 
 class World;
 class Controller;
@@ -21,7 +22,7 @@ class Sensor;
  * Custom beeps can be created by setting a controller and by adding
  * Sensors and Manipulators
  */
-class Beep {
+class Beep: public Stateful{
   public:
     Beep();
     ~Beep();
@@ -37,10 +38,6 @@ class Beep {
     void addManipulator(std::string manipulator_name, Manipulator* manipulator);
     Manipulator* getManipulator(std::string manipulator_name);
 
-    //! Adds a new state variable to the state map, creating if necessary
-    void setState(std::string state_name, double initial_state=0);
-    //! Get the value of an existing state variable.
-    double getState(std::string state_name);
   private:
     Controller* controller;
     Map<Sensor*> sensors;

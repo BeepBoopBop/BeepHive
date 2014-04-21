@@ -72,24 +72,6 @@ Manipulator* Beep::getManipulator(std::string manipulator_name)
 }
 
 
-
-void Beep::setState(std::string state_name, double initial_state)
-{
-  states[state_name]=initial_state;
-}
-
-
-
-double Beep::getState(std::string state_name)
-{
-  //states default to zero for now
-  if(states.find(state_name) == states.end())
-    states[state_name]=0;
-  return states[state_name];
-}
-
-
-
 Beep* BeepFactory::create()
 {
   return new Beep();

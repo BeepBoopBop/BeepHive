@@ -45,6 +45,7 @@ set(BEEPHIVE_HEADERS
   include/OmegaVelocityManipulator.h
   include/Sensor.h
   include/Serializeable.h
+  include/Stateful.h
   include/SyncLayer.h
   include/World.h
 )
@@ -64,6 +65,7 @@ set(BEEPHIVE_SOURCES
   src/Layer.cpp
   src/OmegaVelocityManipulator.cpp
   src/Serializeable.cpp
+  src/Stateful.cpp
   src/SyncLayer.cpp
   src/World.cpp
 )
