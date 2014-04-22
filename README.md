@@ -59,7 +59,7 @@ Install using the following commands:
 ```
 $ mkdir build
 $ cd build
-$ cmake -DCMAKE_INSTALL_PREFIX=/path/to/install/dir -DDEAL_II_WITH_MPI=ON ..
+$ cmake -DCMAKE_INSTALL_PREFIX=/path/to/install/dir -DDEAL_II_WITH_THREADS=OFF -DDEAL_II_WITH_MPI=ON ..
 $ make
 $ make install
 $ make test
@@ -67,7 +67,7 @@ $ make test
 Be sure that MPI is flagged on otherwise it might not link properly.
 If you have root permissions you can just set the install path to /usr/local.
 
-The make test command will ensure that it installed properly (100% of tests passed).
+The make test command will ensure that it installed properly (You should see 100% of tests passed).
 
 ###Doxygen
 We use Doxygen to generate documentation of our source code.
