@@ -9,7 +9,7 @@ if(GUI)
   add_definitions(-DGUI)
 endif(GUI)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra"
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wall -Wextra"
     CACHE STRING "" FORCE)
 
 # Find includes in corresponding build directories
@@ -35,10 +35,13 @@ set(BEEPHIVE_HEADERS
   include/BeepLayer.h
   include/Controller.h
   include/CustomBeepFactory.h
+  include/Dealii.h
   include/DiscreteTimeLayer.h
   include/Event.h
   include/Factory.h
   include/FlockingController.h
+  include/HeatEquation.h
+  include/HeatLayer.h
   include/Layer.h
   include/LightSensor.h
   include/Manipulator.h
@@ -60,6 +63,7 @@ set(BEEPHIVE_SOURCES
   src/DiscreteTimeLayer.cpp
   src/Event.cpp
   src/FlockingController.cpp
+  src/HeatLayer.cpp
   src/LightSensor.cpp
   src/Manipulator.cpp
   src/Layer.cpp
@@ -101,6 +105,11 @@ set(BEEPHIVE_EXECUTABLE_SOURCES
 
 find_package(Boost COMPONENTS mpi serialization REQUIRED)
 
+find_package(deal.II 8.0 REQUIRED
+  HINTS ${deal.II_DIR} ${DEAL_II_DIR} ../ ../../ $ENV{DEAL_II_DIR}
+  )
+deal_ii_initialize_cached_variables()
+
 if(GUI)
   find_package(Qt5Widgets)
 endif(GUI)
@@ -117,6 +126,7 @@ add_library(
   ${BEEPHIVE_SOURCES}
   ${BEEPHIVE_HEADERS}
 )
+deal_ii_setup_target(${LIB_BEEP})
 set_target_properties(
   ${LIB_BEEP}
   PROPERTIES
@@ -131,6 +141,7 @@ if(GUI)
     ${GUI_SOURCES}
     ${GUI_HEADERS}
   )
+  deal_ii_setup_target(${LIB_BEEPGUI})
   set_target_properties(
     ${LIB_BEEPGUI}
     PROPERTIES
@@ -143,6 +154,7 @@ add_executable(
   ${EXECUTABLE} 
   ${BEEPHIVE_EXECUTABLE_SOURCES}
 )
+deal_ii_setup_target(${EXECUTABLE})
 
 target_link_libraries(
   ${EXECUTABLE}
@@ -199,6 +211,7 @@ add_executable(
   BackendTest
   test/backend_test.cpp
 )
+deal_ii_setup_target(BackendTest)
 
 target_link_libraries(
   BackendTest
@@ -211,6 +224,7 @@ if(GUI)
     GuiTest
     GUI/src/main.cpp
   )
+  deal_ii_setup_target(GuiTest)
   target_link_libraries(
     GuiTest
     ${LIB_BEEPGUI}
