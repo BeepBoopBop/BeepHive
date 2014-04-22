@@ -1,4 +1,5 @@
 #include <string>
+#include <sstream>
 #include <vector>
 #include <boost/serialization/base_object.hpp>
 #include <boost/mpi.hpp>
@@ -12,6 +13,9 @@
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
 #include "World.h"
+#include "Communicator.h"
+#include "CentralCommunicator.h"
+#include "FileCommunicator.h"
 
 namespace mpi=boost::mpi;
 
@@ -21,11 +25,18 @@ int main(int argc, char** argv)
 {
   mpi::environment env;
   mpi::communicator comm;
+  int rank=comm.rank();
 
   BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
   configs.parseArgs(argc,argv);
 
-  if(comm.rank()==0){
+#ifdef GUI
+  //std::stringstream file_name;
+  //file_name << "out_" << rank;
+  //Communicators::getInstance().addCommunicator("file",new FileCommunicator(
+  Communicators::getInstance().addCommunicator("central",new CentralCommunicator());
+#endif
+  if(rank==0){
 #ifdef GUI
     if(configs.guiEnabled()){
       QApplication a(argc, argv);

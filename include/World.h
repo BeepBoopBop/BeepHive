@@ -46,21 +46,12 @@ class World {
     BeepIterator beepEnd() const;
     void addBeep(Beep* beep);
 
-    void addMessageToGui(std::string message);
-    const std::string& getMessagesToGui();
-    void clearMessagesToGui();
-
-    const std::string& getMessagesFromGui();
-    void setMessagesFromGui(std::string messages);
-
     void quit();
   private:
     Beeps beeps;
     Map<Layer*> layers;
     EventQueue event_queue;
 
-    std::string messages_to_gui;
-    std::string messages_from_gui;
     bool running;
 };
 

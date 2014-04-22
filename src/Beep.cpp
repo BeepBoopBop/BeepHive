@@ -1,5 +1,6 @@
 #include <sstream>
 
+#include "Communicator.h"
 #include "BeepHive.h"
 #include "Beep.h"
 
@@ -33,7 +34,7 @@ void Beep::runManipulators(World* world)
   }
   std::stringstream message;
   message << getState("x") << " " << getState("y");
-  world->addMessageToGui(message.str());
+  Communicators::getInstance().addToOutput(message.str());
 }
 
 

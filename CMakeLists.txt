@@ -33,12 +33,15 @@ set(BEEPHIVE_HEADERS
   include/BeepHive.h
   include/BeepHiveConfigs.h
   include/BeepLayer.h
+  include/CentralCommunicator.h
+  include/Communicator.h
   include/Controller.h
   include/CustomBeepFactory.h
   include/Dealii.h
   include/DiscreteTimeLayer.h
   include/Event.h
   include/Factory.h
+  include/FileCommunicator.h
   include/FlockingController.h
   include/HeatEquation.h
   include/HeatLayer.h
@@ -59,9 +62,12 @@ set(BEEPHIVE_SOURCES
   src/Beep.cpp
   src/BeepHiveConfigs.cpp
   src/BeepLayer.cpp
+  src/CentralCommunicator.cpp
+  src/Communicator.cpp
   src/CustomBeepFactory.cpp
   src/DiscreteTimeLayer.cpp
   src/Event.cpp
+  src/FileCommunicator.cpp
   src/FlockingController.cpp
   src/HeatLayer.cpp
   src/LightSensor.cpp
