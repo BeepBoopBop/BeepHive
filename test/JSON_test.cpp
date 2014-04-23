@@ -12,6 +12,7 @@
 #include "World.h"
 #include "Communicator.h"
 #include "CentralCommunicator.h"
+#include "Command.h"
 
 namespace mpi=boost::mpi;
 int main(int argc, char** argv)
@@ -24,10 +25,19 @@ int main(int argc, char** argv)
   configs.setTimeLimit(10);
 
   Communicators::getInstance().addCommunicator("central",new CentralCommunicator());
+  std::vector<std::string> v {"int", "one", "two", "three"};
+  BeepCommand beep = BeepCommand(v);
+  std::string json1 = beep.save();
+  std::cout<< json1;
+  BeepCommand beep2 = BeepCommand();
+  beep2.load(json1);
 
-  LightSensor l = LightSensor(5,10,15);
-  std::string json = l.save();
-  std::cout << json << "\n";
-  LightSensor l2;
-  l2.load(json);
+
+
+
+  //LightSensor l = LightSensor(5,10,15);
+ // std::string json = l.save();
+  //std::cout << json << "\n";
+ // LightSensor l2;
+  //l2.load(json);
 }
