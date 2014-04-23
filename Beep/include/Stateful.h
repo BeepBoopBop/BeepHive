@@ -2,10 +2,12 @@
 #define STATEFUL_H 
 
 #include "BeepHive.h"
+#include "Serializeable.h"
 
 #define SCOPE "::"
 
-class Stateful {
+class Stateful : public Serializeable
+{
   public:
     typedef Map<double>::const_iterator StateIterator;
     typedef Map<Stateful*>::const_iterator ChildIterator;
@@ -17,6 +19,12 @@ class Stateful {
     void addChild(std::string stateful_name, Stateful* stateful);
     //! Get a child stateful
     Stateful* getChild(std::string stateful_name);
+
+    //serialization
+    std::string  save();
+    void load(std::string JSON);
+
+
   private:
     Map<double>::iterator findState(std::string state_name);
   protected:

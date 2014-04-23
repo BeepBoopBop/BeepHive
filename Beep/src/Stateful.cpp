@@ -34,6 +34,24 @@ Stateful* Stateful::getChild(std::string stateful_name)
 
 
 
+//serialization
+std::string  Stateful::save()
+{
+
+  //create tree
+  //add states map
+  //add children recursively
+  return "not implemented";
+}
+void Stateful::load(std::string JSON)
+{
+
+
+}
+
+
+
+
 Map<double>::iterator Stateful::findState(std::string state_name)
 {
   size_t scope_location = state_name.find(SCOPE);
