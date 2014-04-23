@@ -54,6 +54,7 @@ DEFINE_FACTORY(Beep, Beep);
 class BeepCommand : public CreateCommand
 {
   public:
+    BeepCommand() {}
     BeepCommand(FactoryParams params);
     virtual void run(World* world);
 };

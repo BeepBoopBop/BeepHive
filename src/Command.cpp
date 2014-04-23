@@ -17,31 +17,6 @@ CreateCommand::CreateCommand(FactoryParams params)
 
 
 
-BeepCommand::BeepCommand(FactoryParams params) : CreateCommand(params) {}
-
-
-
-void BeepCommand::run(World* world)
-{
-  Beep* beep = Factories<Beep>::getInstance()[type]->create(params);
-  world->addBeep(beep);
-}
-
-
-
-Command* BeepCommandFactory::create()
-{
-  FactoryParams params;
-  return create(params);
-}
-
-
-
-Command* BeepCommandFactory::create(FactoryParams& params)
-{
-  return new BeepCommand(params);
-}
-
 std::string  CreateCommand::save()
 {
   
@@ -67,6 +42,3 @@ void  CreateCommand::load(std::string JSON)
       std::cout << (v.second.data()) << "\n";
 
 }
-
-
-ADD_TO_FACTORIES(BeepCommand, Command);

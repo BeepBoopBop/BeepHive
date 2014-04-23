@@ -34,16 +34,4 @@ class CreateCommand : public Command, public Serializeable
     std::string type;
 };
 
-
-
-class BeepCommand : public CreateCommand
-{
-  public:
-    BeepCommand(FactoryParams params);
-    BeepCommand(){}
-    virtual void run(World* world);
-};
-
-DEFINE_FACTORY(BeepCommand, Command);
-
 #endif /* COMMAND_H */

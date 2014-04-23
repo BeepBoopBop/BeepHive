@@ -7,6 +7,7 @@
 #include "AverageSensor.h"
 #include "SyncLayer.h"
 
+#include "Beep.h"
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
 #include "World.h"
