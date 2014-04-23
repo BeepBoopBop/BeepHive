@@ -21,6 +21,7 @@ class Sensor : public Serializeable
   public:
 
     Sensor(Layer* m){layer = m;}
+    Sensor(){};
 
 
     //! Gets and stores reading from the layer/World

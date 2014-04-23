@@ -20,7 +20,7 @@ class AverageSensor : public Sensor
     //read the layer at the given x, y, z
     void readLayer(const World* world);
     std::string  save();
-    Serializeable* load(std::string JSON);
+    void load(std::string JSON);
   protected:
     std::string state;
 };

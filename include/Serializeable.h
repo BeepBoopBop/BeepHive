@@ -3,6 +3,13 @@
 
 
 #include "BeepHive.h"
+#include <sstream>
+#include <map>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+using boost::property_tree::ptree;
+using boost::property_tree::read_json;
+using boost::property_tree::write_json;
 
 /*!
  * Serializable is a class used as an interface for objects that should 
@@ -17,9 +24,12 @@ class Serializeable{
 
     //saves the object to the returned string, user responsible for sending it to file or over mpi
     virtual std::string save() =0;
+    
+    static std::string PTreeToString(ptree tree);
+    static ptree StringtoPTree(std::string JSON);
 
     //! should return the class and user is responsible for casting to the subclass
-    virtual Serializeable* load(std::string JSON) =0;
+    virtual void load(std::string JSON) =0;
 
 };
 

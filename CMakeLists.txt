@@ -227,6 +227,17 @@ target_link_libraries(
   ${LIB_BEEP}
 )
 
+add_executable(
+  JSONTest
+  test/JSON_test.cpp
+)
+
+target_link_libraries(
+  JSONTest
+  ${Boost_LIBRARIES} 
+  ${LIB_BEEP}
+)
+
 if(GUI)
   add_executable(
     GuiTest

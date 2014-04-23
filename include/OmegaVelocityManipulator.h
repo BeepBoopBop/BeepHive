@@ -14,7 +14,7 @@ class OmegaVelocityManipulator : public Manipulator {
     void updateState(Beep* beep, World* world);
     unsigned getInputSize() const;
     std::string  save();
-    Serializeable* load(std::string JSON);
+    void load(std::string JSON);
 };
 
 
