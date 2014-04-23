@@ -3,6 +3,13 @@
 #include "BeepHive.h"
 #include "OmegaVelocityManipulator.h"
 #include "Factory.h"
+#include <sstream>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+using boost::property_tree::ptree;
+using boost::property_tree::read_json;
+using boost::property_tree::write_json;
+
 
 OmegaVelocityManipulator::OmegaVelocityManipulator() : Manipulator()
 {
@@ -60,7 +67,9 @@ unsigned OmegaVelocityManipulator::getInputSize() const
   return 2;
 }
 
-
+//serialization
+std::string OmegaVelocityManipulator::save(){return "not implemented";}
+Serializeable* OmegaVelocityManipulator::load(std::string JSON){return this;}
 
 Manipulator* OmegaVelocityManipulatorFactory::create()
 {

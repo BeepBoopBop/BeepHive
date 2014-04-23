@@ -4,10 +4,18 @@
 
 #include "BeepHive.h"
 #include "Sensor.h"
-#include "Serializeable.h"
 #include "AverageSensor.h"
 #include "World.h"
 #include "Factory.h"
+#include <sstream>
+#include <map>
+#include <boost/property_tree/ptree.hpp>
+#include <boost/property_tree/json_parser.hpp>
+using boost::property_tree::ptree;
+using boost::property_tree::read_json;
+using boost::property_tree::write_json;
+
+
 
     //create the sensor with a layer as well as an xyz location
     AverageSensor::AverageSensor(Layer* beep_layer, std::string state) : Sensor(beep_layer)
@@ -28,6 +36,9 @@
       total/=count;
       reading=total;
     }
+
+std::string  AverageSensor::save(){return "not implemented";}
+Serializeable*  AverageSensor::load(std::string JSON){return this;}
 
 Sensor* AverageSensorFactory::create()
 {

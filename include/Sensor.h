@@ -4,6 +4,7 @@
 #include "BeepHive.h"
 #include "Layer.h"
 #include "World.h"
+#include "Serializeable.h"
 
 
 class World;
@@ -15,7 +16,7 @@ class World;
  * All sensors are read before controllers are called. Sensors cannot modify
  * the World or any layers.
  */
-class Sensor
+class Sensor : public Serializeable
 {
   public:
 

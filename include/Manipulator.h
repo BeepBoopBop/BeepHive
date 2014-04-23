@@ -6,6 +6,7 @@
 #include "Layer.h"
 #include "Beep.h"
 #include "World.h"
+#include "Serializeable.h"
 
 class Beep;
 class Layer;
@@ -25,7 +26,7 @@ class World;
  * been followed such as if the manipulator failed to pick up an object because
  * another Beep did on the same time-step.
  */
-class Manipulator 
+class Manipulator : public Serializeable
 {
   public:
     Manipulator(){}
