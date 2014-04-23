@@ -196,8 +196,18 @@ class Factories
     }
 
   protected:
-    Factories<T>() {};
     Map<Factory<T>*> factories;
+
+  private:
+    Factories<T>() {}
+
+
+
+    Factories<T>(const Factories<T>& copy);
+
+
+
+    Factories<T>& operator=(const Factories<T>& copy);
 };
     
 
