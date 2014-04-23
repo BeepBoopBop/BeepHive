@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <sstream>
 
 #include "AverageSensor.h"
 #include "BeepHive.h"
@@ -140,6 +141,9 @@ World::BeepIterator World::beepEnd() const
 
 void World::addBeep(Beep* beep)
 {
+  std::stringstream name;
+  name << beeps.size();
+  addChild(name.str(), beep);
   beeps.push_back(beep);
 }
 

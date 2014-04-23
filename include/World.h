@@ -9,6 +9,7 @@
 #include "Event.h"
 #include "Layer.h"
 #include "Beep.h"
+#include "Stateful.h"
 
 class Layer;
 class Event;
@@ -31,7 +32,7 @@ typedef std::priority_queue<Event,std::vector<Event>,EventComparator> EventQueue
  * The World contains Layers, Environment Objects and Beeps.
  * Updates to Layers are based on scheduling of Events in the priority queue
  */
-class World {
+class World : public Stateful{
   public:
     World();
     virtual ~World();
