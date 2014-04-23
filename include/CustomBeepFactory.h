@@ -5,6 +5,7 @@
 
 #include "Beep.h"
 #include "Factory.h"
+#include "Command.h"
 
 class CustomBeepFactory : public CustomFactory<Beep>
 {
@@ -28,5 +29,23 @@ class CustomBeepFactory : public CustomFactory<Beep>
     Map<FactoryAndParams<Manipulator> > manipulators;
     FactoryAndParams<Controller> controller;
 };
+
+
+
+class World;
+
+class CustomBeepCommand : public Command
+{
+  public:
+    CustomBeepCommand(FactoryParams params);
+    virtual void run(World* world);
+  private:
+    std::string type;
+    std::string base;
+};
+
+
+
+DEFINE_FACTORY(CustomBeepCommand, Command);
 
 #endif /* CUSTOMBEEPFACTORY_H */

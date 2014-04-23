@@ -5,6 +5,7 @@
 
 #include "BeepHive.h"
 #include "World.h"
+#include "Command.h"
 #include "Manipulator.h"
 #include "Sensor.h"
 #include "Controller.h"
@@ -22,7 +23,8 @@ class Sensor;
  * Custom beeps can be created by setting a controller and by adding
  * Sensors and Manipulators
  */
-class Beep: public Stateful{
+class Beep: public Stateful
+{
   public:
     Beep();
     ~Beep();
@@ -45,8 +47,17 @@ class Beep: public Stateful{
     Map<double> states;
 };
 
-
-
 DEFINE_FACTORY(Beep, Beep);
+
+
+
+class BeepCommand : public CreateCommand
+{
+  public:
+    BeepCommand(FactoryParams params);
+    virtual void run(World* world);
+};
+
+DEFINE_FACTORY(BeepCommand, Command);
 
 #endif /* BEEP_H */

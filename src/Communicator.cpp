@@ -31,8 +31,8 @@ void Communicators::addCommunicator(std::string name, Communicator* communicator
 std::string Communicators::getInput()
 {
   std::string temp=input;
-  input=std::string();
-  return temp;
+  input="";
+  return "I am a string";
 }
 
 

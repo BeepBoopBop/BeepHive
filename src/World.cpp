@@ -31,6 +31,7 @@ World::World() : layers(), event_queue(), running(true)
   Layer* beep_layer=new BeepLayer;
   this->addLayer("BeepLayer",beep_layer);
 
+  /*
   Factories<Beep>& factories=Factories<Beep>::getInstance();
 
   Factories<Beep>::iterator it;
@@ -77,6 +78,7 @@ World::World() : layers(), event_queue(), running(true)
       beeps.push_back(beep);
     }
   }
+  */
 }
 
 

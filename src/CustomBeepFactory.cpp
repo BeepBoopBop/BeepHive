@@ -75,3 +75,56 @@ void CustomBeepFactory::setController(std::string base_type,
   Factories<Controller>& factories=Factories<Controller>::getInstance();
   controller=FactoryAndParams<Controller>(factories[base_type], params);
 }
+
+
+
+
+CustomBeepCommand::CustomBeepCommand(FactoryParams params)
+  : type(params[0]), base(params[1])
+{
+  assert(params.size()>=2);
+  this->type=params[0];
+  this->base=params[1];
+
+  /*
+  for(int i=2; i<params.size(); ++i){
+    this->params.push_back(params[i]);
+  }
+  */
+}
+
+
+
+void CustomBeepCommand::run(World* world)
+{
+  CustomBeepFactory* factory = new CustomBeepFactory(type, base);
+
+  FactoryParams x_sensor;
+  x_sensor.push_back("x");
+  factory->addSensor("AverageX","AverageSensor",x_sensor);
+  FactoryParams y_sensor;
+  y_sensor.push_back("y");
+  factory->addSensor("AverageY","AverageSensor",y_sensor);
+
+  factory->setController("FlockingController");
+  factory->addManipulator("OmegaVelocityManipulator","OmegaVelocityManipulator");
+}
+
+
+
+Command* CustomBeepCommandFactory::create()
+{
+  FactoryParams params;
+  return create(params);
+}
+
+
+
+Command* CustomBeepCommandFactory::create(FactoryParams& params)
+{
+  return new CustomBeepCommand(params);
+}
+
+
+
+ADD_TO_FACTORIES(CustomBeepCommand, Command);

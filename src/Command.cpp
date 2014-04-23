@@ -5,13 +5,13 @@
 #include <boost/foreach.hpp>
 
 CreateCommand::CreateCommand(FactoryParams params)
+  : params()
 {
-  assert(params.size()>=2);
+  assert(params.size()>=1);
   this->type=params[0];
 
-  FactoryParams::iterator it;
-  for(it=params.begin(); it!=params.end(); ++it){
-    this->params.push_back(*it);
+  for(int i=1; i<params.size(); ++i){
+    this->params.push_back(params[i]);
   }
 }
 

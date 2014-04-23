@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 #include <iostream>
 
 #include "BeepHive.h"
@@ -245,6 +246,5 @@ class CustomFactory : public Factory<T>
   private:
     std::string type_name;
 };
-
 
 #endif /* FACTORY_H */

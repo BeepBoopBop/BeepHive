@@ -1,8 +1,10 @@
 #include <sstream>
 
 #include "Communicator.h"
+#include "Command.h"
 #include "BeepHive.h"
 #include "Beep.h"
+#include "World.h"
 
 Beep::Beep() : controller(0), sensors(), manipulators(), states() {}
 
@@ -85,6 +87,36 @@ Beep* BeepFactory::create(FactoryParams& params)
   return this->create();
 }
 
-
-
 ADD_TO_FACTORIES(Beep,Beep);
+
+
+
+BeepCommand::BeepCommand(FactoryParams params) : CreateCommand(params) {}
+
+
+
+void BeepCommand::run(World* world)
+{
+  Beep* beep = Factories<Beep>::getInstance()[type]->create(params);
+  world->addBeep(beep);
+}
+
+
+
+Command* BeepCommandFactory::create()
+{
+  FactoryParams params;
+  std::cout << "Go away!!!!!!!!" << std::endl;
+  params.push_back("Beep");
+  return create(params);
+}
+
+
+
+Command* BeepCommandFactory::create(FactoryParams& params)
+{
+  assert(params.size()>=1);
+  return new BeepCommand(params);
+}
+
+ADD_TO_FACTORIES(BeepCommand, Command);
