@@ -34,6 +34,7 @@ set(BEEPHIVE_HEADERS
   include/BeepHiveConfigs.h
   include/BeepLayer.h
   include/CentralCommunicator.h
+  include/Command.h
   include/Communicator.h
   include/Controller.h
   include/CustomBeepFactory.h
@@ -63,6 +64,7 @@ set(BEEPHIVE_SOURCES
   src/BeepHiveConfigs.cpp
   src/BeepLayer.cpp
   src/CentralCommunicator.cpp
+  src/Command.cpp
   src/Communicator.cpp
   src/CustomBeepFactory.cpp
   src/DiscreteTimeLayer.cpp
