@@ -2,6 +2,7 @@
 #define COMMUNICATOR_H 
 
 #include "BeepHive.h"
+#include "Singleton.h"
 
 /*!
  * The communicator abstract class defines a basic interface for all
@@ -19,10 +20,9 @@ class Communicator
 
 
 
-class Communicators
+class Communicators : public Singleton<Communicators>
 {
   public:
-    static Communicators& getInstance();
     void run();
     void addCommunicator(std::string name, Communicator* communicator);
     std::string getInput();

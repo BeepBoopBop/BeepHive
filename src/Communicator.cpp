@@ -1,14 +1,6 @@
 #include "Communicator.h"
 //#include "BeepHive.h"
 
-Communicators& Communicators::getInstance()
-{
-  static Communicators instance;
-  return instance;
-}
-
-
-
 void Communicators::run()
 {
   //input="[";

@@ -52,6 +52,7 @@ set(BEEPHIVE_HEADERS
   include/OmegaVelocityManipulator.h
   include/Sensor.h
   include/Serializeable.h
+  include/Singleton.h
   include/Stateful.h
   include/SyncLayer.h
   include/World.h

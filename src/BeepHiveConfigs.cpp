@@ -7,15 +7,6 @@
 
 BeepHiveConfigs::BeepHiveConfigs() : time_limit(-1), gui_enabled(true){}
 
-/*!
- * Provides access to configs singleton
- */
-BeepHiveConfigs& BeepHiveConfigs::getInstance()
-{
-  static BeepHiveConfigs instance;
-  return instance;
-}
-
 void BeepHiveConfigs::parseArgs(const int argc, char** argv)
 {
   while(1){
