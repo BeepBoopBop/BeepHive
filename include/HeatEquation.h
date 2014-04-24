@@ -31,7 +31,7 @@ private:
   unsigned int initial_global_refinement;
   unsigned int n_adaptive_pre_refinement_steps;
   unsigned int pre_refinement_step;
-  bool initialized = false;
+  bool initialized;
 
   void setup_system();
   void solve_time_step();
