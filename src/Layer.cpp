@@ -29,7 +29,7 @@ double Layer::timeSinceLastUpdate()
 }
 
 //! this is just here to make the compiler happy
-double Layer::getValue(int x, int y, int z)
+double Layer::getValue(double x, double y)
 {
   return -1;
 }

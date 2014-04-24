@@ -13,14 +13,20 @@ class EnvObject : public Serializeable
 {
 
   public:
-    EnvObject(int x, int y, int widthIn, int heightIn, bool isSource);
-
+    EnvObject(double x, double y, double widthIn, double heightIn, bool isSource);
+    double getX();
+    double getY();
+    double getWidth();
+    double getHeight();
+    double getTemp();
+    bool isSource();
+    
   private:
-    int xCoordinate;
-    int yCoordinate;
-    int width;
-    int height;
-    int temp = 100;
+    double xCoordinate;
+    double yCoordinate;
+    double width;
+    double height;
+    double temp = 100;
     bool source;
 
 };

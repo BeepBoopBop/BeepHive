@@ -1,5 +1,6 @@
 #include "BeepHive.h"
 #include "HeatLayer.h"
+#include "Dealii.h"
 
 HeatLayer::HeatLayer() : DiscreteTimeLayer(), initialized(false){}
 
@@ -15,18 +16,11 @@ HeatLayer::~HeatLayer() {}
 
 void HeatLayer::update(const Event* event, World* world){
 
-  if(!initialized){
-
-    this->discretization.setup_system();
-    initialized = true;
-
-  }
-  
-  this->discretization.solve_time_step();
+  this->discretization.run();
 
 }
 
-double HeatLayer::getValue( int x, int y ){
+double HeatLayer::getValue( double x, double y ){
 
   return this->discretization.getValue( x, y );
 

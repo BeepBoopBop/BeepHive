@@ -18,9 +18,9 @@ class HeatEquation
 public:
   HeatEquation<dim>();
   virtual ~HeatEquation<dim>();
-  void setup_system();
-  void solve_time_step();
-  double getValue( int x, int y );
+  void run();
+
+  double getValue( double x, double y );
 
 private:
   
@@ -28,7 +28,13 @@ private:
   double time_step;
   unsigned int timestep_number;
   const double theta;
+  unsigned int initial_global_refinement;
+  unsigned int n_adaptive_pre_refinement_steps;
+  unsigned int pre_refinement_step;
+  bool initialized = false;
 
+  void setup_system();
+  void solve_time_step();
   void output_results() const;
   void refine_mesh (const unsigned int min_grid_level,
   const unsigned int max_grid_level);
@@ -46,6 +52,8 @@ private:
   dealii::Vector<double> solution;
   dealii::Vector<double> old_solution;
   dealii::Vector<double> system_rhs;
+  dealii::Vector<double> tmp;
+  dealii::Vector<double> forcing_terms;
 
   
 
@@ -168,22 +176,6 @@ template<int dim>
       cell->clear_coarsen_flag ();
 
 
-    // As part of mesh refinement we need to transfer the solution vectors
-    // from the old mesh to the new one. To this end we use the
-    // SolutionTransfer class and we have to prepare the solution vectors that
-    // should be transferred to the new grid (we will lose the old grid once
-    // we have done the refinement so the transfer has to happen concurrently
-    // with refinement). At the point where we call this function, we will
-    // have just computed the solution, so we no longer need the old_solution
-    // variable (it will be overwritten by the solution just after the mesh
-    // may have been refined, i.e., at the end of the time step; see below).
-    // In other words, we only need the one solution vector, and we copy it
-    // to a temporary object where it is safe from being reset when we further
-    // down below call <code>setup_system()</code>.
-    //
-    // Consequently, we initialize a SolutionTransfer object by attaching
-    // it to the old DoF handler. We then prepare the triangulation and the
-    // data vector for refinement (in this order).
     dealii::SolutionTransfer<dim> solution_trans(dof_handler);
 
     dealii::Vector<double> previous_solution;
@@ -191,10 +183,6 @@ template<int dim>
     triangulation.prepare_coarsening_and_refinement();
     solution_trans.prepare_for_coarsening_and_refinement(previous_solution);
 
-    // Now everything is ready, so do the refinement and recreate the dof
-    // structure on the new grid, and initialize the matrix structures and the
-    // new vectors in the <code>setup_system</code> function. Next, we actually
-    // perform the interpolation of the solution from old to new grid.
     triangulation.execute_coarsening_and_refinement ();
     setup_system ();
 
@@ -202,7 +190,7 @@ template<int dim>
   }
   
   template <int dim>
-  double HeatEquation<dim>::getValue( int x, int y )
+  double HeatEquation<dim>::getValue( double x, double y )
   {
 
     dealii::Point<2> p = dealii::Point<2>( x, y );
@@ -211,4 +199,174 @@ template<int dim>
                                              solution, p);
 
   }
+
+  template<int dim>
+  void HeatEquation<dim>::run()
+  {
+    if(!initialized){
+      initial_global_refinement = 2;
+      n_adaptive_pre_refinement_steps = 4;
+
+      dealii::GridGenerator::hyper_L (triangulation);
+      triangulation.refine_global (initial_global_refinement);
+
+      setup_system();
+
+      pre_refinement_step = 0;
+   
+      initialized = true;
+    }
+
+start_time_iteration:
+
+    tmp.reinit (solution.size());
+    forcing_terms.reinit (solution.size());
+
+
+    dealii::VectorTools::interpolate(dof_handler,
+                             ZeroFunction<dim>(),
+                             old_solution);
+    solution = old_solution;
+
+    timestep_number = 0;
+    time            = 0;
+
+    output_results();
+
+    // Then we start the main loop until the computed time exceeds our
+    // end time of 0.5. The first task is to build the right hand
+    // side of the linear system we need to solve in each time step.
+    // Recall that it contains the term $MU^{n-1}-(1-\theta)k_n AU^{n-1}$.
+    // We put these terms into the variable system_rhs, with the
+    // help of a temporary vector:
+
+      time += time_step;
+      ++timestep_number;
+
+      std::cout << "Time step " << timestep_number << " at t=" << time
+                << std::endl;
+
+      mass_matrix.vmult(system_rhs, old_solution);
+
+      laplace_matrix.vmult(tmp, old_solution);
+      system_rhs.add(-(1 - theta) * time_step, tmp);
+
+      // The second piece is to compute the contributions of the source
+      // terms. This corresponds to the term $k_n
+      // \left[ (1-\theta)F^{n-1} + \theta F^n \right]$. The following
+      // code calls VectorTools::create_right_hand_side to compute the
+      // vectors $F$, where we set the time of the right hand side
+      // (source) function before we evaluate it. The result of this
+      // all ends up in the forcing_terms variable:
+      RightHandSide<dim> rhs_function;
+      rhs_function.set_time(time);
+      dealii::VectorTools::create_right_hand_side(dof_handler,
+                                          dealii::QGauss<dim>(fe.degree+1),
+                                          rhs_function,
+                                          tmp);
+      forcing_terms = tmp;
+      forcing_terms *= time_step * theta;
+
+      rhs_function.set_time(time - time_step);
+
+      dealii::VectorTools::create_right_hand_side(dof_handler,
+                                          QGauss<dim>(fe.degree+1),
+                                          rhs_function,
+                                          tmp);
+
+      forcing_terms.add(time_step * (1 - theta), tmp);
+
+      // Next, we add the forcing terms to the ones that
+      // come from the time stepping, and also build the matrix
+      // $M+k_n\theta A$ that we have to invert in each time step.
+      // The final piece of these operations is to eliminate
+      // hanging node constrained degrees of freedom from the
+      // linear system:
+      system_rhs += forcing_terms;
+
+      system_matrix.copy_from(mass_matrix);
+      system_matrix.add(theta * time_step, laplace_matrix);
+
+      constraints.condense (system_matrix, system_rhs);
+
+      // There is one more operation we need to do before we
+      // can solve it: boundary values. To this end, we create
+      // a boundary value object, set the proper time to the one
+      // of the current time step, and evaluate it as we have
+      // done many times before. The result is used to also
+      // set the correct boundary values in the linear system:
+      {
+        BoundaryValues<dim> boundary_values_function;
+        boundary_values_function.set_time(time);
+
+        std::map<types::global_dof_index, double> boundary_values;
+        dealii::VectorTools::interpolate_boundary_values(dof_handler,
+                                                 0,
+                                                 boundary_values_function,
+                                                 boundary_values);
+
+        dealii::MatrixTools::apply_boundary_values(boundary_values,
+                                           system_matrix,
+                                           solution,
+                                           system_rhs);
+      }
+
+      // With this out of the way, all we have to do is solve the
+      // system, generate graphical data, and...
+      solve_time_step();
+
+      output_results();
+
+      // ...take care of mesh refinement. Here, what we want to do is
+      // (i) refine the requested number of times at the very beginning
+      // of the solution procedure, after which we jump to the top to
+      // restart the time iteration, (ii) refine every fifth time
+      // step after that.
+      //
+      // The time loop and, indeed, the main part of the program ends
+      // with starting into the next time step by setting old_solution
+      // to the solution we have just computed.
+      if ((timestep_number == 1) &&
+          (pre_refinement_step < n_adaptive_pre_refinement_steps))
+        {
+          refine_mesh (initial_global_refinement,
+                       initial_global_refinement +  n_adaptive_pre_refinement_steps);
+          ++pre_refinement_step;
+
+          tmp.reinit (solution.size());
+          forcing_terms.reinit (solution.size());
+
+          std::cout << std::endl;
+
+          goto start_time_iteration;
+        }
+      else if ((timestep_number > 0) && (timestep_number % 5 == 0))
+        {
+          refine_mesh (initial_global_refinement,
+                       initial_global_refinement + n_adaptive_pre_refinement_steps);
+
+          tmp.reinit (solution.size());
+          forcing_terms.reinit (solution.size());
+        }
+
+      old_solution = solution;
+   
+  }
+  template<int dim>
+  void HeatEquation<dim>::output_results() const
+  {
+    DataOut<dim> data_out;
+
+    data_out.attach_dof_handler(dof_handler);
+    data_out.add_data_vector(solution, "U");
+
+    data_out.build_patches();
+
+    const std::string filename = "solution-"
+                                 + Utilities::int_to_string(timestep_number, 3) +
+                                 ".vtk";
+    std::ofstream output(filename.c_str());
+    data_out.write_vtk(output);
+  }
+
 #endif

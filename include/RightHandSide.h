@@ -49,13 +49,13 @@ using namespace dealii;
     const double time = this->get_time();
 
     for(int i = 0; i < sources.size(); i++){
-      int xmin = sources[i]->xCoordinate;
-      int xmax = xmin+(sources[i]->width);
-      int ymin = sources[i]->yCoordinate;
-      int ymax = ymin+(sources[i]->height);
+      int xmin = sources[i]->getX();
+      int xmax = xmin+(sources[i]->getWidth());
+      int ymin = sources[i]->getY();
+      int ymax = ymin+(sources[i]->getHeight());
 
       if( p[0] > xmin && p[0] < xmax && p[1] > ymin && p[1] > ymax )
-        return sources[i]->temp;
+        return sources[i]->getTemp();
 
     }
     
@@ -66,7 +66,7 @@ using namespace dealii;
   template<int dim>
   void RightHandSide<dim>::addObject(EnvObject* object)
   {
-    if( object->source )
+    if( object->isSource() )
       sources.push_back(object);
   }
 #endif
