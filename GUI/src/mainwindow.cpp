@@ -8,7 +8,7 @@
 #include "ui_mainwindow.h"
 #include "robot.h"
 
-//namespace mpi=boost::mpi;
+namespace mpi=boost::mpi;
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
