@@ -3,6 +3,7 @@
 
 #include "Dealii.h"
 #include "BeepHive.h"
+#include "InitialValues.h"
 #include "BoundaryValues.h"
 #include "RightHandSide.h"
 
@@ -32,6 +33,7 @@ private:
   unsigned int n_adaptive_pre_refinement_steps;
   unsigned int pre_refinement_step;
   bool initialized = false;
+  bool start_time_iteration = false;
 
   void setup_system();
   void solve_time_step();
@@ -54,8 +56,9 @@ private:
   dealii::Vector<double> system_rhs;
   dealii::Vector<double> tmp;
   dealii::Vector<double> forcing_terms;
-
   
+  RightHandSide<dim> rhs_function;
+  InitialValues<dim> init_function;
 
 };
 
@@ -214,25 +217,28 @@ template<int dim>
 
       pre_refinement_step = 0;
    
-      initialized = true;
+      initialized = true; 
+      start_time_iteration = true;
     }
 
-start_time_iteration:
+    if( start_time_iteration ){
 
-    tmp.reinit (solution.size());
-    forcing_terms.reinit (solution.size());
+      tmp.reinit (solution.size());
+      forcing_terms.reinit (solution.size());
 
 
-    dealii::VectorTools::interpolate(dof_handler,
-                             ZeroFunction<dim>(),
-                             old_solution);
-    solution = old_solution;
+      dealii::VectorTools::interpolate(dof_handler,
+                               init_function,
+                               old_solution);
+      solution = old_solution;
 
-    timestep_number = 0;
-    time            = 0;
+      timestep_number = 0;
+      time = 0;
 
-    output_results();
+      output_results();
+      start_time_iteration = false;
 
+    }
     // Then we start the main loop until the computed time exceeds our
     // end time of 0.5. The first task is to build the right hand
     // side of the linear system we need to solve in each time step.
@@ -258,7 +264,7 @@ start_time_iteration:
       // vectors $F$, where we set the time of the right hand side
       // (source) function before we evaluate it. The result of this
       // all ends up in the forcing_terms variable:
-      RightHandSide<dim> rhs_function;
+
       rhs_function.set_time(time);
       dealii::VectorTools::create_right_hand_side(dof_handler,
                                           dealii::QGauss<dim>(fe.degree+1),
@@ -315,7 +321,6 @@ start_time_iteration:
       // system, generate graphical data, and...
       solve_time_step();
 
-      output_results();
 
       // ...take care of mesh refinement. Here, what we want to do is
       // (i) refine the requested number of times at the very beginning
@@ -338,7 +343,7 @@ start_time_iteration:
 
           std::cout << std::endl;
 
-          goto start_time_iteration;
+          start_time_iteration = true;
         }
       else if ((timestep_number > 0) && (timestep_number % 5 == 0))
         {

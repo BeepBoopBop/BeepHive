@@ -2,11 +2,11 @@
 #include "HeatLayer.h"
 #include "Dealii.h"
 
-HeatLayer::HeatLayer() : DiscreteTimeLayer(), initialized(false){}
+HeatLayer::HeatLayer() : DiscreteTimeLayer(){}
 
 
 
-HeatLayer::HeatLayer(double event_frequency) : DiscreteTimeLayer(event_frequency), initialized(false) {}
+HeatLayer::HeatLayer(double event_frequency) : DiscreteTimeLayer(event_frequency){}
 
 
 

@@ -23,8 +23,7 @@ class HeatLayer : public DiscreteTimeLayer
     
     //! The equation that the layer updates
     HeatEquation<2> discretization;
-    //! Used to tell whether the equation has been initialized or not.
-    bool initialized;
+
 };
 
 #endif /* HEATLAYER_H */

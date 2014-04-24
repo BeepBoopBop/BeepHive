@@ -48,6 +48,7 @@ set(BEEPHIVE_HEADERS
   include/FlockingController.h
   include/HeatEquation.h
   include/HeatLayer.h
+  include/InitialValues.h
   include/Layer.h
   include/LightSensor.h
   include/Manipulator.h
