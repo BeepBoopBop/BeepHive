@@ -7,6 +7,7 @@
 #include <QGraphicsView>
 #include <QGraphicsItem>
 #include <vector>
+#include <map>
 #include <QDebug>
 #include <QPropertyAnimation>
 #include <QGraphicsItem>

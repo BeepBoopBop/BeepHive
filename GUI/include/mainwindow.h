@@ -36,14 +36,10 @@ public slots:
   void newEnvironmentCreated();
 
   void startSimulation();
-  //void pauseSimulation();
-  //void unPauseSimulation();
 
   QPen getPenFromTemp(int temp);
   void updateTemperatures();
 
-private slots:
-  void on_actionContinue_triggered();
 
 private:
   bool started; //set true to start simulation
@@ -72,8 +68,13 @@ private:
   std::vector<Robot> robots;
   std::vector<EnvironmentObject> environmentObjects;
   QTimer *timer;
+
   //used to store the temperatures at specific points
   std::vector<std::pair<std::pair<int, int>, int> > pointTemps;
+  //uses pointTemps to generate the mix values for the map
+  std::map<std::pair<int, int>, int > mixValues;
+  //number of times a point has had values written to it
+  std::map<std::pair<int, int>, int > countValues;
 
   //GUI must be started before it can be paused
   bool paused;
