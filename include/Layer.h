@@ -49,7 +49,7 @@ class Layer {
      * Only nontrivial for physical layers like HeatLayer.
      * Returns 0 by default.
      */
-    virtual double getValue( int x, int y, int z );
+    virtual double getValue( int x, int y );
 
   protected:
     double time;

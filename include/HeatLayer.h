@@ -17,7 +17,7 @@ class HeatLayer : public DiscreteTimeLayer
     HeatLayer();
     HeatLayer(double event_frequency);
     virtual void update(const Event* event, World* world);
-    double getValue( int x, int y, int z );
+    double getValue( int x, int y );
 
   private:
     
