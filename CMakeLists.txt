@@ -243,6 +243,18 @@ target_link_libraries(
   ${LIB_BEEP}
 )
 
+add_executable(
+  CommandsTest
+  test/commands_test.cpp
+)
+deal_ii_setup_target(CommandsTest)
+
+target_link_libraries(
+  CommandsTest
+  ${LIB_BEEP}
+  ${Boost_LIBRARIES} 
+)
+
 if(GUI)
   add_executable(
     GuiTest
@@ -257,7 +269,8 @@ if(GUI)
 endif(GUI)
 
 enable_testing()
-add_test(mpi mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
+add_test(commands ./CommandsTest)
+add_test(backend mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
 
 if(GUI)
   qt5_use_modules(GuiTest Widgets)

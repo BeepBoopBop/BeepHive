@@ -106,7 +106,6 @@ void BeepCommand::run(World* world)
 Command* BeepCommandFactory::create()
 {
   FactoryParams params;
-  std::cout << "Go away!!!!!!!!" << std::endl;
   params.push_back("Beep");
   return create(params);
 }
