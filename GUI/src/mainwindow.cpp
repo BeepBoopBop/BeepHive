@@ -1,5 +1,5 @@
-//#include <boost/serialization/base_object.hpp>
-//#include <boost/mpi.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <boost/mpi.hpp>
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -8,7 +8,7 @@
 #include "ui_mainwindow.h"
 #include "robot.h"
 
-//namespace mpi=boost::mpi;
+namespace mpi=boost::mpi;
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -216,7 +216,6 @@ void MainWindow::mpiStart()
 //block execution until an update is received
 void MainWindow::mpiWaitForUpdates()
 {
-/*
   mpi::communicator comm;
   std::vector<std::string> updates;
   comm.barrier();
@@ -250,11 +249,11 @@ void MainWindow::mpiWaitForUpdates()
    * required to implement an algorithm that only sends to specific
    * processes
    */
-/*
+
   send="Hi I'm root!";
   broadcast(comm,send,0);
 
-  return;*/
+  return;
 }
 
  //load updates into robots and environmentObjects vectors
