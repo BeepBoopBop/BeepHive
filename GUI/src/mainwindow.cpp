@@ -1,5 +1,5 @@
-#include <boost/serialization/base_object.hpp>
-#include <boost/mpi.hpp>
+//#include <boost/serialization/base_object.hpp>
+//#include <boost/mpi.hpp>
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -8,7 +8,7 @@
 #include "ui_mainwindow.h"
 #include "robot.h"
 
-namespace mpi=boost::mpi;
+//namespace mpi=boost::mpi;
 
 MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
   newEnvironment = NULL;
 
   started = false;
+  paused = false;
 
   scene = new QGraphicsScene(this);
   ui->graphicsView->setScene(scene);
@@ -36,6 +37,12 @@ MainWindow::MainWindow(QWidget *parent) :
   connect(ui->actionAgent, SIGNAL(triggered()), this, SLOT(createNewAgentWindow()));
   connect(ui->actionEnvironment, SIGNAL(triggered()), this, SLOT(createNewEnvironmentWindow()));
   connect(ui->actionStart, SIGNAL(triggered()), this, SLOT(startSimulation()));
+  //connect(ui->, SIGNAL(triggered()), this, SLOT(pauseSimulation()));
+  //connect(ui->actionContinue, SIGNAL(triggered()), this, SLOT(unPauseSimulation()));
+
+  for(int i = 20; i < 100; i++)
+    for(int j = 20; j < 100; j++)
+      pointTemps.push_back(std::make_pair (std::make_pair (i,j), i));
 
 
   QGraphicsEllipseItem *tempEllipse = new QGraphicsEllipseItem();
@@ -97,8 +104,6 @@ void MainWindow::timeToStep(){
   if(!started) return;
   if(scene) delete scene;
   scene = NULL;
-
-
   mpiWaitForUpdates();
   mpiLoadUpdates();
   reDraw();
@@ -132,17 +137,54 @@ void MainWindow::newEnvironmentCreated(){
   reDraw();
 }
 
+//toggle start to pause/start the simulation
 void MainWindow::startSimulation(){
-  started = true;
+  if (started == false)
+    started = true;
+  else
+    started = false;
   //implement this function to start
   mpiStart();
 }
 
 
+QPen MainWindow::getPenFromTemp(int temp){
+  //assume temp goes from 0 to 100
+  int redComponent = ((double)temp / 100) * 255;
+  //to make white
+  int otherComponent = 0;
+  if(redComponent > 180)
+     otherComponent = redComponent - 180;
+
+  QColor myColor( redComponent, 100+otherComponent, 100+otherComponent,  255 );
+  QBrush myBrush(  myColor, Qt::SolidPattern );
+  QPen pen(myBrush, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
+  return pen;
+}
+
+void MainWindow::updateTemperatures(){
+  //go through all the pointTemps and draw them
+  for(int i=0;i<pointTemps.size();i++){
+    QPen color = getPenFromTemp(pointTemps[i].second);
+    int x = pointTemps[i].first.first;
+    int y = pointTemps[i].first.second;
+    scene->addLine(x,y,x,y, color);
+  }
+}
+
 void MainWindow::reDraw(){
   scene = new QGraphicsScene(this);
+  //set background color
+  QColor myColor( 75, 100, 100,  255 );
+  ui->graphicsView->setBackgroundBrush(QBrush(myColor, Qt::SolidPattern));
   ui->graphicsView->setScene(scene);
+
+  //set window to view
   scene->setSceneRect(0,0,400,400);
+
+  //update background colors according to their temperatures
+  updateTemperatures();
+
 
   //redraw robots
 
@@ -159,16 +201,6 @@ void MainWindow::reDraw(){
 
  }
 
-
- //*********************************************************************************
- /**************************************
-  *  BACKEND/MPI FUNCTIONS TO IMPLEMENT*
-  **************************************/
- //*********************************************************************************
-
- //NOTE1: --LEAVE THESE BLANK FOR STAND ALONE GUI WITH RANDOM UPDATES TO AGENTS!--
- //NOTE2: --SEE REDRAW IF THESE ARE IMPLEMENTED CORRECTLY--
-
 /*
  * suggested functions to implement:
         mpiStringToRobot(string)
@@ -184,7 +216,7 @@ void MainWindow::mpiStart()
 //block execution until an update is received
 void MainWindow::mpiWaitForUpdates()
 {
-
+/*
   mpi::communicator comm;
   std::vector<std::string> updates;
   comm.barrier();
@@ -218,11 +250,11 @@ void MainWindow::mpiWaitForUpdates()
    * required to implement an algorithm that only sends to specific
    * processes
    */
-
+/*
   send="Hi I'm root!";
   broadcast(comm,send,0);
 
-  return;
+  return;*/
 }
 
  //load updates into robots and environmentObjects vectors
@@ -230,3 +262,8 @@ void MainWindow::mpiWaitForUpdates()
  void MainWindow::mpiLoadUpdates(){
    return;
  }
+
+void MainWindow::on_actionContinue_triggered()
+{
+
+}
