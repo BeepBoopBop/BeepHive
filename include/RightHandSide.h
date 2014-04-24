@@ -1,7 +1,13 @@
 #ifndef RIGHT_HAND_SIDE_H
 #define RIGHT_HAND_SIDE_H
+
+#include <vector>
+
 #include "Dealii.h"
 #include "BeepHive.h"
+#include "EnvObject.h"
+
+typedef std::vector<EnvObject*> ObjectArray;
 
 using namespace dealii;
 
@@ -21,6 +27,10 @@ using namespace dealii;
 
     virtual double value (const Point<dim> &p,
 			  const unsigned int component = 0) const;
+    virtual void addObject(EnvObject* object);
+
+  private:
+    ObjectArray sources;
 
   };
 
@@ -37,6 +47,26 @@ using namespace dealii;
     Assert (dim == 2, ExcNotImplemented());
 
     const double time = this->get_time();
+
+    for(int i = 0; i < sources.size(); i++){
+      int xmin = sources[i]->xCoordinate;
+      int xmax = xmin+(sources[i]->width);
+      int ymin = sources[i]->yCoordinate;
+      int ymax = ymin+(sources[i]->height);
+
+      if( p[0] > xmin && p[0] < xmax && p[1] > ymin && p[1] > ymax )
+        return sources[i]->temp;
+
+    }
     
+    return 0;
+    
+  }
+  
+  template<int dim>
+  void RightHandSide<dim>::addObject(EnvObject* object)
+  {
+    if( object->source )
+      sources.push_back(object);
   }
 #endif

@@ -20,6 +20,7 @@ class EnvObject : public Serializeable
     int yCoordinate;
     int width;
     int height;
+    int temp = 100;
     bool source;
 
 };
