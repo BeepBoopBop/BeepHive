@@ -101,7 +101,6 @@ set(PLUGIN_SOURCES
   Plugin/src/OmegaVelocityManipulator.cpp
   Plugin/src/RectanglePattern.cpp
 )
-
 if(GUI)
   set(GUI_HEADERS
     GUI/include/createagent.h
