@@ -2,6 +2,7 @@
 #define BEEPHIVECONFIGS_H 
 
 #include "BeepHive.h"
+#include "Singleton.h"
 
 /*!
  * Singleton configuration class for use by BeepHive
@@ -11,17 +12,16 @@
  *
  * \todo implement parsing of args
  */
-class BeepHiveConfigs
+class BeepHiveConfigs: public Singleton<BeepHiveConfigs>
 {
   public:
-    static BeepHiveConfigs& getInstance();
+    BeepHiveConfigs();
     void parseArgs(const int argc, char** argv);
     
     void setTimeLimit(double time_limit);
     double getTimeLimit();
     bool guiEnabled();
   private:
-    BeepHiveConfigs();
     //! Do not implement
     BeepHiveConfigs(const BeepHiveConfigs& copy);
     //! Do not implement

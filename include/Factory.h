@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "BeepHive.h"
+#include "Singleton.h"
 
 
 
@@ -116,44 +117,25 @@ class FactoryAndParams
 
 
 /*!
- * This multiton is used to access all Factories in BeepHive.
+ * This is multiton of factories templated on the type of factory for
+ * subclassing
  *
- * The ADD_FACTORY_TO_BASE_MULTITON macro is responsible for adding factories to
- * the appropriate multiton instance. Our plugin system is implemented by having
- * factories automatically inserted into the multiton using this method.
+ * Because this class takes is templated on the kind of factory instead of the
+ * kind of object, Factories requiring a more general interface to individual
+ * factories can be created.
  */
 template<class T>
-class Factories
+class BasicFactories
 {
   public:
-    typedef typename Map<Factory<T>*>::iterator iterator;
-
-
-
-    ~Factories<T>()
-    {
-      iterator it;
-      for(it=factories.begin(); it!=factories.end(); ++it){
-        delete (*it).second;
-      }
-    }
-
-
-
-    static Factories<T>& getInstance()
-    {
-      static Factories<T> instance;
-      return instance;
-    }
-
-
+    typedef typename Map<T*>::iterator iterator;
 
     /*!
      * \todo
      * Setup exceptions or some system to allow the user to recover from typos
      * in type names
      */
-    Factory<T>* getFactory(std::string type)
+    T* getFactory(std::string type)
     {
       iterator factory = factories.find(type);
       if(factory==factories.end()){
@@ -169,14 +151,14 @@ class Factories
 
 
 
-    Factory<T>* operator[](std::string type)
+    T* operator[](std::string type)
     {
       return getFactory(type);
     }
 
 
 
-    void addFactory(Factory<T>& factory)
+    void addFactory(T& factory)
     {
       factories[factory.type()] = &factory;
     }
@@ -196,20 +178,38 @@ class Factories
     }
 
   protected:
-    Map<Factory<T>*> factories;
+    BasicFactories<T>() {}
+
+    Map<T*> factories;
 
   private:
-    Factories<T>() {}
 
+    BasicFactories<T>(const BasicFactories<T>& copy);
 
-
-    Factories<T>(const Factories<T>& copy);
-
-
-
-    Factories<T>& operator=(const Factories<T>& copy);
+    BasicFactories<T>& operator=(const BasicFactories<T>& copy);
 };
     
+/*!
+ * This multiton is used to access the general factory system in BeepHive
+ *
+ * The ADD_FACTORY_TO_BASE_MULTITON macro is responsible for adding factories to
+ * the appropriate multiton instance. Our plugin system is implemented by having
+ * factories automatically inserted into the multiton using this method.
+ * Note that all factories are assumed to be put into a Factories object
+ */
+template<class T>
+class Factories : public BasicFactories< Factory<T> >, public Singleton< Factories<T> >
+{
+  public:
+    typedef typename Map<Factory<T>*>::iterator iterator;
+    ~Factories<T>()
+    {
+      iterator it;
+      for(it=this->factories.begin(); it!=this->factories.end(); ++it){
+        delete (*it).second;
+      }
+    }
+};
 
 
 /*!

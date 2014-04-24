@@ -15,5 +15,7 @@
 #include <string>
 #include <sstream>
 #include <QString>
+#include <QPointF>
+#include <QPen>
 
 #endif // GUI_INCLUDES_H

@@ -36,13 +36,21 @@ public slots:
   void newEnvironmentCreated();
 
   void startSimulation();
+  void pauseSimulation();
+  void unPauseSimulation();
+
+  QPen getPenFromTemp(int temp);
+  void updateTemperatures();
+
+private slots:
+  void on_actionContinue_triggered();
 
 private:
   bool started; //set true to start simulation
 
   //*********************************************************************************
   /**************************************
-   *  BACKEND/MPI FUNCTIONS TO IMPLEMENT*
+   *       BACKEND/MPI FUNCTIONS        *
    **************************************/
   //*********************************************************************************
 
@@ -57,11 +65,18 @@ private:
 
 
 
+
+  //std::vector <QPointF> tempBackground;
   Ui::MainWindow *ui;
   QGraphicsScene *scene;
   std::vector<Robot> robots;
   std::vector<EnvironmentObject> environmentObjects;
   QTimer *timer;
+  //used to store the temperatures at specific points
+  std::vector<std::pair<std::pair<int, int>, int> > pointTemps;
+
+  //GUI must be started before it can be paused
+  bool paused;
 
   //windows that the mainwindow owns
   DebugWindow* newDebug;
