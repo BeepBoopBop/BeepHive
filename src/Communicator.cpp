@@ -3,7 +3,6 @@
 
 void Communicators::run()
 {
-  //input="[";
   Map<Communicator*>::iterator it;
   for(it=communicators.begin(); it!=communicators.end(); ++it){
     input=input + " " + it->second->run(output);
@@ -24,7 +23,7 @@ std::string Communicators::getInput()
 {
   std::string temp=input;
   input="";
-  return "I am a string";
+  return temp;
 }
 
 
