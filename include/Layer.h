@@ -43,6 +43,13 @@ class Layer {
      * should next be updated
      */
     virtual Event getNextEvent() = 0;
+  
+    /*!
+     * Get a value at a point in a certian layer. 
+     * Only nontrivial for physical layers like HeatLayer.
+     * Returns 0 by default.
+     */
+    virtual double getValue( int x, int y, int z );
 
   protected:
     double time;

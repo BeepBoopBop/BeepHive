@@ -3,7 +3,13 @@
 
 #include "Dealii.h"
 #include "BeepHive.h"
-//#include "BoundaryValues.h"
+#include "BoundaryValues.h"
+#include "RightHandSide.h"
+
+/*! 
+ *
+ *
+ */
 
 template<int dim>
 class HeatEquation
@@ -56,6 +62,11 @@ theta(0.5)
 template<int dim>
 HeatEquation<dim>::~HeatEquation (){}
 
+/*! 
+ *
+ *
+ */
+
 template<int dim>
   void HeatEquation<dim>::setup_system()
   {
@@ -102,6 +113,11 @@ template<int dim>
     system_rhs.reinit(dof_handler.n_dofs());
   }
 
+/*! 
+ *
+ *
+ */
+
 template<int dim>
   void HeatEquation<dim>::solve_time_step()
   {
@@ -119,6 +135,11 @@ template<int dim>
     std::cout << "     " << solver_control.last_step()
               << " CG iterations." << std::endl;
   }
+
+/*! 
+ *
+ *
+ */
 
   template <int dim>
   void HeatEquation<dim>::refine_mesh (const unsigned int min_grid_level,

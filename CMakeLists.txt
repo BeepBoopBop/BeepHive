@@ -33,6 +33,7 @@ set(BEEPHIVE_HEADERS
   include/BeepHive.h
   include/BeepHiveConfigs.h
   include/BeepLayer.h
+  include/BoundaryValues.h
   include/CentralCommunicator.h
   include/Command.h
   include/Communicator.h
@@ -50,6 +51,7 @@ set(BEEPHIVE_HEADERS
   include/LightSensor.h
   include/Manipulator.h
   include/OmegaVelocityManipulator.h
+  include/RightHandSide.h
   include/Sensor.h
   include/Serializeable.h
   include/Singleton.h
