@@ -270,6 +270,7 @@ endif(GUI)
 
 enable_testing()
 add_test(commands ./CommandsTest)
+add_test(JSON ./JSONTest)
 add_test(backend mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
 
 if(GUI)
