@@ -41,6 +41,7 @@ set(BEEPHIVE_HEADERS
   include/CustomBeepFactory.h
   include/Dealii.h
   include/DiscreteTimeLayer.h
+  include/EnvObject.h
   include/Event.h
   include/Factory.h
   include/FileCommunicator.h
@@ -71,6 +72,7 @@ set(BEEPHIVE_SOURCES
   src/Communicator.cpp
   src/CustomBeepFactory.cpp
   src/DiscreteTimeLayer.cpp
+  src/EnvObject.cpp
   src/Event.cpp
   src/FileCommunicator.cpp
   src/FlockingController.cpp

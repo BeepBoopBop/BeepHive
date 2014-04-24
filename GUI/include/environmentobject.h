@@ -11,6 +11,7 @@ public:
   void updateDrawPosition(QGraphicsScene* newScene);
 
 private:
+ //x and y coordinate is for the upper left corner
   int xCoordinate;
   int yCoordinate;
   int width;

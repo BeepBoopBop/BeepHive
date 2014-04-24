@@ -10,6 +10,7 @@
 #include "Layer.h"
 #include "Beep.h"
 #include "Stateful.h"
+#include "EnvObject.h"
 
 class Layer;
 class Event;
@@ -25,6 +26,7 @@ class EventComparator
 typedef std::vector<Beep*> Beeps;
 typedef std::vector<Layer*> LayerArray;
 typedef std::priority_queue<Event,std::vector<Event>,EventComparator> EventQueue;
+typedef std::vector<EnvObject*> ObjectArray;
 
 /*!
  * The World is the top level class of BeepHive simulations
@@ -47,10 +49,16 @@ class World : public Stateful{
     BeepIterator beepEnd() const;
     void addBeep(Beep* beep);
 
+    typedef ObjectArray::const_iterator ObjectIterator;
+    ObjectIterator objectBegin() const;
+    ObjectIterator objectEnd() const;
+    void addObject( EnvObject* object);
+
     void quit();
   private:
     Beeps beeps;
     Map<Layer*> layers;
+    ObjectArray env_objects;
     EventQueue event_queue;
 
     bool running;

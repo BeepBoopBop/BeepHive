@@ -28,7 +28,11 @@ double Layer::timeSinceLastUpdate()
   return -1;
 }
 
-
+//! this is just here to make the compiler happy
+double Layer::getValue(int x, int y, int z)
+{
+  return -1;
+}
 
 void Layer::update(const Event* event, World* world)
 {

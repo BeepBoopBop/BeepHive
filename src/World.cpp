@@ -149,7 +149,20 @@ void World::addBeep(Beep* beep)
   beeps.push_back(beep);
 }
 
+World::ObjectIterator World::objectBegin() const
+{
+  return env_objects.begin();
+}
 
+World::ObjectIterator World::objectEnd() const
+{
+  return env_objects.end();
+}
+
+void World::addObject(EnvObject* object)
+{
+  env_objects.push_back(object);
+}
 
 //! quit allows layers to signal to the world that an end condition has been
 //  reached
