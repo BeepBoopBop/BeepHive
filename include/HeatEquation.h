@@ -20,7 +20,7 @@ public:
   virtual ~HeatEquation<dim>();
   void setup_system();
   void solve_time_step();
-  void getValue( int x, int y, int z );
+  double getValue( int x, int y );
 
 private:
   
@@ -199,5 +199,16 @@ template<int dim>
     setup_system ();
 
     solution_trans.interpolate(previous_solution, solution);
+  }
+  
+  template <int dim>
+  double HeatEquation<dim>::getValue( int x, int y )
+  {
+
+    dealii::Point<2> p = dealii::Point<2>( x, y );
+
+    return dealii::VectorTools::point_value (dof_handler,
+                                             solution, p);
+
   }
 #endif

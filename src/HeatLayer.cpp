@@ -25,6 +25,12 @@ void HeatLayer::update(const Event* event, World* world){
   this->discretization.solve_time_step();
 
 }
+
+double HeatLayer::getValue( int x, int y, int z ){
+
+  return this->discretization.getValue( x, y );
+
+}
   
 
 
