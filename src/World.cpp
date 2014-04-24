@@ -116,6 +116,7 @@ int World::start()
 
 
 void World::addLayer(std::string layer_name, Layer* layer, double start_time){
+  std::cout << "Adding: " << layer_name << std::endl;
   layers[layer_name]=layer;
   event_queue.push(Event(layer,start_time));
 }

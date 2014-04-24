@@ -7,6 +7,7 @@
 
 #include "Event.h"
 #include "World.h"
+#include "Command.h"
 
 class Event;
 class World;
@@ -28,6 +29,7 @@ class World;
 class Layer {
   public:
     Layer();
+    Layer(double event_frequency);
     virtual ~Layer();
 
     double getTime() const;
@@ -54,5 +56,21 @@ class Layer {
   protected:
     double time;
 };
+
+
+
+class LayerCommand : public Command
+{
+  public:
+    LayerCommand() { frequency = 0; }
+    LayerCommand(FactoryParams params);
+    virtual void run(World* world);
+  private:
+    double frequency;
+    std::string name;
+    std::string type;
+};
+
+DEFINE_FACTORY(LayerCommand, Command);
 
 #endif /* LAYER_H */

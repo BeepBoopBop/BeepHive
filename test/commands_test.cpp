@@ -82,6 +82,14 @@ int main(int argc, char** argv)
   delete command;
   params.clear();
 
+  params.push_back("HeatLayer");
+  params.push_back("HeatLayer");
+  params.push_back("1");
+  command=command_factories["LayerCommand"]->create(params);
+  //command->run(&world);
+  //std::cout << "SUCCESSFULLY ADDED HEAT LAYER TO WORLD" << std::endl;
+
+
   std::cout << "\nRUNNING WORLD" << std::endl;
   world.start();
   std::cout << "RAN WORLD SUCCESSFULLY" << std::endl;

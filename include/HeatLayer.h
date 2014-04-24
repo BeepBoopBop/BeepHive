@@ -3,6 +3,7 @@
 
 #include "DiscreteTimeLayer.h"
 #include "HeatEquation.h"
+#include "Factory.h"
 
 /*!
  * This layer updates the heat equation for the simulation.
@@ -25,5 +26,7 @@ class HeatLayer : public DiscreteTimeLayer
     HeatEquation<2> discretization;
 
 };
+
+DEFINE_FACTORY(HeatLayer,Layer);
 
 #endif /* HEATLAYER_H */
