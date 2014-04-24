@@ -32,6 +32,11 @@ class CustomBeepFactory : public CustomFactory<Beep>
 
 
 
+class CustomBeepFactories : public BasicFactories<CustomBeepFactory>, 
+                            public Singleton<CustomBeepFactories> {};
+
+
+
 class World;
 
 class CustomBeepCommand : public Command
@@ -44,8 +49,22 @@ class CustomBeepCommand : public Command
     std::string base;
 };
 
-
-
 DEFINE_FACTORY(CustomBeepCommand, Command);
 
+
+
+class CustomBeepFeatureCommand : public Command
+{
+  public:
+    CustomBeepFeatureCommand(FactoryParams params);
+    virtual void run(World* world);
+  private:
+    std::string beep_type;
+    std::string component_type;
+    std::string concrete_component;
+    std::string name;
+    FactoryParams params;
+};
+
+DEFINE_FACTORY(CustomBeepFeatureCommand, Command);
 #endif /* CUSTOMBEEPFACTORY_H */

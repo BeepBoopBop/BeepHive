@@ -6,7 +6,12 @@
 
 CustomBeepFactory::CustomBeepFactory(std::string type_name, std::string base_factory,
                                      FactoryParams params)
-  : CustomFactory<Beep>(type_name, base_factory, params) {}
+  : CustomFactory<Beep>(type_name, base_factory, params)
+{
+  CustomBeepFactories& custom_beep_factories
+    = CustomBeepFactories::getInstance();
+  custom_beep_factories.addFactory(*this);
+}
 
 
 
@@ -128,3 +133,60 @@ Command* CustomBeepCommandFactory::create(FactoryParams& params)
 
 
 ADD_TO_FACTORIES(CustomBeepCommand, Command);
+
+
+
+static std::string valOrBlank(size_t i, FactoryParams& params)
+{
+  if(params.size() > i){
+    return params[i];
+  }else{
+    return "";
+  }
+}
+
+
+
+CustomBeepFeatureCommand::CustomBeepFeatureCommand(FactoryParams params)
+{
+  int i=0;
+  component_type=valOrBlank(i++,params);
+  name=valOrBlank(i++,params);
+  concrete_component=valOrBlank(i++,params);
+  beep_type=valOrBlank(i++,params);
+
+  for(; i<params.size(); ++i){
+    this->params.push_back(params[i]);
+  }
+}
+
+
+
+void CustomBeepFeatureCommand::run(World* world)
+{
+  CustomBeepFactories& factories = CustomBeepFactories::getInstance();
+  if(component_type == "Sensor"){
+    factories[beep_type]->addSensor(name, concrete_component, params);
+  }else if(component_type == "Manipulator"){
+    factories[beep_type]->addManipulator(name, concrete_component, params);
+  }else if(component_type == "Controller"){
+    factories[beep_type]->setController(name);
+  }
+}
+
+
+
+Command* CustomBeepFeatureCommandFactory::create()
+{
+  FactoryParams params;
+  return create(params);
+}
+
+
+
+Command* CustomBeepFeatureCommandFactory::create(FactoryParams& params)
+{
+  return new CustomBeepFeatureCommand(params);
+}
+
+ADD_TO_FACTORIES(CustomBeepFeatureCommand, Command);

@@ -25,7 +25,7 @@ bool EventComparator::operator()(const Event first, const Event second) const
 World::World() : layers(), event_queue(), running(true)
 {
   std::string temp;
-  std::cout << Factories<Controller>::getInstance().begin()->first << std::endl;
+  //std::cout << Factories<Controller>::getInstance().begin()->first << std::endl;
   Layer* sync_layer=new SyncLayer;
   this->addLayer("SyncLayer",sync_layer);
   Layer* beep_layer=new BeepLayer;

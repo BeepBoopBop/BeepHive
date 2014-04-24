@@ -53,7 +53,6 @@ int main(int argc, char** argv)
       send="Hi I'm root!";
       broadcast(comm,send,0);
 
-      sleep(1);
     }
     
     DEBUG("Exiting frontend");
