@@ -1,7 +1,7 @@
 #include "EnvObject.h"
 
 EnvObject::EnvObject(double x, double y, double widthIn, double heightIn, bool sourceIn)
-  : temp(100)
+  : temp(50)
 {
   xCoordinate = x;
   yCoordinate = y;
