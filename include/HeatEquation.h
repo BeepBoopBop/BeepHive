@@ -32,8 +32,8 @@ private:
   unsigned int initial_global_refinement;
   unsigned int n_adaptive_pre_refinement_steps;
   unsigned int pre_refinement_step;
-  bool initialized = false;
-  bool start_time_iteration = false;
+  bool initialized;
+  bool start_time_iteration;
 
   void setup_system();
   void solve_time_step();
@@ -67,7 +67,9 @@ HeatEquation<dim>::HeatEquation ():
 fe(1),
 dof_handler(triangulation),
 time_step(1. / 500),
-theta(0.5)
+theta(0.5),
+initialized(false),
+start_time_iteration(false)
 {}
 
 template<int dim>

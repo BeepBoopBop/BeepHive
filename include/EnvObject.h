@@ -25,8 +25,8 @@ class EnvObject : public Serializeable
     double xCoordinate;
     double yCoordinate;
     double width;
-    double height;
-    double temp = 50;
+    double height
+    double temp;
     bool source;
 
 };
