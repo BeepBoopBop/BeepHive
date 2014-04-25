@@ -1,5 +1,3 @@
-#include <sstream>
-
 #include "Communicator.h"
 #include "Command.h"
 #include "BeepHive.h"
@@ -84,7 +82,17 @@ Beep* BeepFactory::create()
 
 Beep* BeepFactory::create(FactoryParams& params)
 {
-  return this->create();
+  Beep* beep = new Beep();
+
+  std::stringstream stream;
+  double val;
+  for(int i=0; i<params.size(); i+=2){
+    stream.str(params[i+1]);
+    stream >> val;
+    beep->setState(params[i], val);
+  }
+
+  return beep;
 }
 
 ADD_TO_FACTORIES(Beep,Beep);
@@ -97,8 +105,10 @@ BeepCommand::BeepCommand(FactoryParams params) : CreateCommand(params) {}
 
 void BeepCommand::run(World* world)
 {
-  Beep* beep = Factories<Beep>::getInstance()[type]->create(params);
-  world->addBeep(beep);
+  if(world != NULL){
+    Beep* beep = Factories<Beep>::getInstance()[type]->create(params);
+    world->addBeep(beep);
+  }
 }
 
 

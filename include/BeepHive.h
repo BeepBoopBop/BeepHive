@@ -11,6 +11,8 @@
 #include <stdio.h>
 #include <boost/mpi.hpp>
 #include <assert.h>
+#include <vector>
+#include <sstream>
 
 #define NOT_IMPLEMENTED(foo) \
   /*! This function has not yet been implemented. */\

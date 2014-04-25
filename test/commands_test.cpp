@@ -82,6 +82,14 @@ int main(int argc, char** argv)
   delete command;
   params.clear();
 
+  params = {"RectanglePattern", "2 2 10", "BeepCommand", "MyBeep"};
+  command = command_factories["CreateWithPatternCommand"]->create(params);
+  command->run(&world);
+  std::cout << "SUCCESSFULLY ADDED BEEPS WITH PATTERN TO WORLD" << std::endl;
+
+  delete command;
+  params.clear();
+
   params.push_back("HeatLayer");
   params.push_back("HeatLayer");
   params.push_back("1");

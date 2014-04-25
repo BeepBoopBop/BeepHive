@@ -53,6 +53,8 @@ set(BEEPHIVE_HEADERS
   include/LightSensor.h
   include/Manipulator.h
   include/OmegaVelocityManipulator.h
+  include/Pattern.h
+  include/RectanglePattern.h
   include/RightHandSide.h
   include/Sensor.h
   include/Serializeable.h
@@ -82,6 +84,8 @@ set(BEEPHIVE_SOURCES
   src/Manipulator.cpp
   src/Layer.cpp
   src/OmegaVelocityManipulator.cpp
+  src/Pattern.cpp
+  src/RectanglePattern.cpp
   src/Serializeable.cpp
   src/Stateful.cpp
   src/SyncLayer.cpp
