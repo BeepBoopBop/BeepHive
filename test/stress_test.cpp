@@ -66,17 +66,19 @@ int main(int argc, char** argv)
       }
     }
 
-    beeps_added += dim*dim;
-    ++dim;
-
-    std::cout << "SUCCESFULLY RUNNING WITH: " << beeps_added << 
-      " BEEPS" << std::endl;
+    if(good){
+      beeps_added += dim*dim;
+      ++dim;
+      std::cout << "SUCCESFULLY RUNNING WITH: " << beeps_added << 
+        " BEEPS" << std::endl;
+    }
   }while(good);
 
   if(beeps_added < target){
-    std::cout << beeps_added << " IS LESS THAN TARGET OF " << target << std::endl;
+    std::cout << "FAILED: " <<  beeps_added << " IS LESS THAN TARGET OF " << target << std::endl;
     return 1;
   }else{
+    std::cout << "SUCCESS! RAN WITH: " << beeps_added << " BEEPS" << std::endl;
     return 0;
   }
 }
