@@ -260,6 +260,18 @@ target_link_libraries(
   ${Boost_LIBRARIES} 
 )
 
+add_executable(
+  StressTest
+  test/stress_test.cpp
+)
+deal_ii_setup_target(CommandsTest)
+
+target_link_libraries(
+  StressTest
+  ${LIB_BEEP}
+  ${Boost_LIBRARIES} 
+)
+
 if(GUI)
   add_executable(
     GuiTest
@@ -275,6 +287,7 @@ endif(GUI)
 
 enable_testing()
 add_test(commands ./CommandsTest)
+add_test(stress ./StressTest)
 add_test(JSON ./JSONTest)
 add_test(backend mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
 

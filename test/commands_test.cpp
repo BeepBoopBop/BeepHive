@@ -1,17 +1,10 @@
-#include <string>
-#include <vector>
-//#include <boost/serialization/base_object.hpp>
-//#include <boost/mpi.hpp>
-#include <iostream>
-
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
 #include "World.h"
 #include "Factory.h"
 #include "CustomBeepFactory.h"
 #include "Beep.h"
-
-//namespace mpi=boost::mpi;
+#include "test.h"
 
 int main(int argc, char** argv)
 {
@@ -20,7 +13,6 @@ int main(int argc, char** argv)
   configs.setTimeLimit(2);
 
   Factories<Command>& command_factories = Factories<Command>::getInstance();
-  Factories<Beep>& beep_factories = Factories<Beep>::getInstance();
 
   std::cout << "AVAILABLE COMMANDS:" << std::endl;
   Factories<Command>::iterator it;
@@ -32,68 +24,27 @@ int main(int argc, char** argv)
 
   World world;
 
-  Command* command;
-  FactoryParams params;
-  params.push_back("MyBeep");
-  params.push_back("Beep");
-  command=command_factories["CustomBeepCommand"]->create(params);
-  command->run(&world);
-  assert(beep_factories["MyBeep"]);
-  std::cout << "SUCCESSFULLY ADDED MYBEEP" << std::endl;
+  FactoryParams params = {"MyBeep", "Beep"};
+  runCommand("CustomBeepCommand",params,&world);
 
-  delete command;
-  params.clear();
+  params = {"Sensor","Average","AverageSensor","MyBeep","x"};
+  runCommand("CustomBeepFeatureCommand",params,&world);
 
-  params.push_back("Sensor");
-  params.push_back("Average");
-  params.push_back("AverageSensor");
-  params.push_back("MyBeep");
-  params.push_back("x");
-  command=command_factories["CustomBeepFeatureCommand"]->create(params);
-  command->run(&world);
-  std::cout << "SUCCESSFULLY ADDED SENSOR x" << std::endl;
+  params = {"Sensor","Average","AverageSensor","MyBeep","y"};
+  runCommand("CustomBeepFeatureCommand",params,&world);
 
-  delete command;
+  params = {"Manipulator","OmegaVelocityManipulator",
+            "OmegaVelocityManipulator","MyBeep"};
+  runCommand("CustomBeepFeatureCommand",params,&world);
 
-  params[4]="y";
-  command=command_factories["CustomBeepFeatureCommand"]->create(params);
-  command->run(&world);
-  std::cout << "SUCCESSFULLY ADDED SENSOR y" << std::endl;
-
-  delete command;
-  params.clear();
-
-  params.push_back("Manipulator");
-  params.push_back("OmegaVelocityManipulator");
-  params.push_back("OmegaVelocityManipulator");
-  params.push_back("MyBeep");
-  command=command_factories["CustomBeepFeatureCommand"]->create(params);
-  command->run(&world);
-  std::cout << "SUCCESSFULLY ADDED MANIPULATOR" << std::endl;
-
-  delete command;
-  params.clear();
-
-  params.push_back("MyBeep");
-  command=command_factories["BeepCommand"]->create(params);
-  command->run(&world);
-  std::cout << "SUCCESSFULLY ADDED BEEP TO WORLD" << std::endl;
-
-  delete command;
-  params.clear();
+  params = {"MyBeep"};
+  runCommand("BeepCommand",params,&world);
 
   params = {"RectanglePattern", "2 2 10", "BeepCommand", "MyBeep"};
-  command = command_factories["CreateWithPatternCommand"]->create(params);
-  command->run(&world);
-  std::cout << "SUCCESSFULLY ADDED BEEPS WITH PATTERN TO WORLD" << std::endl;
+  runCommand("CreateWithPatternCommand",params,&world);
 
-  delete command;
-  params.clear();
-
-  params.push_back("HeatLayer");
-  params.push_back("HeatLayer");
-  params.push_back("1");
-  command=command_factories["LayerCommand"]->create(params);
+  params = {"HeatLayer","HeatLayer","1"};
+  Command* command=command_factories["LayerCommand"]->create(params);
   //command->run(&world);
   //std::cout << "SUCCESSFULLY ADDED HEAT LAYER TO WORLD" << std::endl;
 
