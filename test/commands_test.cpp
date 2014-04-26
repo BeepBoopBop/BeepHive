@@ -37,6 +37,9 @@ int main(int argc, char** argv)
             "OmegaVelocityManipulator","MyBeep"};
   runCommand("CustomBeepFeatureCommand",params,&world);
 
+  params = {"Controller","FlockingController","FlockingController","MyBeep"};
+  runCommand("CustomBeepFeatureCommand",params,&world);
+
   params = {"MyBeep"};
   runCommand("BeepCommand",params,&world);
 
