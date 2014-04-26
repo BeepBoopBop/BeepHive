@@ -21,6 +21,7 @@ class BeepLayer : public DiscreteTimeLayer {
     virtual ~BeepLayer();
 
     virtual void update(const Event* event, World* world);
+    virtual void write() {};
 
   private:
     BeepLayer();

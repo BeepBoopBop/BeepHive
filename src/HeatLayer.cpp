@@ -55,4 +55,10 @@ Layer* HeatLayerFactory::create(FactoryParams& params)
   return new HeatLayer(event_frequency);
 }
 
+
+
+NOT_IMPLEMENTED(void HeatLayer::write())
+
+
+
 ADD_TO_FACTORIES(HeatLayer, Layer);

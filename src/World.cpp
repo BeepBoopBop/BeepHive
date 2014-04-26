@@ -13,6 +13,7 @@
 #include "Factory.h"
 #include "OmegaVelocityManipulator.h"
 #include "CustomBeepFactory.h"
+#include "Communicator.h"
 
 
 bool EventComparator::operator()(const Event first, const Event second) const
@@ -126,6 +127,21 @@ void World::addLayer(std::string layer_name, Layer* layer, double start_time){
 Layer* World::getLayer(std::string layer_name)
 {
   return layers[layer_name];
+}
+
+
+
+void World::write()
+{
+  Map<Layer*>::iterator it;
+  for(it=layers.begin(); it!=layers.end(); ++it){
+    it->second->write();
+  }
+  for(BeepIterator it=this->beepBegin(); it!=this->beepEnd(); ++it){
+    std::stringstream message;
+    message << getState("x") << " " << getState("y");
+    Communicators::getInstance().addToOutput(message.str());
+  }
 }
 
 

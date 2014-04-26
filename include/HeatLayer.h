@@ -21,6 +21,8 @@ class HeatLayer : public DiscreteTimeLayer
     virtual void update(const Event* event, World* world);
     double getValue( double x, double y );
 
+    virtual void write();
+
   private:
     
     bool initialized;

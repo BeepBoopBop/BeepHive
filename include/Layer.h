@@ -40,6 +40,9 @@ class Layer {
     //! This is the main code for the Layer class
     virtual void update(const Event* event, World* world);
 
+    //! Writes data to the Communicator
+    virtual void write() = 0;
+
     /*!
      * The returned event should be given the time that the layer
      * should next be updated

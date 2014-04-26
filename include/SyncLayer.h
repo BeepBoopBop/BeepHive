@@ -17,6 +17,7 @@ class SyncLayer : public DiscreteTimeLayer
   friend class World;
   public:
     virtual void update(const Event* event, World* world);
+    virtual void write() {};
 
   private:
     SyncLayer();

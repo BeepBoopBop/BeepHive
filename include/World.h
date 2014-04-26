@@ -37,12 +37,14 @@ typedef std::vector<EnvObject*> ObjectArray;
 class World : public Stateful{
   public:
     World();
-    virtual ~World();
+    ~World();
     int step();
     int start();
 
     void addLayer(std::string layer_name, Layer* layer, double start_time=0);
     Layer* getLayer(std::string layer_name);
+
+    void write();
 
     typedef Beeps::const_iterator BeepIterator;
     BeepIterator beepBegin() const;
