@@ -2,21 +2,28 @@
 #include "HeatLayer.h"
 #include "Dealii.h"
 
-HeatLayer::HeatLayer() : DiscreteTimeLayer(){}
+HeatLayer::HeatLayer() : initialized(false), DiscreteTimeLayer(){}
 
 
 
-HeatLayer::HeatLayer(double event_frequency) : DiscreteTimeLayer(event_frequency){}
+HeatLayer::HeatLayer(double event_frequency) : initialized(false), DiscreteTimeLayer(event_frequency){}
 
 
 
 HeatLayer::~HeatLayer() {}
 
-
+void HeatLayer::setup()
+{
+  //will get list of objects from world and add them to RHS
+  initialized = true;
+}
 
 void HeatLayer::update(const Event* event, World* world)
 {
 
+  if(!initialized){
+    this->setup();
+  }
   this->discretization.run();
 
 }

@@ -6,6 +6,7 @@
 #include "InitialValues.h"
 #include "BoundaryValues.h"
 #include "RightHandSide.h"
+#include "EnvObject.h"
 
 /*! 
  *
@@ -20,6 +21,7 @@ public:
   HeatEquation<dim>();
   virtual ~HeatEquation<dim>();
   void run();
+  void addSource( EnvObject *newSource );
 
   double getValue( double x, double y );
 
@@ -374,6 +376,12 @@ template<int dim>
                                  ".vtk";
     std::ofstream output(filename.c_str());
     data_out.write_vtk(output);
+  }
+
+  template<int dim>
+  void HeatEquation<dim>::addSource( EnvObject *newSource )
+  {
+    rhs_function->addObject(newSource);
   }
 
 #endif
