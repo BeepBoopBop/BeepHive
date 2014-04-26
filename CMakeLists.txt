@@ -166,6 +166,10 @@ if(GUI)
     LIBRARY_OUTPUT_DIRECTORY
     lib
   )
+  target_link_libraries(
+    ${LIB_BEEPGUI}
+    ${LIB_BEEP}
+    )
 endif(GUI)
 
 add_executable(
