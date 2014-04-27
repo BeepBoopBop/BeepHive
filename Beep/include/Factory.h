@@ -68,7 +68,8 @@ class type##FactoryProxy \
       Factories<base>::getInstance().addFactory(*f); \
     } \
 }; \
-type##FactoryProxy type##_factory_proxy;
+/* Instantiating the proxy adds the factory to Factories */ \
+type##FactoryProxy type##_factory_proxy; \
 
 
 

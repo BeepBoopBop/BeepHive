@@ -4,6 +4,11 @@
 #include "World.h"
 #include <boost/foreach.hpp>
 
+void Command::run()
+{
+  this->run(NULL);
+}
+
 CreateCommand::CreateCommand(FactoryParams params)
   : params()
 {

@@ -16,7 +16,7 @@ class BeepHiveConfigs: public Singleton<BeepHiveConfigs>
 {
   public:
     BeepHiveConfigs();
-    void parseArgs(const int argc, char** argv);
+    void initialize(const int argc, char** argv);
     
     void setTimeLimit(double time_limit);
     double getTimeLimit();
@@ -33,6 +33,7 @@ class BeepHiveConfigs: public Singleton<BeepHiveConfigs>
      */
     double time_limit;
     bool gui_enabled;
+    bool load_standard_plugin;
 };
 
 #endif /* BEEPHIVECONFIGS_H */

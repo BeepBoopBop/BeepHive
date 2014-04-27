@@ -5,11 +5,12 @@
 #include "CustomBeepFactory.h"
 #include "Beep.h"
 #include "test.h"
+#include "FlockingController.h"
 
 int main(int argc, char** argv)
 {
   BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
-  configs.parseArgs(argc,argv);
+  configs.initialize(argc,argv);
   configs.setTimeLimit(2);
 
   Factories<Command>& command_factories = Factories<Command>::getInstance();
@@ -50,11 +51,5 @@ int main(int argc, char** argv)
   Command* command=command_factories["LayerCommand"]->create(params);
   //command->run(&world);
   //std::cout << "SUCCESSFULLY ADDED HEAT LAYER TO WORLD" << std::endl;
-
-
-  std::cout << "\nRUNNING WORLD" << std::endl;
-  world.start();
-  std::cout << "RAN WORLD SUCCESSFULLY" << std::endl;
-
   return 0;
 }

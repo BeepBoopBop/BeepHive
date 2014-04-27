@@ -12,6 +12,8 @@ class World;
 class Command 
 {
   public:
+    //! Run command for when no world is present
+    void run();
     virtual void run(World* world) = 0;
 
 };
@@ -23,6 +25,7 @@ class CreateCommand : public Command, public Serializeable
   public:
     CreateCommand(FactoryParams params);
     CreateCommand(){}
+
     virtual void run(World* world) = 0;
 
     //serialization

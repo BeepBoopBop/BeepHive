@@ -22,7 +22,7 @@ int main(int argc, char** argv)
   mpi::communicator comm;
 
   BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
-  configs.parseArgs(argc,argv);
+  configs.initialize(argc,argv);
   configs.setTimeLimit(10);
 
   Communicators::getInstance().addCommunicator("central",new CentralCommunicator());

@@ -3,12 +3,16 @@
 #include <stdlib.h>
 
 #include "BeepHive.h"
+#include "Factory.h"
+#include "Command.h"
 #include "BeepHiveConfigs.h"
 
-BeepHiveConfigs::BeepHiveConfigs() : time_limit(-1), gui_enabled(true){}
+BeepHiveConfigs::BeepHiveConfigs() 
+  : time_limit(-1), gui_enabled(true), load_standard_plugin(true) {}
 
-void BeepHiveConfigs::parseArgs(const int argc, char** argv)
+void BeepHiveConfigs::initialize(const int argc, char** argv)
 {
+  //Parse arguments
   while(1){
     //options struct for getopt
     static struct option long_options[]=
@@ -32,6 +36,14 @@ void BeepHiveConfigs::parseArgs(const int argc, char** argv)
         exit(0);
         break;
     }
+  }
+
+  if(this->load_standard_plugin){
+    Factories<Command>& command_factories = Factories<Command>::getInstance();
+    FactoryParams params = {BEEP_PLUGIN};
+    Command* load = command_factories["LoadCommand"]->create(params);
+    load->run();
+    delete load;
   }
 }
 
