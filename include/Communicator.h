@@ -21,7 +21,7 @@ class Communicator
 
 
 
-class Communicators : public Singleton<Communicators>
+class Communicators : public Singleton<Communicators>, public Serializeable
 {
   public:
     void run();

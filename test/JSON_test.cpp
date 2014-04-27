@@ -32,8 +32,8 @@ int main(int argc, char** argv)
   std::cout<< json1;
   BeepCommand beep2 = BeepCommand();
   beep2.load(json1);
-
-
+  std::cout << beep2.save();
+  
 
 
   //LightSensor l = LightSensor(5,10,15);
