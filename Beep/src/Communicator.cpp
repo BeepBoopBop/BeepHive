@@ -1,6 +1,13 @@
 #include "Communicator.h"
 //#include "BeepHive.h"
 
+
+Communicators::Communicators()
+{
+  outputTree.put("count", -1);
+}
+
+
 void Communicators::run()
 {
   Map<Communicator*>::iterator it;
@@ -27,13 +34,28 @@ std::string Communicators::getInput()
 }
 
 
-
 void Communicators::addToOutput(std::string object)
 {
-  output += object + " ";
+    int count = outputTree.get<int>("count");
+    count++;
+    outputTree.put("count", count);
+    std::string array = "objects.";
+    array.append(std::to_string(count));
+    outputTree.put(array, object);
+
 }
+
 
 void Communicators::setOutput(std::string output)
 {
   this->output=output;
 }
+
+
+std::string Communicators::getStringOutput()
+{
+    return Serializable::PTreeToString(outputTree);
+}
+
+
+

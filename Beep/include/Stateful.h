@@ -2,11 +2,11 @@
 #define STATEFUL_H 
 
 #include "BeepHive.h"
-#include "Serializeable.h"
+#include "Serializable.h"
 
 #define SCOPE "::"
 
-class Stateful : public Serializeable
+class Stateful : public Serializable
 {
   public:
     typedef Map<double>::const_iterator StateIterator;

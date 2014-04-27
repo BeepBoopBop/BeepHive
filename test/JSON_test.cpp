@@ -18,27 +18,32 @@
 namespace mpi=boost::mpi;
 int main(int argc, char** argv)
 {
-  mpi::environment env;
-  mpi::communicator comm;
 
+  //necessary configuration to run program
   BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
   configs.initialize(argc,argv);
   configs.setTimeLimit(10);
 
-  Communicators::getInstance().addCommunicator("central",new CentralCommunicator());
+  //create a beep command with these factoryparams
   std::vector<std::string> v {"int", "one", "two", "three"};
   BeepCommand beep = BeepCommand(v);
+
+  //save and print the serialization
   std::string json1 = beep.save();
   std::cout<< json1;
+  //construct new beep by loading serialization
   BeepCommand beep2 = BeepCommand();
   beep2.load(json1);
+
+  //resave to see if it worked
   std::cout << beep2.save();
+
+
+
+  //test out communicator serialization
+  Communicators::getInstance().addToOutput(std::to_string(3.14));
+  std::cout << Communicators::getInstance().getStringOutput();
+
   
 
-
-  //LightSensor l = LightSensor(5,10,15);
- // std::string json = l.save();
-  //std::cout << json << "\n";
- // LightSensor l2;
-  //l2.load(json);
 }

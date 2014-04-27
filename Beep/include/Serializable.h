@@ -21,7 +21,7 @@ using boost::property_tree::write_json;
 class Serializable{
 
   public:
-   std::string name;
+    std::string name;
 
     //saves the object to the returned string, user responsible for sending it to file or over mpi
     virtual std::string save() =0;

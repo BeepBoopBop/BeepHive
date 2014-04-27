@@ -3,7 +3,7 @@
 
 #include "BeepHive.h"
 #include "Singleton.h"
-#include "Serializeable.h"
+#include "Serializable.h"
 
 /*!
  * The communicator abstract class defines a basic interface for all
@@ -24,14 +24,17 @@ class Communicator
 class Communicators : public Singleton<Communicators>
 {
   public:
+    Communicators();
     void run();
     void addCommunicator(std::string name, Communicator* communicator);
     std::string getInput();
     void addToOutput(std::string object);
     void setOutput(std::string output);
+    std::string getStringOutput();
   private:
     Map<Communicator*> communicators;
     std::string output;
+    ptree outputTree;
     std::string input;
 };
 
