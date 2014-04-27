@@ -22,11 +22,11 @@ class RectanglePattern : public Pattern
     virtual bool isEmpty();
 
   private:
-    unsigned width;
-    unsigned height;
+    long width;
+    long height;
     double distance;
 
-    int index;
+    long index;
 };
 
 DEFINE_FACTORY(RectanglePattern, Pattern);

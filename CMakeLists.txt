@@ -52,7 +52,7 @@ set(BEEPHIVE_HEADERS
   Beep/include/Pattern.h
   Beep/include/RightHandSide.h
   Beep/include/Sensor.h
-  Beep/include/Serializeable.h
+  Beep/include/Serializable.h
   Beep/include/Singleton.h
   Beep/include/Stateful.h
   Beep/include/SyncLayer.h
@@ -75,7 +75,7 @@ set(BEEPHIVE_SOURCES
   Beep/src/Layer.cpp
   Beep/src/LoadCommand.cpp
   Beep/src/Pattern.cpp
-  Beep/src/Serializeable.cpp
+  Beep/src/Serializable.cpp
   Beep/src/Stateful.cpp
   Beep/src/SyncLayer.cpp
   Beep/src/World.cpp

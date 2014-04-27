@@ -53,7 +53,7 @@ Pattern* RectanglePatternFactory::create()
 {
   FactoryParams params;
   params.push_back("10 10 10");
-  this->create(params);
+  return this->create(params);
 }
 
 

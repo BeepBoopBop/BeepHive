@@ -65,11 +65,15 @@ class Layer {
 class LayerCommand : public Command
 {
   public:
-    LayerCommand() { frequency = 0; }
+    LayerCommand() { frequency = "1"; }
     LayerCommand(FactoryParams params);
     virtual void run(World* world);
+
+    //serialization
+    std::string  save();
+    void load(std::string JSON);
   private:
-    double frequency;
+    std::string frequency;
     std::string name;
     std::string type;
 };

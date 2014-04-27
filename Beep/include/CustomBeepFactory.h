@@ -44,6 +44,9 @@ class CustomBeepCommand : public Command
   public:
     CustomBeepCommand(FactoryParams params);
     virtual void run(World* world);
+
+    virtual std::string  save();
+    virtual void load(std::string JSON);
   private:
     std::string type;
     std::string base;
@@ -58,6 +61,9 @@ class CustomBeepFeatureCommand : public Command
   public:
     CustomBeepFeatureCommand(FactoryParams params);
     virtual void run(World* world);
+
+    virtual std::string  save();
+    virtual void load(std::string JSON);
   private:
     std::string beep_type;
     std::string component_type;

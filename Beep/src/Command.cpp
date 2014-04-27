@@ -2,7 +2,6 @@
 #include "Command.h"
 #include "Factory.h"
 #include "World.h"
-#include <boost/foreach.hpp>
 
 void Command::run()
 {
@@ -37,13 +36,17 @@ std::string  CreateCommand::save()
   return PTreeToString(tree);
 
 }
+
+
+
 void  CreateCommand::load(std::string JSON)
 {
   ptree tree = StringtoPTree(JSON);
   type = tree.get<std::string> ("type");
   std::cout << type << "\n";
-  this->params.push_back(type);
-  BOOST_FOREACH(ptree::value_type &v, tree.get_child("params"))
+  BOOST_FOREACH(ptree::value_type &v, tree.get_child("params")){
       std::cout << (v.second.data()) << "\n";
+      this->params.push_back(v.second.data());
+  }
 
 }

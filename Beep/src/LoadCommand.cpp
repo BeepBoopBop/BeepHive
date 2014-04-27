@@ -1,5 +1,6 @@
 #include <dlfcn.h>
 
+#include "Serializable.h"
 #include "LoadCommand.h"
 #include "BeepHive.h"
 #include "World.h"
@@ -19,6 +20,22 @@ void LoadCommand::run(World* world)
   }else{
     std::cout << "ERROR LOADING PLUGIN: " << dlerror() << std::endl;
   }
+  return;
+}
+
+
+
+std::string  LoadCommand::save()
+{
+  ptree tree;
+  return "HI";
+}
+
+
+
+void LoadCommand::load(std::string JSON)
+{
+  return;
 }
 
 

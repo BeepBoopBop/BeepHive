@@ -3,24 +3,25 @@
 
 #include <vector>
 #include <string>
-#include "Serializeable.h"
+#include "Serializable.h"
 #include "Factory.h"
-//#include "World.h"
 
 class World;
 
-class Command 
+class Command: public Serializable
 {
   public:
     //! Run command for when no world is present
     void run();
     virtual void run(World* world) = 0;
 
+    virtual std::string  save() = 0;
+    virtual void load(std::string JSON) = 0;
 };
 
 
 
-class CreateCommand : public Command, public Serializeable
+class CreateCommand : public Command
 {
   public:
     CreateCommand(FactoryParams params);
@@ -29,8 +30,8 @@ class CreateCommand : public Command, public Serializeable
     virtual void run(World* world) = 0;
 
     //serialization
-    std::string  save();
-    void load(std::string JSON);
+    virtual std::string  save();
+    virtual void load(std::string JSON);
 
   protected:
     FactoryParams params;

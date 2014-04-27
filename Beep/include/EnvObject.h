@@ -2,14 +2,14 @@
 #define ENV_OBJECT_H
 
 #include "BeepHive.h"
-#include "Serializeable.h"
+#include "Serializable.h"
 
 /*! 
  * Simple class for rectangle environment object
  * Bypasses factory
  */
 
-class EnvObject : public Serializeable
+class EnvObject : public Serializable
 {
 
   public:

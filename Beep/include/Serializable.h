@@ -7,6 +7,7 @@
 #include <map>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
+#include <boost/foreach.hpp>
 using boost::property_tree::ptree;
 using boost::property_tree::read_json;
 using boost::property_tree::write_json;
@@ -17,7 +18,7 @@ using boost::property_tree::write_json;
  *
  * Inheriting classes should define the serialization function
  */
-class Serializeable{
+class Serializable{
 
   public:
    std::string name;
