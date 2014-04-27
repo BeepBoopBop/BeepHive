@@ -32,8 +32,8 @@ using boost::property_tree::ptree;
       reading=total;
     }
 
-std::string  AverageSensor::save(){return "not implemented";}
-void  AverageSensor::load(std::string JSON){}
+//std::string  AverageSensor::save(){return "not implemented";}
+//void  AverageSensor::load(std::string JSON){}
 
 Sensor* AverageSensorFactory::create()
 {

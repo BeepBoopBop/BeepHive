@@ -57,6 +57,7 @@ class BeepCommand : public CreateCommand
     BeepCommand() {}
     BeepCommand(FactoryParams params);
     virtual void run(World* world);
+    std::string type() { return "BeepCommand"; }
 };
 
 DEFINE_FACTORY(BeepCommand, Command);

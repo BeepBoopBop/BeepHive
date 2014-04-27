@@ -19,8 +19,8 @@ class AverageSensor : public Sensor
     AverageSensor(Layer* beep_layer,std::string state);
     //read the layer at the given x, y, z
     void readLayer(const World* world);
-    std::string  save();
-    void load(std::string JSON);
+    //std::string  save();
+    //void load(std::string JSON);
   protected:
     std::string state;
 };

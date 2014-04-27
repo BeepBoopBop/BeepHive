@@ -34,6 +34,7 @@ Stateful* Stateful::getChild(std::string stateful_name)
 
 
 
+#if 0
 //serialization
 std::string  Stateful::save()
 {
@@ -48,6 +49,7 @@ void Stateful::load(std::string JSON)
 
 
 }
+#endif
 
 
 

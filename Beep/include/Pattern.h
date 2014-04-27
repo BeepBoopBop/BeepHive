@@ -33,6 +33,9 @@ class CreateWithPatternCommand : public CreateCommand
     CreateWithPatternCommand(FactoryParams params);
 
     virtual void run(World* world);
+
+    //serialization
+    std::string type() { return "CreateWithPatternCommand"; }
 };
 
 

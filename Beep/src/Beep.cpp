@@ -106,7 +106,7 @@ BeepCommand::BeepCommand(FactoryParams params) : CreateCommand(params) {}
 void BeepCommand::run(World* world)
 {
   if(world != NULL){
-    Beep* beep = Factories<Beep>::getInstance()[type]->create(params);
+    Beep* beep = Factories<Beep>::getInstance()[concrete_type]->create(params);
     world->addBeep(beep);
   }
 }

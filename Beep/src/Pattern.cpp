@@ -11,13 +11,13 @@ void CreateWithPatternCommand::run(World* world)
     Factories<Command>& command_factories = Factories<Command>::getInstance();
 
     Factory<Command>* command_factory;
-    Factory<Pattern>* pattern_factory = pattern_factories[type];
+    Factory<Pattern>* pattern_factory = pattern_factories[concrete_type];
     Pattern* pattern;
     Command* command;
 
     FactoryParams::iterator it = params.begin();
 
-    pattern_factory = pattern_factories[type];
+    pattern_factory = pattern_factories[concrete_type];
 
     //use first string for pattern params
     FactoryParams pattern_params;
@@ -59,5 +59,7 @@ Command* CreateWithPatternCommandFactory::create(FactoryParams& params)
 {
   return new CreateWithPatternCommand(params);
 }
+
+
 
 ADD_TO_FACTORIES(CreateWithPatternCommand, Command);

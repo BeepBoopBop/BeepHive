@@ -16,7 +16,7 @@ class World;
  * All sensors are read before controllers are called. Sensors cannot modify
  * the World or any layers.
  */
-class Sensor : public Serializable
+class Sensor //: public Serializable
 {
   public:
 

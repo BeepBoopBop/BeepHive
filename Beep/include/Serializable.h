@@ -24,7 +24,9 @@ class Serializable{
     std::string name;
 
     //saves the object to the returned string, user responsible for sending it to file or over mpi
-    virtual std::string save() =0;
+    std::string save();
+    virtual void saveHelper(ptree& tree) = 0;
+    virtual std::string type() = 0;
     
     static std::string PTreeToString(ptree tree);
     static ptree StringtoPTree(std::string JSON);

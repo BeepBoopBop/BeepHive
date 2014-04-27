@@ -61,7 +61,7 @@ LayerCommand::LayerCommand(FactoryParams params)
   if(params.size() >= 3){
     int i=0;
     name=params[i++];
-    type=params[i++];
+    concrete_type=params[i++];
     std::stringstream stream(params[i++]);
     stream >> frequency;
   }
@@ -74,20 +74,18 @@ void LayerCommand::run(World* world)
   std::stringstream stream(frequency);
   stream >> val;
 
-  Layer* layer = Factories<Layer>::getInstance()[type]->create();
+  Layer* layer = Factories<Layer>::getInstance()[concrete_type]->create();
   world->addLayer(name, layer, val);
 }
 
 
 
-std::string  LayerCommand::save()
+void  LayerCommand::saveHelper(ptree& tree)
 {
-  ptree tree;
   tree.put("frequency", this->frequency);
   tree.put("name", this->name);
-  tree.put("type", this->type);
-
-  return PTreeToString(tree);
+  tree.put("concrete_type", this->concrete_type);
+  return;
 }
 
 
@@ -97,7 +95,7 @@ void LayerCommand::load(std::string JSON)
   ptree tree = StringtoPTree(JSON);
   frequency = tree.get<std::string>("frequency");
   name = tree.get<std::string>("name");
-  type = tree.get<std::string>("type");
+  concrete_type = tree.get<std::string>("concrete_type");
 }
 
 

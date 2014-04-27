@@ -25,16 +25,18 @@ void LoadCommand::run(World* world)
 
 
 
-std::string  LoadCommand::save()
+void  LoadCommand::saveHelper(ptree& tree)
 {
-  ptree tree;
-  return "HI";
+  tree.put("file_name", this->file_name);
+  return;
 }
 
 
 
 void LoadCommand::load(std::string JSON)
 {
+  ptree tree = StringtoPTree(JSON);
+  this->file_name = tree.get<std::string>("file_name");
   return;
 }
 

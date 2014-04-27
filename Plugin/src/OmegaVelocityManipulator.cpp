@@ -66,8 +66,8 @@ unsigned OmegaVelocityManipulator::getInputSize() const
 }
 
 //serialization
-std::string OmegaVelocityManipulator::save(){return "not implemented";}
-void OmegaVelocityManipulator::load(std::string JSON){}
+//std::string OmegaVelocityManipulator::save(){return "not implemented";}
+//void OmegaVelocityManipulator::load(std::string JSON){}
 
 Manipulator* OmegaVelocityManipulatorFactory::create()
 {

@@ -45,10 +45,11 @@ class CustomBeepCommand : public Command
     CustomBeepCommand(FactoryParams params);
     virtual void run(World* world);
 
-    virtual std::string  save();
+    virtual void saveHelper(ptree& tree);
     virtual void load(std::string JSON);
+    virtual std::string type() { return "CustomBeepCommand"; }
   private:
-    std::string type;
+    std::string concrete_type;
     std::string base;
 };
 
@@ -62,8 +63,10 @@ class CustomBeepFeatureCommand : public Command
     CustomBeepFeatureCommand(FactoryParams params);
     virtual void run(World* world);
 
-    virtual std::string  save();
+    virtual void saveHelper(ptree& tree);
     virtual void load(std::string JSON);
+    virtual std::string type() { return "CustomBeepFeatureCommand"; }
+  private:
   private:
     std::string beep_type;
     std::string component_type;

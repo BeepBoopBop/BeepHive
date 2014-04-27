@@ -19,8 +19,9 @@ class LoadCommand : public Command
     void run(World* world);
 
     //serialization
-    std::string  save();
+    void  saveHelper(ptree& tree);
     void load(std::string JSON);
+    std::string type() { return "LoadCommand"; };
   private:
     std::string file_name;
 };

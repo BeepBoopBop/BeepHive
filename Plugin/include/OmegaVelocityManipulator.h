@@ -13,8 +13,8 @@ class OmegaVelocityManipulator : public Manipulator {
     OmegaVelocityManipulator();
     void updateState(Beep* beep, World* world);
     unsigned getInputSize() const;
-    std::string  save();
-    void load(std::string JSON);
+    //std::string  save();
+    //void load(std::string JSON);
 };
 
 

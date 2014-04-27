@@ -86,10 +86,10 @@ void CustomBeepFactory::setController(std::string base_type,
 
 
 CustomBeepCommand::CustomBeepCommand(FactoryParams params)
-  : type(params[0]), base(params[1])
+  : concrete_type(params[0]), base(params[1])
 {
   assert(params.size()>=2);
-  this->type=params[0];
+  this->concrete_type=params[0];
   this->base=params[1];
 
   /*
@@ -103,17 +103,16 @@ CustomBeepCommand::CustomBeepCommand(FactoryParams params)
 
 void CustomBeepCommand::run(World* world)
 {
-  CustomBeepFactory* factory = new CustomBeepFactory(type, base);
+  CustomBeepFactory* factory = new CustomBeepFactory(concrete_type, base);
 }
 
 
 
-std::string  CustomBeepCommand::save()
+void  CustomBeepCommand::saveHelper(ptree& tree)
 {
-  ptree tree;
-  tree.put("type", this->type);
+  tree.put("concrete_type", this->concrete_type);
   tree.put("base", this->base);
-  return PTreeToString(tree);
+  return;
 }
 
 
@@ -121,7 +120,7 @@ std::string  CustomBeepCommand::save()
 void CustomBeepCommand::load(std::string JSON)
 {
   ptree tree = StringtoPTree(JSON);
-  type = tree.get<std::string>("type");
+  concrete_type = tree.get<std::string>("concrete_type");
   base = tree.get<std::string>("base");
 }
 
@@ -186,9 +185,8 @@ void CustomBeepFeatureCommand::run(World* world)
 
 
 
-std::string  CustomBeepFeatureCommand::save()
+void  CustomBeepFeatureCommand::saveHelper(ptree& tree)
 {
-  ptree tree;
   tree.put("beep_type", this->beep_type);
   tree.put("component_type", this->component_type);
   tree.put("concrete_component", this->concrete_component);
@@ -201,7 +199,7 @@ std::string  CustomBeepFeatureCommand::save()
     tree.put(array, this->params[i]);
   }
 
-  return PTreeToString(tree);
+  return;
 }
 
 

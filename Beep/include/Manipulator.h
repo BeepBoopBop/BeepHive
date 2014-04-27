@@ -26,7 +26,7 @@ class World;
  * been followed such as if the manipulator failed to pick up an object because
  * another Beep did on the same time-step.
  */
-class Manipulator : public Serializable
+class Manipulator //: public Serializable
 {
   public:
     Manipulator(){}

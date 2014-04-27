@@ -14,9 +14,6 @@ class Command: public Serializable
     //! Run command for when no world is present
     void run();
     virtual void run(World* world) = 0;
-
-    virtual std::string  save() = 0;
-    virtual void load(std::string JSON) = 0;
 };
 
 
@@ -27,15 +24,13 @@ class CreateCommand : public Command
     CreateCommand(FactoryParams params);
     CreateCommand(){}
 
-    virtual void run(World* world) = 0;
-
     //serialization
-    virtual std::string  save();
+    virtual void  saveHelper(ptree& tree);
     virtual void load(std::string JSON);
 
   protected:
     FactoryParams params;
-    std::string type;
+    std::string concrete_type;
 };
 
 #endif /* COMMAND_H */

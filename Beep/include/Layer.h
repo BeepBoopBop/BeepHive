@@ -70,12 +70,13 @@ class LayerCommand : public Command
     virtual void run(World* world);
 
     //serialization
-    std::string  save();
+    virtual void saveHelper(ptree& tree);
     void load(std::string JSON);
+    std::string type() { return "LayerCommand"; }
   private:
     std::string frequency;
     std::string name;
-    std::string type;
+    std::string concrete_type;
 };
 
 DEFINE_FACTORY(LayerCommand, Command);
