@@ -50,6 +50,7 @@ Beep* CustomBeepFactory::create()
 
 Beep* CustomBeepFactory::create(FactoryParams& params)
 {
+  this->factory.params=params;
   return this->create();
 }
 
@@ -103,16 +104,6 @@ CustomBeepCommand::CustomBeepCommand(FactoryParams params)
 void CustomBeepCommand::run(World* world)
 {
   CustomBeepFactory* factory = new CustomBeepFactory(type, base);
-
-  FactoryParams x_sensor;
-  x_sensor.push_back("x");
-  factory->addSensor("AverageX","AverageSensor",x_sensor);
-  FactoryParams y_sensor;
-  y_sensor.push_back("y");
-  factory->addSensor("AverageY","AverageSensor",y_sensor);
-
-  factory->setController("FlockingController");
-  factory->addManipulator("OmegaVelocityManipulator","OmegaVelocityManipulator");
 }
 
 
@@ -170,7 +161,7 @@ void CustomBeepFeatureCommand::run(World* world)
   }else if(component_type == "Manipulator"){
     factories[beep_type]->addManipulator(name, concrete_component, params);
   }else if(component_type == "Controller"){
-    factories[beep_type]->setController(name);
+    factories[beep_type]->setController(concrete_component);
   }
 }
 

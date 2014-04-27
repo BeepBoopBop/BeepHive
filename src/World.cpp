@@ -31,55 +31,6 @@ World::World() : layers(), event_queue(), running(true)
   this->addLayer("SyncLayer",sync_layer);
   Layer* beep_layer=new BeepLayer;
   this->addLayer("BeepLayer",beep_layer);
-
-  /*
-  Factories<Beep>& factories=Factories<Beep>::getInstance();
-
-  Factories<Beep>::iterator it;
-  std::cout << "Factories in factories: " << std::endl;
-  for(it=factories.begin(); it!=factories.end(); ++it){
-    std::cout << it->first << std::endl;
-  }
-
-  CustomBeepFactory* flocking_beep=new CustomBeepFactory("FlockingBeep","Beep");
-
-  FactoryParams x_sensor;
-  x_sensor.push_back("x");
-  flocking_beep->addSensor("AverageX","AverageSensor",x_sensor);
-  FactoryParams y_sensor;
-  y_sensor.push_back("y");
-  flocking_beep->addSensor("AverageY","AverageSensor",y_sensor);
-
-  flocking_beep->setController("FlockingController");
-  flocking_beep->addManipulator("OmegaVelocityManipulator","OmegaVelocityManipulator");
-
-  CustomBeepFactory* simple_beep=new CustomBeepFactory("BasicBeep","Beep");
-  simple_beep->addSensor("AverageX","AverageSensor",x_sensor);
-  simple_beep->addSensor("AverageY","AverageSensor",y_sensor);
-  simple_beep->addManipulator("OmegaVelocityManipulator","OmegaVelocityManipulator");
-  simple_beep->setController("BasicController");
-
-  std::cout << "Factories in factories: " << std::endl;
-  for(it=factories.begin(); it!=factories.end(); ++it){
-    std::cout << it->first << std::endl;
-  }
-
-  Beep* beep;
-  for(int i=0;i<20;++i){
-    for(int j=0;j<20;++j){
-      if((i+j)%2){
-        beep=factories["FlockingBeep"]->create();
-      } else {
-        beep=factories["BasicBeep"]->create();
-      }
-
-      beep->setState("x",20*i);
-      beep->setState("y",20*j);
-
-      beeps.push_back(beep);
-    }
-  }
-  */
 }
 
 

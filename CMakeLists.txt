@@ -9,7 +9,7 @@ if(GUI)
   add_definitions(-DGUI)
 endif(GUI)
 
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x -Wall -Wextra"
+set(CMAKE_CXX_FLAGS " -std=c++0x -Wall"
     CACHE STRING "" FORCE)
 
 # Find includes in corresponding build directories

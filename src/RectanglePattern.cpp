@@ -17,14 +17,22 @@ long int RectanglePattern::size()
 FactoryParams RectanglePattern::getNext()
 {
   double val;
+  std::stringstream stream;
   FactoryParams params;
 
   if(!isEmpty()){
     params.push_back("x");
+
     val = index % width * distance;
+    stream << val;
+    params.push_back(stream.str());
 
     params.push_back("y");
+
     val = index / width * distance;
+    stream.str("");
+    stream << val;
+    params.push_back(stream.str());
   }
 
   ++index;

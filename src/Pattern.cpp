@@ -35,6 +35,9 @@ void CreateWithPatternCommand::run(World* world)
     while(!pattern->isEmpty()){
       FactoryParams command_params = template_params;
       FactoryParams pattern_data = pattern->getNext();
+      for(size_t i=0; i<pattern_data.size(); ++i){
+        command_params.push_back(pattern_data[i]);
+      }
       command = command_factory->create(command_params);
       command->run(world);
       delete command;

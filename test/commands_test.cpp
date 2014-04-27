@@ -27,10 +27,10 @@ int main(int argc, char** argv)
   FactoryParams params = {"MyBeep", "Beep"};
   runCommand("CustomBeepCommand",params,&world);
 
-  params = {"Sensor","Average","AverageSensor","MyBeep","x"};
+  params = {"Sensor","AverageX","AverageSensor","MyBeep","x"};
   runCommand("CustomBeepFeatureCommand",params,&world);
 
-  params = {"Sensor","Average","AverageSensor","MyBeep","y"};
+  params = {"Sensor","AverageY","AverageSensor","MyBeep","y"};
   runCommand("CustomBeepFeatureCommand",params,&world);
 
   params = {"Manipulator","OmegaVelocityManipulator",
