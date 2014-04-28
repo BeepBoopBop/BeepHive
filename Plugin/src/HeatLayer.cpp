@@ -25,8 +25,8 @@ void HeatLayer::setup(World* world)
   
   //setup listener points to evaluate the model at for graphical info
 
-  for(double i = 0; i <= 1000; i +=5){
-    for( double j = 0; j <= 1000; j+=5){
+  for(double i = 0; i <= 1000; i +=20){
+    for( double j = 0; j <= 1000; j+=20){
       DataPoint* newPoint = new DataPoint( i, j );
       values.push_back(newPoint);
     }
@@ -58,6 +58,8 @@ double HeatLayer::getValue( double x, double y )
 std::string HeatLayer::getOutput()
 {
 
+  DEBUG("Getting heatlayer output");
+
   for( int i = 0; i < values.size(); i++ ){
     double newVal = this->getValue( values[i]->getX(), values[i]->getY() );
     values[i]->setValue(newVal);
@@ -84,8 +86,19 @@ Layer* HeatLayerFactory::create(FactoryParams& params)
 
 
 
-NOT_IMPLEMENTED(void HeatLayer::write())
+void HeatLayer::write(){
+  
+  this->getOutput();
 
+  DEBUG("Got output");
+  for( int i = 0; i < values.size(); i++ ){
+    std::string newMessage = values[i]->save();
+    std::cout << newMessage << " ";
+  }
+  
+  std::cout << std::endl;
+
+}
 
 
 ADD_TO_FACTORIES(HeatLayer, Layer);
