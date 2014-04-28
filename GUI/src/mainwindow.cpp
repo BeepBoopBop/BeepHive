@@ -44,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     for(int j = 15; j < 26; j++)
       pointTemps.push_back(std::make_pair (std::make_pair (i,j), 100));*/
 
-  QGraphicsEllipseItem *tempEllipse = new QGraphicsEllipseItem();
+  /*QGraphicsEllipseItem *tempEllipse = new QGraphicsEllipseItem();
   for(unsigned i = 0; i < 2; i++){
     Robot tempRobot = Robot();
     tempRobot.setBody(tempEllipse);
@@ -53,7 +53,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
   for(unsigned i = 0; i<robots.size(); i++){
     robots[i].updateDrawPosition(scene);
-  }
+  }*/
   reDraw();
 }
 
@@ -241,14 +241,7 @@ void MainWindow::reDraw(){
   for(unsigned i = 0; i<environmentObjects.size(); i++){
     environmentObjects[i].updateDrawPosition(scene);
   }
-
  }
-
-/*
- * suggested functions to implement:
-        mpiStringToRobot(string)
-        robotToMpiString(robot)
- */
 
 //code to start the backend, you will need to pass robot info to it
 void MainWindow::mpiStart()
