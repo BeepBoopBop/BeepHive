@@ -96,7 +96,7 @@ void HeatLayer::write(){
   for( int i = 0; i < values.size(); i++ ){
     std::string newMessage = values[i]->save();
     communicators.addToOutput(newMessage);
-    std::cout << newMessage << " ";
+    //std::cout << newMessage << " ";
   }
 
   std::cout << std::endl;
