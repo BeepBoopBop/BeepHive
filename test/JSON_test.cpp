@@ -53,13 +53,18 @@ int main(int argc, char** argv)
   p.put("type", "double");
   p.put("objects.0", 3.14);
   p.put("objects.1", 6.28);
+  ptree p2;
+  p2.put("type", "int");
+  p2.put("objects.0", 1);
+  p2.put("objects.1", 2);
   //SerializeObject n;
   //n.type = "int";
   //n.JSON = Serializable::PTreeToString(p);
   //test out communicator serialization
   Communicators::getInstance().addToOutput(Serializable::PTreeToString(p));
-  
-  std::cout << Communicators::getInstance().getStringOutput();
+  Communicators::getInstance().addToOutput(Serializable::PTreeToString(p2));
+  std::string str = Communicators::getInstance().getStringOutput();
+  std::cout << str;
   Communicators::getInstance().constructStack();
 
   
