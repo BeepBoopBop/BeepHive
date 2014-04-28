@@ -4,7 +4,7 @@
 
 Communicators::Communicators()
 {
-  outputTree.put("count", -1);
+  outputTree.put("count",-1);
   inputTree.put("count", -1);
 }
 
@@ -18,7 +18,7 @@ void Communicators::run()
 
     //input=input + " " + it->second->run(output);
     //loop through all of the objects in the input and add them to inputTree 
-    BOOST_FOREACH(ptree::value_type &v, input.get_child("objects"))
+    BOOST_FOREACH(ptree::value_type &v, input.get_child("obj"))
     {
       addToInput(v.second.data());
     }
@@ -33,10 +33,11 @@ void Communicators::run()
 void Communicators::constructStack()
 {
   inputTree = outputTree;
-  BOOST_FOREACH(ptree::value_type &v, outputTree.get_child("objects"))
+ // const ptree& children = inputTree.get_child("obj");
+  BOOST_FOREACH(ptree::value_type &v, outputTree.get_child("obj"))
   {
     //SerialObject n;
-    std::cout << (v.second.data()) << '\n';
+    std::cout << (Serializable::PTreeToString(v.second)) << '\n';
   }
 }
 
@@ -65,7 +66,7 @@ void Communicators::addToInput(std::string object)
     int count = inputTree.get<int>("count");
     count++;
     inputTree.put("count", count);
-    std::string array = "objects.";
+    std::string array = "obj.";
     array.append(std::to_string(count));
     inputTree.put(array, object);
 
@@ -74,12 +75,16 @@ void Communicators::addToInput(std::string object)
 
 void Communicators::addToOutput(std::string object)
 {
+    ptree p = Serializable::StringtoPTree(object);
     int count = outputTree.get<int>("count");
     count++;
     outputTree.put("count", count);
-    std::string array = "objects.";
+    std::string array = "obj.";
     array.append(std::to_string(count));
-    outputTree.put(array, object);
+    //std::cout << array << " " << object << '\n';
+    //outputTree.put(array, " ");
+    //outputTree.push_back(ptree::value_type(array, p));
+    outputTree.put_child(array, p);
 
 }
 
@@ -92,7 +97,7 @@ void Communicators::setOutput(std::string output)
 
 std::string Communicators::getStringOutput()
 {
-    return Serializable::PTreeToString(outputTree);
+    return Serializable::PTreeToString(outputTree); 
 }
 
 bool Communicators::isEmpty(){
