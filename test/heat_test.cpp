@@ -47,7 +47,7 @@ int main(int argc, char** argv)
     return 0;
   }else{
     World world;
-    Layer* heat_layer = new HeatLayer;
+    Layer* heat_layer = new HeatLayer(0.01);
     world.addLayer( "HeatLayer", heat_layer );
     world.start();
 

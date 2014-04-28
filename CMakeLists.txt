@@ -39,6 +39,7 @@ set(BEEPHIVE_HEADERS
   Beep/include/Communicator.h
   Beep/include/Controller.h
   Beep/include/CustomBeepFactory.h
+  Beep/include/DataPoint.h
   Beep/include/Dealii.h
   Beep/include/DiscreteTimeLayer.h
   Beep/include/EnvObject.h
@@ -67,6 +68,7 @@ set(BEEPHIVE_SOURCES
   Beep/src/Command.cpp
   Beep/src/Communicator.cpp
   Beep/src/CustomBeepFactory.cpp
+  Beep/src/DataPoint.cpp
   Beep/src/DiscreteTimeLayer.cpp
   Beep/src/EnvObject.cpp
   Beep/src/Event.cpp

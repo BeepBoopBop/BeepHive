@@ -25,6 +25,13 @@ void HeatLayer::setup(World* world)
   
   //setup listener points to evaluate the model at for graphical info
 
+  for(double i = 0; i <= 1000; i +=5){
+    for( double j = 0; j <= 1000; j+=5){
+      DataPoint newPoint = new DataPoint( i, j );
+      values.push_back(newPoint);
+    }
+  }
+
   initialized = true;
 }
 
@@ -34,6 +41,8 @@ void HeatLayer::update(const Event* event, World* world)
   if(!initialized){
     this->setup(world);
   }
+  
+  DiscreteTimeLayer::update(event, world);
   DEBUG("Updating HeatLayer");
   this->discretization.run();
 
@@ -46,8 +55,15 @@ double HeatLayer::getValue( double x, double y )
 
 }
   
+std::string HeatLayer::getOutput()
+{
 
+  for( int i = 0; i < values.size(); i++ ){
+    double newVal = this->getValue( values[i].getX(), values[i].getY() );
+    values[i].setValue(newVal);
+  }
 
+}
 
 Layer* HeatLayerFactory::create()
 {

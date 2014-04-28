@@ -27,9 +27,9 @@ World::World() : layers(), event_queue(), running(true)
 {
   std::string temp;
   //std::cout << Factories<Controller>::getInstance().begin()->first << std::endl;
-  Layer* sync_layer=new SyncLayer;
+  Layer* sync_layer=new SyncLayer(0.2);
   this->addLayer("SyncLayer",sync_layer);
-  Layer* beep_layer=new BeepLayer;
+  Layer* beep_layer=new BeepLayer(0.2);
   this->addLayer("BeepLayer",beep_layer);
 }
 
@@ -41,7 +41,7 @@ World::~World() {}
 
 int World::step()
 {
-  //DEBUG("Stepping World");
+  DEBUG("Stepping World");
   Event event=event_queue.top();
 
   event_queue.pop();

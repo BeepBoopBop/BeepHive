@@ -5,6 +5,8 @@
 #include "HeatEquation.h"
 #include "Factory.h"
 #include "EnvObject.h"
+#include <vector>
+#include "DataPoint.h"
 
 /*!
  * This layer updates the heat equation for the simulation.
@@ -28,8 +30,10 @@ class HeatLayer : public DiscreteTimeLayer
     bool initialized;
    
     //! The equation that the layer updates
+    std::vector<DataPoint> values;
     HeatEquation<2> discretization;
     void setup(World* world);
+    std::string getOutput();
 
 };
 

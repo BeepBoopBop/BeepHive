@@ -68,7 +68,7 @@ template<int dim>
 HeatEquation<dim>::HeatEquation ():
 fe(1),
 dof_handler(triangulation),
-time_step(1. / 500),
+time_step(1. / 100),
 theta(0.5),
 initialized(false),
 start_time_iteration(false)
