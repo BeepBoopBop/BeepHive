@@ -59,3 +59,25 @@ std::string Communicators::getStringOutput()
 
 
 
+CommunicatorCommand::CommunicatorCommand(FactoryParams params)
+  : CreateCommand(params) {}
+  
+
+
+void CommunicatorCommand::run(World* world)
+{
+  Factories<Communicator>& factories = Factories<Communicator>::getInstance();
+  Communicator* communicator = factories[concrete_type]->create(params);
+  Communicators::getInstance().addCommunicator(params[0], communicator);
+}
+
+
+
+NOT_IMPLEMENTED(Command* CommunicatorCommandFactory::create())
+
+
+
+Command* CommunicatorCommandFactory::create(FactoryParams& params)
+{
+  return new CommunicatorCommand(params);
+}

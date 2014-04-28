@@ -14,6 +14,8 @@
 #include <vector>
 #include <sstream>
 
+namespace mpi=boost::mpi;
+
 //Name of the standard plugin library which is optionally loaded at runtime
 #define BEEP_PLUGIN "@PLUGIN_LOCATION@"
 

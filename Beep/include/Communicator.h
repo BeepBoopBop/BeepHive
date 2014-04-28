@@ -4,6 +4,7 @@
 #include "BeepHive.h"
 #include "Singleton.h"
 #include "Serializable.h"
+#include "Command.h"
 
 /*!
  * The communicator abstract class defines a basic interface for all
@@ -38,5 +39,16 @@ class Communicators : public Singleton<Communicators>
     std::string input;
 };
 
+class CommunicatorCommand : public CreateCommand
+{
+  public:
+    CommunicatorCommand(FactoryParams params);
+
+    virtual void run(World* world);
+
+    std::string type() { return "CommunicatorCommand"; }
+};
+
+DEFINE_FACTORY(CommunicatorCommand, Command);
 
 #endif /* COMMUNICATOR_H */
