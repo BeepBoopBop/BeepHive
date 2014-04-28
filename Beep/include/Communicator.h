@@ -43,6 +43,7 @@ class Communicators : public Singleton<Communicators>
     void addToInput(std::string object);
     void setOutput(std::string output);
     void constructStack();
+    bool isEmpty();
     std::string getStringOutput();
   private:
     Map<Communicator*> communicators;

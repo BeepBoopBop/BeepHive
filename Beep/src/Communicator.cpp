@@ -95,7 +95,9 @@ std::string Communicators::getStringOutput()
     return Serializable::PTreeToString(outputTree);
 }
 
-
+bool Communicators::isEmpty(){
+  return inputStack.empty();
+}
 
 CommunicatorCommand::CommunicatorCommand(FactoryParams params)
   : CreateCommand(params) {}
