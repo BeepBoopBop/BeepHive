@@ -29,3 +29,7 @@ int CreateEnvironment::getWidth(){
 int CreateEnvironment::getHeight(){
   return ui->lineEdit_4->text().toInt();
 }
+
+bool CreateEnvironment::getSource(){
+  return ui->checkBox->isChecked();
+}

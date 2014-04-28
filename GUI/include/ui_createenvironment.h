@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
 #include <QtWidgets/QHeaderView>
@@ -33,6 +34,8 @@ public:
     QLabel *label_3;
     QLineEdit *lineEdit_4;
     QLabel *label_4;
+    QCheckBox *checkBox;
+    QLabel *label_5;
 
     void setupUi(QDialog *CreateEnvironment)
     {
@@ -46,28 +49,34 @@ public:
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         lineEdit = new QLineEdit(CreateEnvironment);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
-        lineEdit->setGeometry(QRect(200, 40, 171, 23));
+        lineEdit->setGeometry(QRect(200, 20, 171, 23));
         lineEdit_2 = new QLineEdit(CreateEnvironment);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
-        lineEdit_2->setGeometry(QRect(200, 70, 171, 23));
+        lineEdit_2->setGeometry(QRect(200, 50, 171, 23));
         lineEdit_3 = new QLineEdit(CreateEnvironment);
         lineEdit_3->setObjectName(QStringLiteral("lineEdit_3"));
-        lineEdit_3->setGeometry(QRect(200, 100, 171, 23));
+        lineEdit_3->setGeometry(QRect(200, 80, 171, 23));
         label = new QLabel(CreateEnvironment);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(140, 40, 57, 15));
+        label->setGeometry(QRect(140, 20, 57, 15));
         label_2 = new QLabel(CreateEnvironment);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(140, 70, 57, 15));
+        label_2->setGeometry(QRect(140, 50, 57, 15));
         label_3 = new QLabel(CreateEnvironment);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(140, 100, 57, 15));
+        label_3->setGeometry(QRect(140, 80, 57, 15));
         lineEdit_4 = new QLineEdit(CreateEnvironment);
         lineEdit_4->setObjectName(QStringLiteral("lineEdit_4"));
-        lineEdit_4->setGeometry(QRect(200, 130, 171, 21));
+        lineEdit_4->setGeometry(QRect(200, 110, 171, 21));
         label_4 = new QLabel(CreateEnvironment);
         label_4->setObjectName(QStringLiteral("label_4"));
-        label_4->setGeometry(QRect(140, 130, 57, 15));
+        label_4->setGeometry(QRect(140, 110, 57, 15));
+        checkBox = new QCheckBox(CreateEnvironment);
+        checkBox->setObjectName(QStringLiteral("checkBox"));
+        checkBox->setGeometry(QRect(230, 140, 21, 21));
+        label_5 = new QLabel(CreateEnvironment);
+        label_5->setObjectName(QStringLiteral("label_5"));
+        label_5->setGeometry(QRect(140, 140, 81, 20));
 
         retranslateUi(CreateEnvironment);
         QObject::connect(buttonBox, SIGNAL(accepted()), CreateEnvironment, SLOT(accept()));
@@ -83,6 +92,8 @@ public:
         label_2->setText(QApplication::translate("CreateEnvironment", "Y center", 0));
         label_3->setText(QApplication::translate("CreateEnvironment", "Width", 0));
         label_4->setText(QApplication::translate("CreateEnvironment", "Height", 0));
+        checkBox->setText(QApplication::translate("CreateEnvironment", "CheckBox", 0));
+        label_5->setText(QApplication::translate("CreateEnvironment", "Heatsource", 0));
     } // retranslateUi
 
 };

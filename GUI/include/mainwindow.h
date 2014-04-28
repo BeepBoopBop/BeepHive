@@ -6,6 +6,7 @@
 #include "environmentobject.h"
 #include "debugwindow.h"
 #include "createagent.h"
+#include "newbeeptype.h"
 #include "createenvironment.h"
 
 
@@ -31,9 +32,11 @@ public slots:
 
   void createNewAgentWindow();
   void createNewEnvironmentWindow();
+  void createNewBeepTypeWindow();
 
   void newAgentCreated();
   void newEnvironmentCreated();
+  void newBeepTypeCreated();
 
   void startSimulation();
 
@@ -82,6 +85,7 @@ private:
   //windows that the mainwindow owns
   DebugWindow* newDebug;
   CreateAgent* newAgent;
+  newBeepType* newBeep;
   CreateEnvironment* newEnvironment;
 };
 

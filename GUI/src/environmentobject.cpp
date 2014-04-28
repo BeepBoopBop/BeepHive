@@ -1,11 +1,12 @@
 #include "environmentobject.h"
 
-EnvironmentObject::EnvironmentObject(int x, int y, int widthIn, int heightIn)
+EnvironmentObject::EnvironmentObject(int x, int y, int widthIn, int heightIn, bool source)
 {
   xCoordinate = x;
   yCoordinate = y;
   width = widthIn;
   height = heightIn;
+  heatSource = source;
 }
 
 

@@ -19,6 +19,7 @@ public:
   int getY();
   int getWidth();
   int getHeight();
+  bool getSource();
 };
 
 #endif // CREATEENVIRONMENT_H
