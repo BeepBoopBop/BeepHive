@@ -27,7 +27,7 @@ void HeatLayer::setup(World* world)
 
   for(double i = 0; i <= 1000; i +=5){
     for( double j = 0; j <= 1000; j+=5){
-      DataPoint newPoint = new DataPoint( i, j );
+      DataPoint* newPoint = new DataPoint( i, j );
       values.push_back(newPoint);
     }
   }
@@ -59,8 +59,8 @@ std::string HeatLayer::getOutput()
 {
 
   for( int i = 0; i < values.size(); i++ ){
-    double newVal = this->getValue( values[i].getX(), values[i].getY() );
-    values[i].setValue(newVal);
+    double newVal = this->getValue( values[i]->getX(), values[i]->getY() );
+    values[i]->setValue(newVal);
   }
 
 }

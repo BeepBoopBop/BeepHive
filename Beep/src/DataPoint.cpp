@@ -30,6 +30,6 @@ void DataPoint::saveHelper( ptree &tree ){
 
 }
 
-std::string type(){
+std::string DataPoint::type(){
   return("DataPoint");
 }

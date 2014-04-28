@@ -30,7 +30,7 @@ class HeatLayer : public DiscreteTimeLayer
     bool initialized;
    
     //! The equation that the layer updates
-    std::vector<DataPoint> values;
+    std::vector<DataPoint*> values;
     HeatEquation<2> discretization;
     void setup(World* world);
     std::string getOutput();
