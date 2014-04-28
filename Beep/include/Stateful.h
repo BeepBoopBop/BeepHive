@@ -23,7 +23,7 @@ class Stateful : public Serializable
     //serialization
     void  saveHelper(ptree& tree);
     void load(std::string JSON);
-    std::string type() { return "Stateful"; }
+    virtual std::string type() { return "Stateful"; }
 
 
   private:

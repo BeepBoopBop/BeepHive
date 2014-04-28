@@ -27,14 +27,14 @@ class Sensor //: public Serializable
     //! Gets and stores reading from the layer/World
     virtual void readLayer(const World* world) = 0;
     //! Returns the last stored reading
-    float getReading() {return reading;}
+    double getReading() {return reading;}
 
 
   
   protected:
     //the layer that the sensor can read from
     Layer* layer;
-    float reading;
+    double reading;
 };
 
 #endif /* SENSOR_H */

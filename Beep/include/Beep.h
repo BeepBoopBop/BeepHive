@@ -40,6 +40,8 @@ class Beep: public Stateful
     void addManipulator(std::string manipulator_name, Manipulator* manipulator);
     Manipulator* getManipulator(std::string manipulator_name);
 
+    virtual std::string type() { return "Beep"; }
+
   private:
     Controller* controller;
     Map<Sensor*> sensors;

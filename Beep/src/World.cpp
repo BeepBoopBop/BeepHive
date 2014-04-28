@@ -89,9 +89,7 @@ void World::write()
     it->second->write();
   }
   for(BeepIterator it=this->beepBegin(); it!=this->beepEnd(); ++it){
-    std::stringstream message;
-    message << getState("x") << " " << getState("y");
-    Communicators::getInstance().addToOutput(message.str());
+    Communicators::getInstance().addToOutput((*it)->save());
   }
 }
 
@@ -114,6 +112,7 @@ void World::addBeep(Beep* beep)
   std::stringstream name;
   name << beeps.size();
   addChild(name.str(), beep);
+  beep->setState("id",beeps.size());
   beeps.push_back(beep);
 }
 
