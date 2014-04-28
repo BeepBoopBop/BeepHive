@@ -66,7 +66,9 @@ using namespace dealii;
   template<int dim>
   void RightHandSide<dim>::addObject(EnvObject* object)
   {
-    if( object->isSource() )
+    if( object->isSource() ){
       sources.push_back(object);
+      DEBUG("Adding Source to RHS");
+    }
   }
 #endif

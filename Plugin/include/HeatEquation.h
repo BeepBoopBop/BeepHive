@@ -381,7 +381,7 @@ template<int dim>
   template<int dim>
   void HeatEquation<dim>::addSource( EnvObject *newSource )
   {
-    rhs_function->addObject(newSource);
+    rhs_function.addObject(newSource);
   }
 
 #endif

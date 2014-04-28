@@ -315,6 +315,17 @@ target_link_libraries(
   ${Boost_LIBRARIES} 
   ${LIB_BEEP}
 )
+add_executable(
+  HeatTest
+  test/heat_test.cpp
+)
+
+target_link_libraries(
+  HeatTest
+  ${Boost_LIBRARIES} 
+  ${LIB_BEEP}
+  ${LIB_PLUGIN}
+)
 
 if(GUI)
   add_executable(

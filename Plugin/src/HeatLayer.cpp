@@ -12,9 +12,19 @@ HeatLayer::HeatLayer(double event_frequency) : initialized(false), DiscreteTimeL
 
 HeatLayer::~HeatLayer() {}
 
-void HeatLayer::setup()
+void HeatLayer::setup(World* world)
 {
+  
+  DEBUG("Setting up HeatEquation");
   //will get list of objects from world and add them to RHS
+  World::ObjectIterator it;
+
+  for(it = world->objectBegin(); it != world->objectEnd(); ++it){
+    discretization.addSource(*it);
+  }
+  
+  //setup listener points to evaluate the model at for graphical info
+
   initialized = true;
 }
 
@@ -22,8 +32,9 @@ void HeatLayer::update(const Event* event, World* world)
 {
 
   if(!initialized){
-    this->setup();
+    this->setup(world);
   }
+  DEBUG("Updating HeatLayer");
   this->discretization.run();
 
 }

@@ -29,7 +29,7 @@ class HeatLayer : public DiscreteTimeLayer
    
     //! The equation that the layer updates
     HeatEquation<2> discretization;
-    void setup();
+    void setup(World* world);
 
 };
 
