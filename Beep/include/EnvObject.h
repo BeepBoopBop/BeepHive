@@ -20,6 +20,9 @@ class EnvObject : public Serializable
     double getHeight();
     double getTemp();
     bool isSource();
+    void load(std::string JSON);
+    void saveHelper( ptree &tree );
+    std::string type();
     
   private:
     double xCoordinate;

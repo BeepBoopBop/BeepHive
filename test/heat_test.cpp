@@ -47,6 +47,10 @@ int main(int argc, char** argv)
     return 0;
   }else{
     World world;
+    EnvObject* Obj1 = new EnvObject( 100, 200, 40, 50, true );
+    world.addObject(Obj1);
+    EnvObject* Obj2 = new EnvObject( 700, 800, 50, 60, false);
+    world.addObject(Obj2);
     Layer* heat_layer = new HeatLayer(0.01);
     world.addLayer( "HeatLayer", heat_layer );
     world.start();
