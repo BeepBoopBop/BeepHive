@@ -32,7 +32,6 @@ void Communicators::run()
 
 void Communicators::constructStack()
 {
-  inputTree = outputTree;
  // const ptree& children = inputTree.get_child("obj");
   BOOST_FOREACH(ptree::value_type &v, inputTree.get_child("obj"))
   {
@@ -41,7 +40,7 @@ void Communicators::constructStack()
     n.type = tree.get<std::string>("type");//.second.data();
     n.JSON = Serializable::PTreeToString(v.second);
     std::cout << (Serializable::PTreeToString(v.second));
-    
+    inputStack.push(n); 
   }
 }
 
@@ -62,7 +61,10 @@ std::string Communicators::getInput()
 
 SerialObject Communicators::popObject()
 {
- return inputStack.pop();
+  SerialObject so;
+  so = inputStack.top();
+  inputStack.pop();
+ return so;
 }
 
 void Communicators::addToInput(std::string object)

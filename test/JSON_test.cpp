@@ -57,7 +57,7 @@ int main(int argc, char** argv)
   p2.put("type", "int");
   p2.put("objects.0", 1);
   p2.put("objects.1", 2);
-  //SerializeObject n;
+  SerialObject n;
   //n.type = "int";
   //n.JSON = Serializable::PTreeToString(p);
   //test out communicator serialization
@@ -66,6 +66,9 @@ int main(int argc, char** argv)
   std::string str = Communicators::getInstance().getStringOutput();
   std::cout << str;
   Communicators::getInstance().constructStack();
+  n = Communicators::getInstance().popObject();
+  
+  
 
   
 

@@ -81,7 +81,6 @@ Map<double>::iterator Stateful::findState(std::string state_name)
     return states.find(state_name);
   }else{
     std::string child_name = state_name.substr(0,scope_location-1);
-    std::cout << "Found child: " << child_name << std::endl;
     Map<Stateful*>::iterator it = children.find(child_name);
 
     if(it == children.end()){
