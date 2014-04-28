@@ -55,6 +55,7 @@ class BeepCommand : public CreateCommand
 {
   public:
     BeepCommand() {}
+    //! vector concrete type, param1,val1
     BeepCommand(FactoryParams params);
     virtual void run(World* world);
     std::string type() { return "BeepCommand"; }

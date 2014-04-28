@@ -1,4 +1,9 @@
 #include "Stateful.h"
+#include "BeepHive.h"
+#include "Command.h"
+#include "World.h"
+#include "Factory.h"
+#include "Serializable.h"
 
 void Stateful::setState(std::string state_name, double initial_state)
 {
@@ -34,22 +39,37 @@ Stateful* Stateful::getChild(std::string stateful_name)
 
 
 
-#if 0
-//serialization
-std::string  Stateful::save()
+//!This is not yet complete
+void  Stateful::saveHelper(ptree& tree)
 {
-
   //create tree
   //add states map
   //add children recursively
-  return "not implemented";
+  ptree state_tree;
+  StateIterator it;
+  for(it=states.begin(); it!=states.end(); ++it){
+    tree.put(it->first, it->second);
+  }
+  tree.add_child("states",state_tree);
+  
+  return;
 }
+
+
+
 void Stateful::load(std::string JSON)
 {
-
-
-}
+#if 0
+  ptree tree = StringtoPTree(JSON);
+  const ptree& children = tree.get_child("states");
+  BOOST_FOREACH(const ptree::value_type &v, children){
+    double val;
+    std::stringstream stream(v.second);
+    stream >> val;
+    states[v.first] = val;
+  }
 #endif
+}
 
 
 

@@ -26,6 +26,7 @@ void SyncLayer::update(const Event* event, World* world)
     world->quit();
   }
 
+  world->write();
   communicators.run();
   std::string input = communicators.getInput();
   //do json stuff to get factories

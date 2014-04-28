@@ -6,7 +6,7 @@
 
 #define SCOPE "::"
 
-class Stateful //: public Serializable
+class Stateful : public Serializable
 {
   public:
     typedef Map<double>::const_iterator StateIterator;
@@ -21,8 +21,9 @@ class Stateful //: public Serializable
     Stateful* getChild(std::string stateful_name);
 
     //serialization
-    //std::string  save();
-    //void load(std::string JSON);
+    void  saveHelper(ptree& tree);
+    void load(std::string JSON);
+    std::string type() { return "Stateful"; }
 
 
   private:
