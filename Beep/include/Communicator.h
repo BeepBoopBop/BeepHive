@@ -37,7 +37,7 @@ class Communicators : public Singleton<Communicators>
     Communicators();
     void run();
     void addCommunicator(std::string name, Communicator* communicator);
-    //SerialObject popObject();
+    SerialObject popObject();
     std::string getInput();
     void addToOutput(std::string object);
     void addToInput(std::string object);
