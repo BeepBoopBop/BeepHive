@@ -36,12 +36,17 @@ public:
     QAction *actionStep;
     QAction *actionEnvironment;
     QAction *actionStart;
+    QAction *actionPause;
+    QAction *actionContinue;
+    QAction *actionTest;
+    QAction *actionAgent_2;
+    QAction *actionCreate_New_Beep;
+    QAction *actionAdd_Environment;
     QWidget *centralWidget;
     QGraphicsView *graphicsView;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
-    QMenu *menuAdd;
     QMenu *menuAgents;
     QMenu *menuEnvironments;
     QMenu *menuResults;
@@ -53,7 +58,7 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(509, 407);
+        MainWindow->resize(499, 356);
         MainWindow->setAnimated(true);
         actionSave = new QAction(MainWindow);
         actionSave->setObjectName(QStringLiteral("actionSave"));
@@ -73,6 +78,20 @@ public:
         actionEnvironment->setObjectName(QStringLiteral("actionEnvironment"));
         actionStart = new QAction(MainWindow);
         actionStart->setObjectName(QStringLiteral("actionStart"));
+        actionPause = new QAction(MainWindow);
+        actionPause->setObjectName(QStringLiteral("actionPause"));
+        actionPause->setCheckable(false);
+        actionContinue = new QAction(MainWindow);
+        actionContinue->setObjectName(QStringLiteral("actionContinue"));
+        actionContinue->setCheckable(false);
+        actionTest = new QAction(MainWindow);
+        actionTest->setObjectName(QStringLiteral("actionTest"));
+        actionAgent_2 = new QAction(MainWindow);
+        actionAgent_2->setObjectName(QStringLiteral("actionAgent_2"));
+        actionCreate_New_Beep = new QAction(MainWindow);
+        actionCreate_New_Beep->setObjectName(QStringLiteral("actionCreate_New_Beep"));
+        actionAdd_Environment = new QAction(MainWindow);
+        actionAdd_Environment->setObjectName(QStringLiteral("actionAdd_Environment"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Preferred);
@@ -82,7 +101,7 @@ public:
         centralWidget->setSizePolicy(sizePolicy);
         graphicsView = new QGraphicsView(centralWidget);
         graphicsView->setObjectName(QStringLiteral("graphicsView"));
-        graphicsView->setGeometry(QRect(70, 100, 351, 141));
+        graphicsView->setGeometry(QRect(40, 30, 391, 191));
         QSizePolicy sizePolicy1(QSizePolicy::Fixed, QSizePolicy::Fixed);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
@@ -94,13 +113,11 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 509, 20));
+        menuBar->setGeometry(QRect(0, 0, 499, 20));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QStringLiteral("menuFile"));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QStringLiteral("menuEdit"));
-        menuAdd = new QMenu(menuEdit);
-        menuAdd->setObjectName(QStringLiteral("menuAdd"));
         menuAgents = new QMenu(menuBar);
         menuAgents->setObjectName(QStringLiteral("menuAgents"));
         menuEnvironments = new QMenu(menuBar);
@@ -126,11 +143,13 @@ public:
         menuFile->addAction(actionSave);
         menuFile->addAction(actionOpen);
         menuFile->addAction(actionExit);
-        menuEdit->addAction(menuAdd->menuAction());
         menuEdit->addAction(actionStep);
-        menuAdd->addAction(actionAgent);
-        menuAdd->addAction(actionEnvironment);
+        menuAgents->addAction(actionAgent_2);
+        menuAgents->addAction(actionCreate_New_Beep);
+        menuEnvironments->addAction(actionAdd_Environment);
         menuSimulation->addAction(actionStart);
+        menuSimulation->addAction(actionPause);
+        menuSimulation->addAction(actionContinue);
 
         retranslateUi(MainWindow);
 
@@ -149,9 +168,14 @@ public:
         actionStep->setText(QApplication::translate("MainWindow", "Step", 0));
         actionEnvironment->setText(QApplication::translate("MainWindow", "Environment", 0));
         actionStart->setText(QApplication::translate("MainWindow", "Start", 0));
+        actionPause->setText(QApplication::translate("MainWindow", "Pause", 0));
+        actionContinue->setText(QApplication::translate("MainWindow", "Continue", 0));
+        actionTest->setText(QApplication::translate("MainWindow", "test", 0));
+        actionAgent_2->setText(QApplication::translate("MainWindow", "Add Beep", 0));
+        actionCreate_New_Beep->setText(QApplication::translate("MainWindow", "New Beep Type", 0));
+        actionAdd_Environment->setText(QApplication::translate("MainWindow", "Add Object", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0));
-        menuAdd->setTitle(QApplication::translate("MainWindow", "Add", 0));
         menuAgents->setTitle(QApplication::translate("MainWindow", "Agents", 0));
         menuEnvironments->setTitle(QApplication::translate("MainWindow", "Environments", 0));
         menuResults->setTitle(QApplication::translate("MainWindow", "Results", 0));

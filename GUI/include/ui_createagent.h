@@ -45,13 +45,13 @@ public:
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         label_2 = new QLabel(CreateAgent);
         label_2->setObjectName(QStringLiteral("label_2"));
-        label_2->setGeometry(QRect(150, 100, 57, 15));
+        label_2->setGeometry(QRect(146, 100, 61, 20));
         lineEdit = new QLineEdit(CreateAgent);
         lineEdit->setObjectName(QStringLiteral("lineEdit"));
         lineEdit->setGeometry(QRect(210, 70, 171, 23));
         label = new QLabel(CreateAgent);
         label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(150, 70, 57, 15));
+        label->setGeometry(QRect(146, 70, 61, 20));
         lineEdit_2 = new QLineEdit(CreateAgent);
         lineEdit_2->setObjectName(QStringLiteral("lineEdit_2"));
         lineEdit_2->setGeometry(QRect(210, 100, 171, 23));
@@ -60,7 +60,7 @@ public:
         comboBox->setGeometry(QRect(210, 130, 171, 23));
         label_3 = new QLabel(CreateAgent);
         label_3->setObjectName(QStringLiteral("label_3"));
-        label_3->setGeometry(QRect(150, 130, 57, 15));
+        label_3->setGeometry(QRect(146, 130, 61, 20));
 
         retranslateUi(CreateAgent);
         QObject::connect(buttonBox, SIGNAL(accepted()), CreateAgent, SLOT(accept()));
@@ -74,13 +74,6 @@ public:
         CreateAgent->setWindowTitle(QApplication::translate("CreateAgent", "Dialog", 0));
         label_2->setText(QApplication::translate("CreateAgent", "Y center", 0));
         label->setText(QApplication::translate("CreateAgent", "X center", 0));
-        comboBox->clear();
-        comboBox->insertItems(0, QStringList()
-         << QApplication::translate("CreateAgent", "Swarming", 0)
-         << QApplication::translate("CreateAgent", "Object seeking", 0)
-         << QApplication::translate("CreateAgent", "Heat seeking", 0)
-         << QApplication::translate("CreateAgent", "Agent avoiding", 0)
-        );
         label_3->setText(QApplication::translate("CreateAgent", "Behavior", 0));
     } // retranslateUi
 

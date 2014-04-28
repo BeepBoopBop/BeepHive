@@ -7,7 +7,7 @@ class EnvironmentObject
 {
 
 public:
-  EnvironmentObject(int x, int y, int widthIn, int heightIn);
+  EnvironmentObject(int x, int y, int widthIn, int heightIn, bool source);
   void updateDrawPosition(QGraphicsScene* newScene);
 
 private:
@@ -15,6 +15,7 @@ private:
   int yCoordinate;
   int width;
   int height;
+  bool heatSource;
   QGraphicsRectItem* body;
   QGraphicsScene *scene;
 

@@ -114,6 +114,7 @@ if(GUI)
     GUI/include/environmentobject.h
     GUI/include/ui_createagent.h
     GUI/include/ui_createenvironment.h
+    GUI/include/newbeeptype.h
   )
 
   set(GUI_SOURCES
@@ -123,6 +124,7 @@ if(GUI)
     GUI/src/createagent.cpp
     GUI/src/createenvironment.cpp
     GUI/src/environmentobject.cpp
+    GUI/src/newbeeptype.cpp
   )
 endif(GUI)
 

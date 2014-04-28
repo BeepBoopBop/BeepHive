@@ -18,5 +18,15 @@
 #include <QString>
 #include <QPointF>
 #include <QPen>
+#include <QStringList>
+#include <QVariant>
+
+#include "BeepHive.h"
+#include "BeepHiveConfigs.h"
+#include "World.h"
+#include "Factory.h"
+#include "CustomBeepFactory.h"
+#include "Beep.h"
+#include "FlockingController.h"
 
 #endif // GUI_INCLUDES_H
