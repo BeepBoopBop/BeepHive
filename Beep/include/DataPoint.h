@@ -19,10 +19,10 @@ class DataPoint : public Serializable
     double getValue(){return value;}
     void setValue( double newValue ){value = newValue;}
 
-    std::string save();
     void load(std::string JSON);
     void saveHelper(ptree& tree);
     std::string type();
+
 
   private:
     double x, y, value;

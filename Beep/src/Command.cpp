@@ -20,7 +20,6 @@ CreateCommand::CreateCommand(FactoryParams params)
 }
 
 
-
 void  CreateCommand::saveHelper(ptree& tree)
 {
   tree.put("concrete_type", this->concrete_type);
