@@ -27,6 +27,7 @@
 #include "Factory.h"
 #include "CustomBeepFactory.h"
 #include "Beep.h"
-#include "FlockingController.h"
+#include "Communicator.h"
+#include "Stateful.h"
 
 #endif // GUI_INCLUDES_H

@@ -17,6 +17,7 @@ public:
     ~CreateAgent();
     int getX();
     int getY();
+    std::string getBeepType();
 
 private:
     Ui::CreateAgent *ui;

@@ -1,7 +1,5 @@
 #include "newbeeptype.h"
 
-
-
 //Creates and executes a command based on parameters
 void runCommand(std::string command_type,
                 FactoryParams params, World* world)
@@ -25,6 +23,14 @@ newBeepType::newBeepType(QWidget *parent) :
     QStringList sensors;
     QStringList controllers;
     QStringList manipulators;
+
+
+    Factories<Command>& command_factories = Factories<Command>::getInstance();
+    Factories<Command>::iterator it4;
+
+     for(it4=command_factories.begin(); it4!=command_factories.end(); ++it4){
+       qDebug() << QString::fromStdString("  ") << QString::fromStdString(it4->first);
+     }
 
     //BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
     //configs.initialize(argc,argv);
@@ -77,6 +83,6 @@ void newBeepType::createNewBeepType(){
     params = {"Manipulator",manipulatorName,manipulatorName,beepName};
     runCommand("CustomBeepFeatureCommand",params,&world);
 
-    params = {"RectanglePattern", "2 2 10", "BeepCommand", beepName};
-    runCommand("CreateWithPatternCommand",params,&world);
+    /*params = {"RectanglePattern", "2 2 10", "BeepCommand", beepName};
+    runCommand("CreateWithPatternCommand",params,&world);*/
 }

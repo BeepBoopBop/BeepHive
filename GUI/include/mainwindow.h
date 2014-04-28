@@ -39,6 +39,8 @@ public slots:
   void newBeepTypeCreated();
 
   void startSimulation();
+  void pauseSimulation();
+  void unPauseSimulation();
 
   QPen getPenFromTemp(int temp);
   void updateTemperatures();
