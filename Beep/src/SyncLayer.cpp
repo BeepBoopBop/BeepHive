@@ -21,21 +21,21 @@ void SyncLayer::update(const Event* event, World* world)
 
   //!Exit based on configuration
   double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();
-  if(time_limit>0 && event->getTime() > time_limit){
-    communicators.setOutput("exit");
-    world->quit();
-  }
+  //if(time_limit>0 && event->getTime() > time_limit){
+    //communicators.setOutput("exit");
+    //world->quit();
+  //}
 
   world->write();
   communicators.run();
-  std::string input = communicators.getInput();
-  //do json stuff to get factories
-  FactoryParams params;
-  //params.push_back("Beep");
-  //Factories<Command>::iterator it = command_factory.begin();
-  //assert(it != command_factory.end());
-  //std::cout << "The first command type is named: " <<  it->second->type() << std::endl;
-  //Command* command = command_factory["BeepCommand"]->create(params);
-  //command->run(world);
-  //delete command;
+
+  DEBUG("sfut");
+  while(!communicators.isEmpty()){
+    SerialObject object = communicators.popObject();
+    Command* command = command_factory[object.type]->create();
+    std::cout << "JSON: " << object.JSON << std::endl;
+    command->load(object.JSON);
+    command->run(world);
+    delete command;
+  }
 }

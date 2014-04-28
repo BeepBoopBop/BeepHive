@@ -131,6 +131,15 @@ class BasicFactories
   public:
     typedef typename Map<T*>::iterator iterator;
 
+
+
+    iterator find(std::string type)
+    {
+      return factories.find(type);
+    }
+
+
+
     /*!
      * \todo
      * Setup exceptions or some system to allow the user to recover from typos

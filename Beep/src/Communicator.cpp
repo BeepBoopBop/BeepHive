@@ -32,7 +32,6 @@ void Communicators::run()
 
 void Communicators::constructStack()
 {
-  inputTree = outputTree;
  // const ptree& children = inputTree.get_child("obj");
   BOOST_FOREACH(ptree::value_type &v, inputTree.get_child("obj"))
   {
