@@ -48,7 +48,7 @@ void  Stateful::saveHelper(ptree& tree)
   ptree state_tree;
   StateIterator it;
   for(it=states.begin(); it!=states.end(); ++it){
-    tree.put(it->first, it->second);
+    state_tree.put(it->first, it->second);
   }
   tree.add_child("states",state_tree);
   
@@ -59,16 +59,15 @@ void  Stateful::saveHelper(ptree& tree)
 
 void Stateful::load(std::string JSON)
 {
-#if 0
   ptree tree = StringtoPTree(JSON);
   const ptree& children = tree.get_child("states");
+  //std::cout << PTreeToString(children);
   BOOST_FOREACH(const ptree::value_type &v, children){
     double val;
-    std::stringstream stream(v.second);
+    std::stringstream stream(v.second.data());
     stream >> val;
     states[v.first] = val;
   }
-#endif
 }
 
 

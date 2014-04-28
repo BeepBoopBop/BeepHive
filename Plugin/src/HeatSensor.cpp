@@ -21,8 +21,9 @@ using boost::property_tree::ptree;
     //read the layer at the given x, y, z
     void HeatSensor::readLayer(const World* world)
     {
-      //return environment->getCellValue(x_loc, y_loc);
+      reading = layer->getValue(x_off, y_off);
     }
+
 
 #if 0
     std::string  HeatSensor::save()

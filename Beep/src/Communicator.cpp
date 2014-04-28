@@ -5,18 +5,40 @@
 Communicators::Communicators()
 {
   outputTree.put("count", -1);
+  inputTree.put("count", -1);
 }
 
 
 void Communicators::run()
 {
   Map<Communicator*>::iterator it;
-  for(it=communicators.begin(); it!=communicators.end(); ++it){
-    input=input + " " + it->second->run(output);
+  for(it=communicators.begin(); it!=communicators.end(); ++it)
+  {
+    ptree input = Serializable::StringtoPTree(it->second->run(output));
+
+    //input=input + " " + it->second->run(output);
+    //loop through all of the objects in the input and add them to inputTree 
+    BOOST_FOREACH(ptree::value_type &v, input.get_child("objects"))
+    {
+      addToInput(v.second.data());
+    }
   }
   output=std::string();
+  
+  constructStack();
+  
+  
 }
 
+void Communicators::constructStack()
+{
+  inputTree = outputTree;
+  BOOST_FOREACH(ptree::value_type &v, outputTree.get_child("objects"))
+  {
+    //SerialObject n;
+    std::cout << (v.second.data()) << '\n';
+  }
+}
 
 
 void Communicators::addCommunicator(std::string name, Communicator* communicator)
@@ -31,6 +53,22 @@ std::string Communicators::getInput()
   std::string temp=input;
   input="";
   return temp;
+}
+
+//SerialObject Communicators::popObject()
+//{
+///  return inputStack.pop();
+//}
+
+void Communicators::addToInput(std::string object)
+{
+    int count = inputTree.get<int>("count");
+    count++;
+    inputTree.put("count", count);
+    std::string array = "objects.";
+    array.append(std::to_string(count));
+    inputTree.put(array, object);
+
 }
 
 
