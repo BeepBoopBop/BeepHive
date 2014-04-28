@@ -214,7 +214,7 @@ template<int dim>
       initial_global_refinement = 2;
       n_adaptive_pre_refinement_steps = 4;
 
-      dealii::GridGenerator::hyper_L (triangulation);
+      dealii::GridGenerator::hyper_cube (triangulation, 0, 1024);
       triangulation.refine_global (initial_global_refinement);
 
       setup_system();

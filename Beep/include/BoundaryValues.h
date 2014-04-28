@@ -32,7 +32,7 @@ template<int dim>
 				     const unsigned int component) const
   {
     Assert(component == 0, ExcInternalError());
-    return 0;
+    return 50;
   }
 
 #endif

@@ -6,6 +6,7 @@
 #include "Dealii.h"
 #include "BeepHive.h"
 #include "EnvObject.h"
+#include "Communicator.h"
 
 typedef std::vector<EnvObject*> ObjectArray;
 

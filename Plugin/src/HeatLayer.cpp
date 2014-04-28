@@ -25,8 +25,8 @@ void HeatLayer::setup(World* world)
   
   //setup listener points to evaluate the model at for graphical info
 
-  for(double i = 0; i <= 1000; i +=20){
-    for( double j = 0; j <= 1000; j+=20){
+  for(double i = 0; i <= 1024; i +=16){
+    for( double j = 0; j <= 1024; j+=16){
       DataPoint* newPoint = new DataPoint( i, j );
       values.push_back(newPoint);
     }
@@ -90,13 +90,13 @@ void HeatLayer::write(){
   
   this->getOutput();
 
+  Communicators& communicators = Communicators::getInstance();
+
   DEBUG("Got output");
   for( int i = 0; i < values.size(); i++ ){
     std::string newMessage = values[i]->save();
-    std::cout << newMessage << " ";
+    communicators.addToOutput(newMessage);
   }
-  
-  std::cout << std::endl;
 
 }
 
