@@ -23,6 +23,7 @@ class DataPoint : public Serializable
     void saveHelper(ptree& tree);
     std::string type();
 
+    std::pair<std::pair<int, int>, int> getPair();
 
   private:
     double x, y, value;

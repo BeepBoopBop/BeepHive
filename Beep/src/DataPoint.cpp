@@ -22,3 +22,7 @@ void DataPoint::saveHelper( ptree &tree ){
 std::string DataPoint::type(){
   return("DataPoint");
 }
+
+std::pair<std::pair<int, int>, int> DataPoint::getPair(){
+  return std::make_pair(std::make_pair (x,y), value);
+}
