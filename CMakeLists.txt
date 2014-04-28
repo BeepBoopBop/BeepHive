@@ -87,6 +87,7 @@ set(PLUGIN_HEADERS
   Plugin/include/FlockingController.h
   Plugin/include/HeatEquation.h
   Plugin/include/HeatLayer.h
+  Plugin/include/HeatSensor.h
   Plugin/include/LightSensor.h
   Plugin/include/OmegaVelocityManipulator.h
   Plugin/include/RectanglePattern.h
@@ -97,6 +98,7 @@ set(PLUGIN_SOURCES
   Plugin/src/BasicController.cpp
   Plugin/src/FlockingController.cpp
   Plugin/src/HeatLayer.cpp
+  Plugin/src/HeatSensor.cpp
   Plugin/src/LightSensor.cpp
   Plugin/src/OmegaVelocityManipulator.cpp
   Plugin/src/RectanglePattern.cpp

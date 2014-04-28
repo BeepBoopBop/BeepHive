@@ -30,12 +30,6 @@ int main(int argc, char** argv)
   BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
   configs.initialize(argc,argv);
 
-  Factories<Command>& command_factories = Factories<Command>::getInstance();
-  FactoryParams params = {BEEP_PLUGIN};
-  Command* load = command_factories["LoadCommand"]->create(params);
-  load->run();
-  delete load;
-
 #ifdef GUI
   //std::stringstream file_name;
   //file_name << "out_" << rank;

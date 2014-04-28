@@ -16,8 +16,8 @@ class HeatSensor : public Sensor
     //read the layer at the given x, y
     void readLayer(const World* world);
     
-    std::string  save();
-    void load(std::string JSON);
+    //std::string  save();
+    //void load(std::string JSON);
 
   protected:
     int x_off, y_off;

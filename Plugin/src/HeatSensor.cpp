@@ -24,6 +24,7 @@ using boost::property_tree::ptree;
       //return environment->getCellValue(x_loc, y_loc);
     }
 
+#if 0
     std::string  HeatSensor::save()
     {
       
@@ -39,3 +40,4 @@ using boost::property_tree::ptree;
       x_off = tree.get<int> ("x_off");
       y_off = tree.get<int> ("y_off");
     }
+#endif
