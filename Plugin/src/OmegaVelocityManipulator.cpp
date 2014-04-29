@@ -29,7 +29,6 @@ void OmegaVelocityManipulator::updateState(Beep* beep, World* world)
 {
   DEBUG("running manipulator");
   double delta_t = world->getLayer("BeepLayer")->timeSinceLastUpdate();
-  //-- std::cout << "Delta: " <<  delta_t << std::endl;
   double omega = inputs[0];
   double velocity = inputs[1];
   double theta = beep->getState("theta");

@@ -1,8 +1,5 @@
 #include "BeepHive.h"
-#include "BeepHiveConfigs.h"
-#include "World.h"
 #include "Factory.h"
-#include "CustomBeepFactory.h"
 #include "Beep.h"
 #include "Sensor.h"
 #include "test.h"
@@ -16,6 +13,9 @@ int main(int argc, char** argv)
     std::cout << "Enter name of shared library: ";
     std::cin >> file_name;
   }
+
+  //Use some code from libBeep so it loads initially
+  Beep();
 
   Factories<Command>& command_factories = Factories<Command>::getInstance();
   Factories<Sensor>& sensor_factories = Factories<Sensor>::getInstance();

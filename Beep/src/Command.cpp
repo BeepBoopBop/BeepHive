@@ -36,16 +36,11 @@ void  CreateCommand::saveHelper(ptree& tree)
 
 void  CreateCommand::load(std::string JSON)
 {
-  DEBUG("CREATECOMMAND")
   ptree tree = StringToPTree(JSON);
-  DEBUG("JSON done")
   concrete_type = tree.get<std::string> ("concrete_type");
-  DEBUG("2")
   std::cout << concrete_type << "\n";
   BOOST_FOREACH(ptree::value_type &v, tree.get_child("params.")){
-  DEBUG("3")
       std::cout << (v.second.data()) << "\n";
-  DEBUG("4")
       this->params.push_back(v.second.data());
   }
 }
