@@ -154,7 +154,7 @@ class BasicFactories
         for(it=this->begin(); it!=this->end(); ++it){
           std::cout << it->first << std::endl;
         }
-        abort();
+        return NULL;
       }
       return factory->second;
     }

@@ -23,6 +23,7 @@ int main(int argc, char** argv)
 
   World world;
 
+  //Create Beep type for the test
   FactoryParams params = {"MyBeep", "Beep"};
   runCommand("CustomBeepCommand",params,&world);
 
@@ -48,6 +49,7 @@ int main(int argc, char** argv)
   bool good = true;
   std::stringstream stream;
 
+  //Run the stress test adding beeps until it fails
   do{
     stream.str("");
     stream << dim << " " << dim << " " << 10;
@@ -77,6 +79,7 @@ int main(int argc, char** argv)
     }
   }while(good);
 
+  //Output
   if(beeps_added < target){
     std::cout << "FAILED: " <<  beeps_added << " IS LESS THAN TARGET OF " << target << std::endl;
     return 1;

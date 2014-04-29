@@ -21,19 +21,18 @@ void SyncLayer::update(const Event* event, World* world)
 
   //!Exit based on configuration
   double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();
-  //if(time_limit>0 && event->getTime() > time_limit){
-    //communicators.setOutput("exit");
-    //world->quit();
-  //}
+  if(time_limit>0 && event->getTime() >= time_limit){
+    communicators.addToOutput("{\"type\":\"Exit\"}");
+    world->quit();
+  }
 
   world->write();
   communicators.run();
 
-  DEBUG("sfut");
   while(!communicators.isEmpty()){
     SerialObject object = communicators.popObject();
     Command* command = command_factory[object.type]->create();
-    std::cout << "JSON: " << object.JSON << std::endl;
+    //std::cout << "JSON: " << object.JSON << std::endl;
     command->load(object.JSON);
     command->run(world);
     delete command;

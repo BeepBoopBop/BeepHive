@@ -29,7 +29,7 @@ class Serializable{
     virtual std::string type() = 0;
     
     static std::string PTreeToString(ptree tree);
-    static ptree StringtoPTree(std::string JSON);
+    static ptree StringToPTree(std::string JSON);
 
     //! should return the class and user is responsible for casting to the subclass
     virtual void load(std::string JSON) =0;

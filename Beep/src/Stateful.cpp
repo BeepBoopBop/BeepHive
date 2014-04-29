@@ -59,7 +59,7 @@ void  Stateful::saveHelper(ptree& tree)
 
 void Stateful::load(std::string JSON)
 {
-  ptree tree = StringtoPTree(JSON);
+  ptree tree = StringToPTree(JSON);
   const ptree& children = tree.get_child("states");
   //std::cout << PTreeToString(children);
   BOOST_FOREACH(const ptree::value_type &v, children){

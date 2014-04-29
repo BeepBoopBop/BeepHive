@@ -20,7 +20,7 @@ bool EnvObject::isSource(){ return source; }
 void  EnvObject::load(std::string JSON)
 {
 
-  ptree tree = StringtoPTree(JSON);
+  ptree tree = StringToPTree(JSON);
 
   xCoordinate = tree.get<double>("x");
   yCoordinate = tree.get<double>("y");

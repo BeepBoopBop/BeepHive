@@ -37,7 +37,7 @@ void  CreateCommand::saveHelper(ptree& tree)
 void  CreateCommand::load(std::string JSON)
 {
   DEBUG("CREATECOMMAND")
-  ptree tree = StringtoPTree(JSON);
+  ptree tree = StringToPTree(JSON);
   DEBUG("JSON done")
   concrete_type = tree.get<std::string> ("concrete_type");
   DEBUG("2")

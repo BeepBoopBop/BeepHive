@@ -19,7 +19,7 @@ void Communicators::run()
   Map<Communicator*>::iterator it;
   for(it=communicators.begin(); it!=communicators.end(); ++it)
   {
-    ptree input = Serializable::StringtoPTree(it->second->run(output));
+    ptree input = Serializable::StringToPTree(it->second->run(output));
 
     //input=input + " " + it->second->run(output);
     //loop through all of the objects in the input and add them to inputTree 
@@ -72,13 +72,13 @@ SerialObject Communicators::popObject()
   SerialObject so;
   so = inputStack.top();
   inputStack.pop();
- return so;
+  return so;
 }
 
 void Communicators::addToInput(std::string object)
 {
 
-    ptree p = Serializable::StringtoPTree(object);
+    ptree p = Serializable::StringToPTree(object);
     int count = inputTree.get<int>("count");
     count++;
     inputTree.put("count", count);
@@ -94,7 +94,7 @@ void Communicators::addToInput(std::string object)
 
 void Communicators::addToOutput(std::string object)
 {
-    ptree p = Serializable::StringtoPTree(object);
+    ptree p = Serializable::StringToPTree(object);
     int count = outputTree.get<int>("count");
     count++;
     
