@@ -19,19 +19,19 @@ bool EnvObject::isSource(){ return source; }
 
 void  EnvObject::load(std::string JSON)
 {
+  if(JSON.size() > 0){
+    ptree tree = StringToPTree(JSON);
 
-  ptree tree = StringToPTree(JSON);
-
-  xCoordinate = tree.get<double>("x");
-  yCoordinate = tree.get<double>("y");
-  width = tree.get<double>("width");
-  height = tree.get<double>("height");
-  source = tree.get<bool>("source");
-  temp = tree.get<double>("temp");
-
+    xCoordinate = tree.get<double>("x");
+    yCoordinate = tree.get<double>("y");
+    width = tree.get<double>("width");
+    height = tree.get<double>("height");
+    source = tree.get<bool>("source");
+    temp = tree.get<double>("temp");
+  }
 }
 void EnvObject::saveHelper( ptree &tree ){
-  
+
   tree.put("x", xCoordinate);
   tree.put("y", yCoordinate);
   tree.put("width", width);

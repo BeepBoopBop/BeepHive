@@ -7,10 +7,12 @@ using boost::property_tree::ptree;
 
 void  DataPoint::load(std::string JSON)
 {
-  ptree tree = StringToPTree(JSON);
-  x = tree.get<double>("x");
-  y = tree.get<double>("y");
-  value = tree.get<double>("value");
+  if(JSON.size() > 0){
+    ptree tree = StringToPTree(JSON);
+    x = tree.get<double>("x");
+    y = tree.get<double>("y");
+    value = tree.get<double>("value");
+  }
 }
 
 void DataPoint::saveHelper( ptree &tree ){

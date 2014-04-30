@@ -22,6 +22,8 @@ void SyncLayer::update(const Event* event, World* world)
   //!Exit based on configuration
   double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();
   if(time_limit>0 && event->getTime() >= time_limit){
+    std::cout << "The time is " << event->getTime() << 
+      " which is greater than the limit: " << time_limit << std::endl;
     communicators.addToOutput("{\"type\":\"Exit\"}");
     world->quit();
   }

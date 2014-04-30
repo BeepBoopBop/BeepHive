@@ -12,9 +12,6 @@ std::string CentralCommunicator::run(std::string& message)
 
   comm.barrier();
 
-  //!Exit based on configuration
-  double time_limit=BeepHiveConfigs::getInstance().getTimeLimit();
-
   std::vector<std::string> central_recv;
   gather(comm,message,central_recv,0);
 

@@ -1,5 +1,4 @@
 #include <boost/serialization/base_object.hpp>
-#include <boost/mpi.hpp>
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -123,8 +122,6 @@ void MainWindow::timeToStep(){
   //tell all beeps to step
   if(scene) delete scene;
   scene = NULL;
-  mpiWaitForUpdates();
-  mpiLoadUpdates();
   reDraw();
 }
 

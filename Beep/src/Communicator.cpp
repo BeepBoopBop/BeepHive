@@ -1,56 +1,62 @@
 #include "Communicator.h"
-//#include "BeepHive.h"
+#include "BeepHive.h"
+#include "Serializable.h"
 
 
 Communicators::Communicators()
 {
-  outputTree.put("count",-1);
-  inputTree.put("count", -1);
-  //inputTree.put_child("obj.0", 1);
-  //outputTree.put_child("obj.0",-1);
-  inputTree.put("obj.0", 1);
-  outputTree.put("obj.0",-1);
-
+  reset(output_tree);
+  reset(input_tree);
 }
+
+
+
+void Communicators::reset(ptree& tree)
+{
+  tree.clear();
+}
+
 
 
 void Communicators::run()
 {
   Map<Communicator*>::iterator it;
+  std::string output = Serializable::PTreeToString(output_tree);
+
+  reset(input_tree);
+
   for(it=communicators.begin(); it!=communicators.end(); ++it)
   {
-    ptree input = Serializable::StringToPTree(it->second->run(output));
+    if(output.size() > 0){
+      std::string input_string = it->second->run(output);
+      ptree input = Serializable::StringToPTree(input_string);
 
-    //input=input + " " + it->second->run(output);
-    //loop through all of the objects in the input and add them to inputTree 
-    BOOST_FOREACH(ptree::value_type &v, input.get_child("obj"))
-    {
-      addToInput(v.second.data());
+      BOOST_FOREACH(ptree::value_type &v, input)
+      {
+        addToInput(Serializable::PTreeToString(v.second));
+      }
     }
   }
-  output=std::string();
-  
+
+  reset(output_tree);
+
   constructStack();
-  
-  
 }
+
+
 
 void Communicators::constructStack()
 {
-  //inputTree= outputTree;
-  int count = inputTree.get<int>("count");
-  if(count >=0){
-    BOOST_FOREACH(ptree::value_type &v, inputTree.get_child("obj"))
-    {
-      const ptree& tree = v.second;
-      SerialObject n;
-      n.type = tree.get<std::string>("type");
-      n.JSON = Serializable::PTreeToString(v.second);
-      std::cout << (Serializable::PTreeToString(v.second));
-      inputStack.push(n); 
-    }
+  BOOST_FOREACH(ptree::value_type &v, input_tree)
+  {
+    const ptree& tree = v.second;
+    SerialObject n;
+    n.type = tree.get<std::string>("type");
+    n.JSON = Serializable::PTreeToString(v.second);
+    input_stack.push(n); 
   }
 }
+
 
 
 void Communicators::addCommunicator(std::string name, Communicator* communicator)
@@ -67,66 +73,52 @@ std::string Communicators::getInput()
   return temp;
 }
 
+
+
 SerialObject Communicators::popObject()
 {
   SerialObject so;
-  so = inputStack.top();
-  inputStack.pop();
+  so = input_stack.top();
+  input_stack.pop();
   return so;
 }
 
+
+
 void Communicators::addToInput(std::string object)
 {
-
+  if(object.size() > 0){
     ptree p = Serializable::StringToPTree(object);
-    int count = inputTree.get<int>("count");
-    count++;
-    inputTree.put("count", count);
-    std::string array = "obj.";
-    array.append(std::to_string(count));
-    //std::cout << array << " " << object << '\n';
-    //outputTree.put(array, " ");
-    //outputTree.push_back(ptree::value_type(array, p));
-    inputTree.put_child(array, p);
-
+    std::string array = "obj";
+    input_tree.put_child(array, p);
+  }
 }
+
 
 
 void Communicators::addToOutput(std::string object)
 {
+  if(object.size() > 0){
     ptree p = Serializable::StringToPTree(object);
-    int count = outputTree.get<int>("count");
-    count++;
-    
-    outputTree.put("count", count);
-    std::string array = "obj.";
-    array.append(std::to_string(count));
-    //std::cout << array << " " << object << '\n';
-    //outputTree.put(array, " ");
-    //outputTree.push_back(ptree::value_type(array, p));
-    outputTree.put_child(array, p);
-
+    std::string array = "obj";
+    output_tree.put_child(array, p);
+  }
 }
 
-
-void Communicators::setOutput(std::string output)
-{
-  this->output=output;
-}
 
 
 std::string Communicators::getStringOutput()
 {
-    return Serializable::PTreeToString(outputTree); 
+  return Serializable::PTreeToString(output_tree); 
 }
 
 bool Communicators::isEmpty(){
-  return inputStack.empty();
+  return input_stack.empty();
 }
 
 CommunicatorCommand::CommunicatorCommand(FactoryParams params)
   : CreateCommand(params) {}
-  
+
 
 
 void CommunicatorCommand::run(World* world)

@@ -27,7 +27,6 @@ OmegaVelocityManipulator::OmegaVelocityManipulator() : Manipulator()
  */
 void OmegaVelocityManipulator::updateState(Beep* beep, World* world)
 {
-  DEBUG("running manipulator");
   double delta_t = world->getLayer("BeepLayer")->timeSinceLastUpdate();
   double omega = inputs[0];
   double velocity = inputs[1];

@@ -91,7 +91,6 @@ void World::write()
   for(BeepIterator it=this->beepBegin(); it!=this->beepEnd(); ++it){
     Communicators::getInstance().addToOutput((*it)->save());
   }
-  Communicators::getInstance().addToOutput("{\"type\":\"Exit\"}");
 }
 
 

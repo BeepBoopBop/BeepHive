@@ -8,8 +8,8 @@ void Command::run()
   this->run(NULL);
 }
 
-CreateCommand::CreateCommand(FactoryParams params)
-  : params()
+  CreateCommand::CreateCommand(FactoryParams params)
+: params()
 {
   assert(params.size()>=1);
   this->concrete_type=params[0];
@@ -36,11 +36,13 @@ void  CreateCommand::saveHelper(ptree& tree)
 
 void  CreateCommand::load(std::string JSON)
 {
-  ptree tree = StringToPTree(JSON);
-  concrete_type = tree.get<std::string> ("concrete_type");
-  std::cout << concrete_type << "\n";
-  BOOST_FOREACH(ptree::value_type &v, tree.get_child("params.")){
+  if(JSON.size() > 0){
+    ptree tree = StringToPTree(JSON);
+    concrete_type = tree.get<std::string> ("concrete_type");
+    std::cout << concrete_type << "\n";
+    BOOST_FOREACH(ptree::value_type &v, tree.get_child("params.")){
       std::cout << (v.second.data()) << "\n";
       this->params.push_back(v.second.data());
+    }
   }
 }

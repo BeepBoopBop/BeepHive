@@ -35,8 +35,10 @@ void  LoadCommand::saveHelper(ptree& tree)
 
 void LoadCommand::load(std::string JSON)
 {
-  ptree tree = StringToPTree(JSON);
-  this->file_name = tree.get<std::string>("file_name");
+  if(JSON.size() > 0){
+    ptree tree = StringToPTree(JSON);
+    this->file_name = tree.get<std::string>("file_name");
+  }
   return;
 }
 

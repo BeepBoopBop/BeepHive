@@ -23,6 +23,11 @@ typedef struct so
  * ordering constraints imposed by MPI
  */
 
+/*!
+ * A generic class for sending and receiving data from some source
+ *
+ * This includes file IO, communication with a controller process, etc
+ */
 class Communicator
 {
   public:
@@ -31,6 +36,16 @@ class Communicator
 
 
 
+/*!
+ * The communicators class is used for generalized sending and receiving to and
+ * from anonymous sources.
+ *
+ * Currently Communicators is used for both communication between the backend
+ * and the gui and file IO. All data goes to each individual communicator so the
+ * code does not have to know where data is going. For instance, running the GUI
+ * with the backend or instead writing commands to a file is just a difference
+ * of which instances of Communicator are being used.
+ */
 class Communicators : public Singleton<Communicators>
 {
   public:
@@ -41,17 +56,16 @@ class Communicators : public Singleton<Communicators>
     std::string getInput();
     void addToOutput(std::string object);
     void addToInput(std::string object);
-    void setOutput(std::string output);
     void constructStack();
     bool isEmpty();
     std::string getStringOutput();
   private:
+    static void reset(ptree& tree);
     Map<Communicator*> communicators;
-    std::string output;
-    ptree outputTree;
-    ptree inputTree;
+    ptree output_tree;
+    ptree input_tree;
     std::string input;
-    std::stack<SerialObject> inputStack;
+    std::stack<SerialObject> input_stack;
 };
 
 class CommunicatorCommand : public CreateCommand

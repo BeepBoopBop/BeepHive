@@ -8,7 +8,6 @@
 
 void FlockingController::run(Beep* beep)
 {
-  DEBUG("Running basic controller");
   Manipulator* omega_velocity=beep->getManipulator("OmegaVelocityManipulator");
   std::vector<double> inputs;
 

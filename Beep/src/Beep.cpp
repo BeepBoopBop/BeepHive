@@ -35,7 +35,6 @@ void Beep::readSensors(World* world)
 
 void Beep::runController()
 {
-  DEBUG("Running Controller");
   if(this->controller){
     controller->run(this);
   }
