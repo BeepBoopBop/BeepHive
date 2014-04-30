@@ -18,6 +18,8 @@ void runCommand(std::string command_type,
 
   command_factory = Factories<Command>::getInstance()[command_type];
   command = command_factory->create(params);
+  command->run();
+  Communicators::getInstance().addToOutput(command->save());
 
   delete command;
   return;
@@ -117,7 +119,8 @@ void MainWindow::moveAgents(){
 //******************************************
 void MainWindow::timeToStep(){
   if(!started) return;
-  Communicators& myCommunicator = Communicators::getInstance();
+  qDebug() << "Stepping\n";
+  mpiWaitForUpdates();
 
   //tell all beeps to step
   if(scene) delete scene;
@@ -180,6 +183,7 @@ void MainWindow::newBeepTypeCreated(){
 //toggle start to pause/start the simulation
 void MainWindow::startSimulation(){
   started = true;
+  qDebug() << "START STUFF\n";
   mpiStart();
 }
 
@@ -295,8 +299,8 @@ void MainWindow::mpiWaitForUpdates()
   pointTemps.clear();
   Communicators& myCommunicator = Communicators::getInstance();
   SerialObject object;
+  myCommunicator.run();
   while(!myCommunicator.isEmpty()){
-      myCommunicator.run();
       object = myCommunicator.popObject();
       if(object.type == "Beep"){
           Stateful beep;

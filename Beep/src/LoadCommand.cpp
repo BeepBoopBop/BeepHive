@@ -44,7 +44,10 @@ void LoadCommand::load(std::string JSON)
 
 
 
-NOT_IMPLEMENTED(Command* LoadCommandFactory::create())
+Command* LoadCommandFactory::create()
+{
+  return new LoadCommand("");
+}
 
 
 

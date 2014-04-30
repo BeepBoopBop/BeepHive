@@ -127,9 +127,7 @@ void BeepCommand::run(World* world)
 
 Command* BeepCommandFactory::create()
 {
-  FactoryParams params;
-  params.push_back("Beep");
-  return create(params);
+  return new BeepCommand();
 }
 
 

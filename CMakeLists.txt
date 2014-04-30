@@ -352,7 +352,7 @@ add_test(stress ${CMAKE_CURRENT_BINARY_DIR}/StressTest)
 add_test(JSON ${CMAKE_CURRENT_BINARY_DIR}/JSONTest)
 add_test(backend mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
 add_test(load ${CMAKE_CURRENT_BINARY_DIR}/LoadTest lib/lib${LIB_PLUGIN}.so)
-add_test(heat ${CMAKE_CURRENT_BINARY_DIR}/HeatTest)
+add_test(heat mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/HeatTest)
 
 if(GUI)
   qt5_use_modules(GuiTest Widgets)

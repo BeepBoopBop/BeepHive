@@ -53,7 +53,7 @@ void Communicators::constructStack()
     SerialObject n;
     n.type = tree.get<std::string>("type");
     n.JSON = Serializable::PTreeToString(v.second);
-    input_stack.push(n); 
+    input_queue.push(n); 
   }
 }
 
@@ -78,8 +78,8 @@ std::string Communicators::getInput()
 SerialObject Communicators::popObject()
 {
   SerialObject so;
-  so = input_stack.top();
-  input_stack.pop();
+  so = input_queue.front();
+  input_queue.pop();
   return so;
 }
 
@@ -88,9 +88,10 @@ SerialObject Communicators::popObject()
 void Communicators::addToInput(std::string object)
 {
   if(object.size() > 0){
+    //std::cout << "RECEIVED: " << object << std::endl;
     ptree p = Serializable::StringToPTree(object);
     std::string array = "obj";
-    input_tree.put_child(array, p);
+    input_tree.add_child(array, p);
   }
 }
 
@@ -99,9 +100,10 @@ void Communicators::addToInput(std::string object)
 void Communicators::addToOutput(std::string object)
 {
   if(object.size() > 0){
+    //std::cout << "SENT: " << object << std::endl;
     ptree p = Serializable::StringToPTree(object);
     std::string array = "obj";
-    output_tree.put_child(array, p);
+    output_tree.add_child(array, p);
   }
 }
 
@@ -113,7 +115,7 @@ std::string Communicators::getStringOutput()
 }
 
 bool Communicators::isEmpty(){
-  return input_stack.empty();
+  return input_queue.empty();
 }
 
 CommunicatorCommand::CommunicatorCommand(FactoryParams params)
@@ -130,7 +132,11 @@ void CommunicatorCommand::run(World* world)
 
 
 
-NOT_IMPLEMENTED(Command* CommunicatorCommandFactory::create())
+Command* CommunicatorCommandFactory::create()
+{
+  FactoryParams temp;
+  return new CommunicatorCommand(temp);
+}
 
 
 

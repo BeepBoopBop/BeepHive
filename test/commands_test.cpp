@@ -49,7 +49,7 @@ int main(int argc, char** argv)
 
   params = {"HeatLayer","HeatLayer","1"};
   Command* command=command_factories["LayerCommand"]->create(params);
-  //command->run(&world);
+  command->run(&world);
   //std::cout << "SUCCESSFULLY ADDED HEAT LAYER TO WORLD" << std::endl;
   return 0;
 }

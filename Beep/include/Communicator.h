@@ -5,7 +5,7 @@
 #include "Singleton.h"
 #include "Serializable.h"
 #include "Command.h"
-#include <stack>
+#include <queue>
 
 
 typedef struct so
@@ -65,7 +65,7 @@ class Communicators : public Singleton<Communicators>
     ptree output_tree;
     ptree input_tree;
     std::string input;
-    std::stack<SerialObject> input_stack;
+    std::queue<SerialObject> input_queue;
 };
 
 class CommunicatorCommand : public CreateCommand

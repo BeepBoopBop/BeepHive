@@ -50,7 +50,7 @@ void CreateWithPatternCommand::run(World* world)
 Command* CreateWithPatternCommandFactory::create()
 {
   FactoryParams params;
-  return new CreateWithPatternCommand(params);
+  return new CreateWithPatternCommand();
 }
 
 

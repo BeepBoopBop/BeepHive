@@ -30,6 +30,7 @@ class Pattern
 class CreateWithPatternCommand : public CreateCommand
 {
   public:
+    CreateWithPatternCommand() {}
     CreateWithPatternCommand(FactoryParams params);
 
     virtual void run(World* world);

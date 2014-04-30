@@ -170,6 +170,7 @@ class BasicFactories
 
     void addFactory(T& factory)
     {
+      std::cout << "ADDING: " << factory.type() << std::endl;
       factories[factory.type()] = &factory;
     }
 

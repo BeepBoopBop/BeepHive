@@ -61,13 +61,15 @@ void Stateful::load(std::string JSON)
 {
   if(JSON.size() > 0){
     ptree tree = StringToPTree(JSON);
-    const ptree& children = tree.get_child("states");
-    //std::cout << PTreeToString(children);
-    BOOST_FOREACH(const ptree::value_type &v, children){
-      double val;
-      std::stringstream stream(v.second.data());
-      stream >> val;
-      states[v.first] = val;
+    if(tree.find("states") != tree.not_found()){
+      const ptree& children = tree.get_child("states");
+      //std::cout << PTreeToString(children);
+      BOOST_FOREACH(const ptree::value_type &v, children){
+        double val;
+        std::stringstream stream(v.second.data());
+        stream >> val;
+        states[v.first] = val;
+      }
     }
   }
 }

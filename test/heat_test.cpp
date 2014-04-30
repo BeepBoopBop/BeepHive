@@ -22,7 +22,7 @@ int main(int argc, char** argv)
 
   BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
   configs.initialize(argc,argv);
-  configs.setTimeLimit(10);
+  configs.setTimeLimit(0.1);
 
   Communicators& communicators = Communicators::getInstance();
   communicators.addCommunicator("central",new CentralCommunicator());
@@ -31,15 +31,16 @@ int main(int argc, char** argv)
     DEBUG("I am the GUI!");
     std::vector<std::string> updates;
     bool run=true;
-    while(run){
-      communicators.addToOutput("Hello!");
-      communicators.run();
-      //comm.barrier();
-      std::string recv = communicators.getInput();
 
-      std::cout << "Got:" << recv << std::endl;
-      if(recv == " exit"){
-        run=false;
+    while(run){
+      communicators.run();
+      while(!communicators.isEmpty()){
+        SerialObject object = communicators.popObject();
+        std::cout << "TYPE: " << object.type << " STRING: " 
+                  << object.JSON << std::endl;
+        if(object.type == "Exit"){
+          run=false;
+        }
       }
     }
     

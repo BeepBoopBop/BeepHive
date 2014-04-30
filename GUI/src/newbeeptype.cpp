@@ -1,15 +1,16 @@
 #include "newbeeptype.h"
 
 //Creates and executes a command based on parameters
-void runCommand(std::string command_type,
-                FactoryParams params, World* world)
+static void runCommand(std::string command_type,
+                FactoryParams params)
 {
   Command* command;
   Factory<Command>* command_factory;
 
   command_factory = Factories<Command>::getInstance()[command_type];
   command = command_factory->create(params);
-  command->run(world);
+  command->run();
+  Communicators::getInstance().addToOutput(command->save());
 
   delete command;
 
@@ -65,23 +66,21 @@ newBeepType::newBeepType(QWidget *parent) :
 //Create the new beepType based off of input in the form
 //this function is called by the mainwindow
 void newBeepType::createNewBeepType(){
-    World world;
-
     std::string beepName = ui.lineEdit->text().toUtf8().constData();
     FactoryParams params = {beepName, "Beep"};
-    runCommand("CustomBeepCommand",params,&world);
+    runCommand("CustomBeepCommand",params);
 
     std::string sensorName = ui.comboBox->currentText().toUtf8().constData();
     if(sensorName.length() > 0) params = {"Sensor","AverageX",sensorName,beepName,"x"};
-    runCommand("CustomBeepFeatureCommand",params,&world);
+    runCommand("CustomBeepFeatureCommand",params);
 
     std::string controllerName = ui.comboBox_2->currentText().toUtf8().constData();
     if(controllerName.length() > 0) params = {"Controller",controllerName,controllerName,beepName};
-    runCommand("CustomBeepFeatureCommand",params,&world);
+    runCommand("CustomBeepFeatureCommand",params);
 
     std::string manipulatorName = ui.comboBox_3->currentText().toUtf8().constData();
     params = {"Manipulator",manipulatorName,manipulatorName,beepName};
-    runCommand("CustomBeepFeatureCommand",params,&world);
+    runCommand("CustomBeepFeatureCommand",params);
 
     /*params = {"RectanglePattern", "2 2 10", "BeepCommand", beepName};
     runCommand("CreateWithPatternCommand",params,&world);*/
