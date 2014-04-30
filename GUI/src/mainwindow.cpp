@@ -294,12 +294,13 @@ void MainWindow::mpiStart()
 //in each update we want to clear and then repopulate our vectors of temperatures and robots
 void MainWindow::mpiWaitForUpdates()
 {
-
-/*
   robots.clear();
+  pointTemps.clear();
   Communicators& myCommunicator = Communicators::getInstance();
   SerialObject object;
-  while(  myCommunicator.run()){
+  while(!myCommunicator.isEmpty()){
+      myCommunicator.run();
+      object = myCommunicator.popObject();
       if(object.type == "Beep"){
           Stateful beep;
           beep.load(object.JSON);
@@ -308,8 +309,15 @@ void MainWindow::mpiWaitForUpdates()
           Robot tempRobot = Robot(x, y);
           robots.push_back(tempRobot);
       }
-  }*/
-
+      else{
+        Stateful tempPoints;
+        tempPoints.load(object.JSON);
+        int x = tempPoints.getState("x");
+        int y = tempPoints.getState("y");
+        int value = tempPoints.getState("value");
+        pointTemps.push_back(std::make_pair(std::make_pair(x,y), value));
+      }
+  }
   return;
 }
 
