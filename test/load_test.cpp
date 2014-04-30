@@ -1,9 +1,7 @@
 #include "BeepHive.h"
-#include "BeepHiveConfigs.h"
-#include "World.h"
 #include "Factory.h"
-#include "CustomBeepFactory.h"
 #include "Beep.h"
+#include "Sensor.h"
 #include "test.h"
 
 int main(int argc, char** argv)
@@ -16,33 +14,24 @@ int main(int argc, char** argv)
     std::cin >> file_name;
   }
 
-  BeepHiveConfigs& configs=BeepHiveConfigs::getInstance();
-  configs.initialize(argc,argv);
-  configs.setTimeLimit(2);
+  //Use some code from libBeep so it loads initially
+  Beep();
 
   Factories<Command>& command_factories = Factories<Command>::getInstance();
+  Factories<Sensor>& sensor_factories = Factories<Sensor>::getInstance();
 
-  World world;
-
-  FactoryParams params = {"MyBeep", "Beep"};
-  runCommand("CustomBeepCommand",params,&world);
-
+  //assert(sensor_factories["AverageSensor"] == NULL);
+  
   std::cout << "TESTING SHARED LIBRARY LOADING" << std::endl;
-  params.clear();
+
+  FactoryParams params;
   params.push_back(file_name);
-  runCommand("LoadCommand",params,&world);
+  runCommand("LoadCommand",params,NULL);
 
   std::cout << "LOADED LIBRARY, " << file_name << ", TESTING" << std::endl;
 
-  params = {"Controller","FlockingController","FlockingController","MyBeep"};
-  runCommand("CustomBeepFeatureCommand",params,&world);
-
-  params = {"Sensor","AverageX","AverageSensor","MyBeep","x"};
-  runCommand("CustomBeepFeatureCommand",params,&world);
+  assert(sensor_factories["AverageSensor"] != NULL);
 
   std::cout << "SUCCESSFULLY RAN COMMAND FROM " << file_name << std::endl;
-
-  world.start();
-
   std::cout << "DONE" << std::endl;
 }

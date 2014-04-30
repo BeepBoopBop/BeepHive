@@ -8,6 +8,21 @@ Beep::Beep() : controller(0), sensors(), manipulators(), states() {}
 
 
 
+Beep::~Beep()
+{
+  delete controller;
+  Map<Sensor*>::iterator s_it;
+  for(s_it=sensors.begin(); s_it!=sensors.end(); ++s_it){
+    delete s_it->second;
+  }
+  Map<Manipulator*>::iterator m_it;
+  for(m_it=manipulators.begin(); m_it!=manipulators.end(); ++m_it){
+    delete m_it->second;
+  }
+}
+
+
+
 void Beep::readSensors(World* world)
 {
   Map<Sensor*>::iterator it;
@@ -33,8 +48,6 @@ void Beep::runManipulators(World* world)
     it->second->updateState(this,world);
   }
   std::stringstream message;
-  message << getState("x") << " " << getState("y");
-  Communicators::getInstance().addToOutput(message.str());
 }
 
 

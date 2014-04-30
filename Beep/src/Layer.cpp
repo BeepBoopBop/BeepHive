@@ -92,7 +92,7 @@ void  LayerCommand::saveHelper(ptree& tree)
 
 void LayerCommand::load(std::string JSON)
 {
-  ptree tree = StringtoPTree(JSON);
+  ptree tree = StringToPTree(JSON);
   frequency = tree.get<std::string>("frequency");
   name = tree.get<std::string>("name");
   concrete_type = tree.get<std::string>("concrete_type");

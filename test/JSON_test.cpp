@@ -61,15 +61,15 @@ int main(int argc, char** argv)
   //n.type = "int";
   //n.JSON = Serializable::PTreeToString(p);
   //test out communicator serialization
-  Communicators::getInstance().addToOutput(Serializable::PTreeToString(p));
-  Communicators::getInstance().addToOutput(Serializable::PTreeToString(p2));
+  //Communicators::getInstance().addToOutput(Serializable::PTreeToString(p));
+  //Communicators::getInstance().addToOutput(Serializable::PTreeToString(p2));
   std::string str = Communicators::getInstance().getStringOutput();
+  
   std::cout << str;
   Communicators::getInstance().constructStack();
-  n = Communicators::getInstance().popObject();
-  
-  
-
-  
+  //n = Communicators::getInstance().popObject();
+  //std::cout << n.type << " " << n.JSON;
+  //n = Communicators::getInstance().popObject();
+  //std::cout << n.type << " " << n.JSON;
 
 }

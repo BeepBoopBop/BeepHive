@@ -37,7 +37,7 @@ using boost::property_tree::ptree;
     }
     void  HeatSensor::load(std::string JSON)
     {
-      ptree tree = StringtoPTree(JSON);
+      ptree tree = StringToPTree(JSON);
       x_off = tree.get<int> ("x_off");
       y_off = tree.get<int> ("y_off");
     }

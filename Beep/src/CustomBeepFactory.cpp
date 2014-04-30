@@ -119,7 +119,7 @@ void  CustomBeepCommand::saveHelper(ptree& tree)
 
 void CustomBeepCommand::load(std::string JSON)
 {
-  ptree tree = StringtoPTree(JSON);
+  ptree tree = StringToPTree(JSON);
   concrete_type = tree.get<std::string>("concrete_type");
   base = tree.get<std::string>("base");
 }
@@ -206,7 +206,7 @@ void  CustomBeepFeatureCommand::saveHelper(ptree& tree)
 
 void CustomBeepFeatureCommand::load(std::string JSON)
 {
-  ptree tree = StringtoPTree(JSON);
+  ptree tree = StringToPTree(JSON);
   beep_type = tree.get<std::string>("beep_type");
   component_type = tree.get<std::string>("component_type");
   concrete_component = tree.get<std::string>("concrete_component");

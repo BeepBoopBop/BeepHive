@@ -30,7 +30,7 @@ std::string Serializable::PTreeToString(ptree tree)
 }
 
 //takes a string which is presented in the load function, and produces a property tree, which can be used to fill up an objects values
-ptree Serializable::StringtoPTree(std::string JSON)
+ptree Serializable::StringToPTree(std::string JSON)
 {
   ptree tree;
   std::istringstream is (JSON);
