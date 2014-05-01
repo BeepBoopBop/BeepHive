@@ -7,7 +7,7 @@
 using boost::property_tree::ptree;
 
     //create the sensor with a layer as well as an xyz location
-    LightSensor::LightSensor(int x, int y, Layer* m) : Sensor(m)
+    LightSensor::LightSensor(int x, int y, Layer* m, Beep* b) : Sensor(m, b)
     {
       x_off = x;
       y_off = y;
