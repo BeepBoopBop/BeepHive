@@ -55,7 +55,7 @@ using namespace dealii;
       int ymin = sources[i]->getY();
       int ymax = ymin+(sources[i]->getHeight());
 
-      if( p[0] > xmin && p[0] < xmax && p[1] > ymin && p[1] > ymax )
+      if( p[0] > xmin && p[0] < xmax && p[1] > ymin && p[1] < ymax )
         return sources[i]->getTemp();
 
     }
