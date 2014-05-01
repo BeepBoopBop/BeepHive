@@ -10,7 +10,7 @@ class HeatSensor : public Sensor
 {
   public:
     //create the sensor with a layer as well as an xy location
-    HeatSensor(int x, int y, Layer* m);
+    HeatSensor(int x, int y, Layer* m, Beep* b);
     HeatSensor(int x, int y);
     HeatSensor(){};
     //read the layer at the given x, y

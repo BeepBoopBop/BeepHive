@@ -7,7 +7,7 @@
 using boost::property_tree::ptree;
 
     //create the sensor with a layer as well as an xyz location
-    HeatSensor::HeatSensor(int x, int y, Layer* m) : Sensor(m)
+    HeatSensor::HeatSensor(int x, int y, Layer* m, Beep* b) : Sensor(m,b)
     {
       x_off = x;
       y_off = y;
@@ -21,7 +21,7 @@ using boost::property_tree::ptree;
     //read the layer at the given x, y, z
     void HeatSensor::readLayer(const World* world)
     {
-      reading = layer->getValue(x_off, y_off);
+      reading = layer->getValue(beep->getState("x")+x_off,beep->getState("y")+ y_off);
     }
 
 

@@ -7,6 +7,8 @@
 #include "Serializable.h"
 
 
+class Beep;
+
 class World;
 
 /*!
@@ -20,7 +22,7 @@ class Sensor //: public Serializable
 {
   public:
 
-    Sensor(Layer* m){layer = m;}
+    Sensor(Layer* m, Beep* b){layer = m; beep = b;}
     Sensor(){};
 
 
@@ -34,6 +36,7 @@ class Sensor //: public Serializable
   protected:
     //the layer that the sensor can read from
     Layer* layer;
+    Beep* beep;
     double reading;
 };
 

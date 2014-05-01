@@ -13,7 +13,7 @@ using boost::property_tree::ptree;
 
 
     //create the sensor with a layer as well as an xyz location
-    AverageSensor::AverageSensor(Layer* beep_layer, std::string state) : Sensor(beep_layer)
+    AverageSensor::AverageSensor(Layer* beep_layer, Beep* beep, std::string state) : Sensor(beep_layer, beep)
     {
       this->state=state;
     }
@@ -37,7 +37,7 @@ using boost::property_tree::ptree;
 
 Sensor* AverageSensorFactory::create()
 {
-  return new AverageSensor(NULL, "");
+  return new AverageSensor(NULL, NULL, "");
 }
 
 
@@ -45,7 +45,7 @@ Sensor* AverageSensorFactory::create()
 Sensor* AverageSensorFactory::create(FactoryParams& params)
 {
   assert(params.size()>0);
-  return new AverageSensor(NULL,params[0]);
+  return new AverageSensor(NULL, NULL,params[0]);
 }
 
 
