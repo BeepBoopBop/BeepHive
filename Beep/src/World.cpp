@@ -31,7 +31,6 @@ World::World() : layers(), event_queue(), running(true)
   this->addLayer("SyncLayer",sync_layer);
   Layer* beep_layer=new BeepLayer(0.2);
   this->addLayer("BeepLayer",beep_layer);
-  World world;
   EnvObject* Obj1 = new EnvObject( 100, 200, 40, 50, true );
   this->addObject(Obj1);
   EnvObject* Obj2 = new EnvObject( 700, 800, 50, 60, true );

@@ -6,6 +6,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "robot.h"
+#include "DataPoint.h"
 
 namespace mpi=boost::mpi;
 
@@ -310,12 +311,12 @@ void MainWindow::mpiWaitForUpdates()
           Robot tempRobot = Robot(x, y);
           robots.push_back(tempRobot);
       }
-      else{
-        Stateful tempPoints;
+      else if(object.type == "DataPoint"){
+        DataPoint tempPoints;
         tempPoints.load(object.JSON);
-        int x = tempPoints.getState("x");
-        int y = tempPoints.getState("y");
-        int value = tempPoints.getState("value");
+        int x = tempPoints.getX();
+        int y = tempPoints.getY();
+        int value = tempPoints.getValue();
         pointTemps.push_back(std::make_pair(std::make_pair(x,y), value));
       }
   }

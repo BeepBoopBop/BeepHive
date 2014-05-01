@@ -23,19 +23,20 @@ FactoryParams RectanglePattern::getNext()
   if(!isEmpty()){
     params.push_back("x");
 
-    val = index % width * distance;
-    stream << val;
+    double x = index % width * distance;
+    stream << x;
     params.push_back(stream.str());
 
     params.push_back("y");
 
-    val = index / width * distance;
+    double y = index / width * distance;
     stream.str("");
-    stream << val;
+    stream << y;
     params.push_back(stream.str());
-  }
+    std::cout << "RECTANGLE: " << x << " " << y << " INDEX " << index << std::endl;
 
-  ++index;
+    ++index;
+  }
 
   return params;
 }

@@ -99,6 +99,7 @@ Beep* BeepFactory::create(FactoryParams& params)
   std::stringstream stream;
   double val;
   for(int i=0; i<params.size(); i+=2){
+    std::cout << "ADDING TO STATE: " << params[i] << " " << params[i+1] << std::endl;
     stream.str(params[i+1]);
     stream >> val;
     beep->setState(params[i], val);
