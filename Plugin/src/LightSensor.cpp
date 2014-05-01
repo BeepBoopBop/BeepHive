@@ -21,7 +21,7 @@ using boost::property_tree::ptree;
     //read the layer at the given x, y, z
     void LightSensor::readLayer(const World* world)
     {
-      //return environment->getCellValue(x_loc, y_loc);
+      reading = layer->getValue(beep->getState("x")+x_off,beep->getState("y")+ y_off);
     }
 
 #if 0
