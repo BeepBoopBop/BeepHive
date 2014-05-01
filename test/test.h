@@ -4,6 +4,7 @@
 #include "BeepHive.h"
 #include "Factory.h"
 #include "Command.h"
+#include "Communicator.h"
 
 //Test that commands can be recreated with save and load
 void saveLoad(Command* command)
@@ -38,6 +39,7 @@ void runCommand(std::string command_type,
 
   saveLoad(command);
 
+  Communicators::getInstance().addToOutput(command->save());
   command->run(world);
 
   delete command;

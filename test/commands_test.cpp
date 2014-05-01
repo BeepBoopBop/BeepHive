@@ -48,6 +48,7 @@ int main(int argc, char** argv)
 
   params = {"HeatLayer","HeatLayer","0.01"};
   runCommand("LayerCommand",params,&world);
+  Communicators::getInstance().run();
   //std::cout << "SUCCESSFULLY ADDED HEAT LAYER TO WORLD" << std::endl;
   return 0;
 }

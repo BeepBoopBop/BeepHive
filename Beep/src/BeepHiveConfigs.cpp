@@ -5,6 +5,7 @@
 #include "BeepHive.h"
 #include "Factory.h"
 #include "Command.h"
+#include "Communicator.h"
 #include "BeepHiveConfigs.h"
 
 BeepHiveConfigs::BeepHiveConfigs() 
@@ -18,6 +19,8 @@ void BeepHiveConfigs::initialize(const int argc, char** argv)
     static struct option long_options[]=
     {
       {"nogui", no_argument, 0, 'n'},
+      {"input", required_argument, 0, 'i'},
+      {"output", required_argument, 0, 'o'},
       {0, 0, 0, 0}
     };
     int option_index=0;
@@ -27,9 +30,25 @@ void BeepHiveConfigs::initialize(const int argc, char** argv)
       break;
     }
 
+    Communicator* communicator;
+    FactoryParams params;
     switch(val){
       case 'n':
         this->gui_enabled=false;
+        break;
+      case 'i':
+        std::cout << "INPUT FILE: " << optarg << std::endl;
+        params = {optarg};
+        communicator = Factories<Communicator>::getInstance()
+          ["InFileCommunicator"]->create(params);
+        Communicators::getInstance().addCommunicator("input",communicator);
+        break;
+      case 'o':
+        std::cout << "OUTPUT FILE: " << optarg << std::endl;
+        params = {optarg};
+        communicator = Factories<Communicator>::getInstance()
+          ["OutFileCommunicator"]->create(params);
+        Communicators::getInstance().addCommunicator("output",communicator);
         break;
       default:
         //help();
