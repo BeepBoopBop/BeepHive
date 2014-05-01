@@ -33,6 +33,10 @@ std::string Serializable::PTreeToString(ptree tree)
 ptree Serializable::StringToPTree(std::string JSON)
 {
   ptree tree;
+  //Boost does not accept empty strings so we give it the empty JSON
+  if(JSON.size() == 0 || JSON[0] != '{'){
+    JSON = "{}";
+  }
   std::istringstream is (JSON);
   read_json (is, tree);
   return tree;

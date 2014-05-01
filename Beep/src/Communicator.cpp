@@ -29,11 +29,13 @@ void Communicators::run()
   {
     if(output.size() > 0){
       std::string input_string = it->second->run(output);
-      ptree input = Serializable::StringToPTree(input_string);
+      if(input_string.size() > 0){
+        ptree input = Serializable::StringToPTree(input_string);
 
-      BOOST_FOREACH(ptree::value_type &v, input)
-      {
-        addToInput(Serializable::PTreeToString(v.second));
+        BOOST_FOREACH(ptree::value_type &v, input)
+        {
+          addToInput(Serializable::PTreeToString(v.second));
+        }
       }
     }
   }

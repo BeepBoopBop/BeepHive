@@ -5,7 +5,6 @@
 #include "CustomBeepFactory.h"
 #include "Beep.h"
 #include "test.h"
-#include "FlockingController.h"
 
 int main(int argc, char** argv)
 {
@@ -47,9 +46,8 @@ int main(int argc, char** argv)
   params = {"RectanglePattern", "2 2 10", "BeepCommand", "MyBeep"};
   runCommand("CreateWithPatternCommand",params,&world);
 
-  params = {"HeatLayer","HeatLayer","1"};
-  Command* command=command_factories["LayerCommand"]->create(params);
-  command->run(&world);
+  params = {"HeatLayer","HeatLayer","0.01"};
+  runCommand("LayerCommand",params,&world);
   //std::cout << "SUCCESSFULLY ADDED HEAT LAYER TO WORLD" << std::endl;
   return 0;
 }

@@ -321,16 +321,26 @@ target_link_libraries(
   ${Boost_LIBRARIES} 
   ${LIB_BEEP}
 )
+
 add_executable(
   HeatTest
   test/heat_test.cpp
 )
-
 target_link_libraries(
   HeatTest
   ${Boost_LIBRARIES} 
   ${LIB_BEEP}
   ${LIB_PLUGIN}
+)
+
+add_executable(
+  IOTest
+  test/io_test.cpp
+)
+target_link_libraries(
+  IOTest
+  ${Boost_LIBRARIES} 
+  ${LIB_BEEP}
 )
 
 if(GUI)
@@ -353,6 +363,7 @@ add_test(JSON ${CMAKE_CURRENT_BINARY_DIR}/JSONTest)
 add_test(backend mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/BackendTest)
 add_test(load ${CMAKE_CURRENT_BINARY_DIR}/LoadTest lib/lib${LIB_PLUGIN}.so)
 add_test(heat mpirun -np 2 ${CMAKE_CURRENT_BINARY_DIR}/HeatTest)
+add_test(io ${CMAKE_CURRENT_BINARY_DIR}/IOTest)
 
 if(GUI)
   qt5_use_modules(GuiTest Widgets)
