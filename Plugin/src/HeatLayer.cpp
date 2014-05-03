@@ -55,7 +55,7 @@ double HeatLayer::getValue( double x, double y )
 
 }
   
-std::string HeatLayer::getOutput()
+void HeatLayer::getOutput()
 {
 
   DEBUG("Getting heatlayer output");
