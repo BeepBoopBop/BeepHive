@@ -69,7 +69,7 @@ using namespace dealii;
   {
     if( object->isSource() ){
       sources.push_back(object);
-      DEBUG("Adding Source to RHS");
+      DEBUG_OUT("Adding Source to RHS");
     }
   }
 #endif

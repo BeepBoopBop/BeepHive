@@ -12,7 +12,9 @@ std::string generateName(std::string file_name, std::string extension)
 
 InFileCommunicator::InFileCommunicator(std::string file_name) : file(file_name)
 {
+#ifdef DEBUG
   std::cout << "OPENING " << file_name << " FOR READ" << std::endl;
+#endif
 }
 
 
@@ -25,7 +27,9 @@ std::string InFileCommunicator::run(std::string& message)
 {
   std::string data;
   std::getline(file,data,'\n');
+#ifdef DEBUG
   std::cout << "LOADING: " << data << std::endl;
+#endif
   return data;
 }
 
@@ -53,7 +57,9 @@ ADD_TO_FACTORIES(InFileCommunicator,Communicator);
 
 OutFileCommunicator::OutFileCommunicator(std::string file_name) : file(file_name)
 {
+#ifdef DEBUG
   std::cout << "OPENING " << file_name << " FOR WRITE" << std::endl;
+#endif
 }
 
 
@@ -61,8 +67,10 @@ OutFileCommunicator::OutFileCommunicator(std::string file_name) : file(file_name
 //! Sends data to output file
 std::string OutFileCommunicator::run(std::string& message)
 {
+#ifdef DEBUG
   std::cout << "WRITING: " << message << std::endl;
-  file << message << '\n';
+#endif
+  file << message;
   file.flush();
   return std::string();
 }

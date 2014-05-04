@@ -45,7 +45,7 @@ World::~World() {}
 
 int World::step()
 {
-  DEBUG("Stepping World");
+  DEBUG_OUT("Stepping World");
   Event event=event_queue.top();
 
   event_queue.pop();
@@ -65,7 +65,7 @@ int World::start()
   while(ret==0){
     ret=step();
   }
-  DEBUG("Exiting start loop");
+  DEBUG_OUT("Exiting start loop");
   return ret;
 }
 

@@ -28,7 +28,7 @@ int main(int argc, char** argv)
   communicators.addCommunicator("central",new CentralCommunicator());
 
   if(comm.rank()==0){
-    DEBUG("I am the GUI!");
+    DEBUG_OUT("I am the GUI!");
     std::vector<std::string> updates;
     bool run=true;
 
@@ -44,7 +44,7 @@ int main(int argc, char** argv)
       }
     }
     
-    DEBUG("Exiting frontend");
+    DEBUG_OUT("Exiting frontend");
     return 0;
   }else{
     World world;
@@ -56,11 +56,11 @@ int main(int argc, char** argv)
     world.addLayer( "HeatLayer", heat_layer );
     world.start();
 
-    DEBUG("Exiting backend");
+    DEBUG_OUT("Exiting backend");
     return 0;
   }
 
-  DEBUG("This should never print. Either gui or back-end should have returned");
+  DEBUG_OUT("This should never print. Either gui or back-end should have returned");
   return 0;
 }
 

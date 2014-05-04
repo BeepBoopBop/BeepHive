@@ -17,7 +17,7 @@ BeepLayer::~BeepLayer() {}
 void BeepLayer::update(const Event* event, World* world)
 {
   DiscreteTimeLayer::update(event, world);
-  DEBUG("Updating BeepLayer");
+  DEBUG_OUT("Updating BeepLayer");
   World::BeepIterator it;
   for(it=world->beepBegin(); it!=world->beepEnd(); ++it){
     (*it)->readSensors(world);

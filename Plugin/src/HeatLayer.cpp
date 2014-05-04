@@ -15,7 +15,7 @@ HeatLayer::~HeatLayer() {}
 void HeatLayer::setup(World* world)
 {
   
-  DEBUG("Setting up HeatEquation");
+  DEBUG_OUT("Setting up HeatEquation");
   //will get list of objects from world and add them to RHS
   World::ObjectIterator it;
 
@@ -43,7 +43,7 @@ void HeatLayer::update(const Event* event, World* world)
   }
   
   DiscreteTimeLayer::update(event, world);
-  DEBUG("Updating HeatLayer");
+  DEBUG_OUT("Updating HeatLayer");
   this->discretization.run();
 
 }
@@ -58,7 +58,7 @@ double HeatLayer::getValue( double x, double y )
 void HeatLayer::getOutput()
 {
 
-  DEBUG("Getting heatlayer output");
+  DEBUG_OUT("Getting heatlayer output");
 
   for( int i = 0; i < values.size(); i++ ){
     double newVal = this->getValue( values[i]->getX(), values[i]->getY() );
@@ -92,7 +92,7 @@ void HeatLayer::write(){
 
   Communicators& communicators = Communicators::getInstance();
 
-  DEBUG("Got output");
+  DEBUG_OUT("Got output");
   for( int i = 0; i < values.size(); i++ ){
     std::string newMessage = values[i]->save();
     communicators.addToOutput(newMessage);

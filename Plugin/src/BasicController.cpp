@@ -7,8 +7,8 @@ void BasicController::run(Beep* beep)
 {
   Manipulator* omega_velocity=beep->getManipulator("OmegaVelocityManipulator");
   std::vector<double> inputs;
-  inputs.push_back(0.05);
-  inputs.push_back(1);
+  inputs.push_back(0.03); //radial velocity
+  inputs.push_back(4);  //linear velocity
   omega_velocity->setInputs(inputs);
 }
 

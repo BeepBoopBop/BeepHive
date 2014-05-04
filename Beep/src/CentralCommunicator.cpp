@@ -19,7 +19,12 @@ std::string CentralCommunicator::run(std::string& message)
   std::string backend_recv = message;
   broadcast(comm,backend_recv,0);
   if(comm.rank() == 0){
-    return central_recv[1];
+    //! \todo aggregate results from all processes
+    if(central_recv.size() > 1){
+      return central_recv[1];
+    }else{
+      return "";
+    }
   }else{
     return backend_recv;
   }

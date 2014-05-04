@@ -296,6 +296,7 @@ void MainWindow::mpiStart()
 //in each update we want to clear and then repopulate our vectors of temperatures and robots
 void MainWindow::mpiWaitForUpdates()
 {
+  Factories<Command>& command_factories = Factories<Command>::getInstance();
   robots.clear();
   pointTemps.clear();
   Communicators& myCommunicator = Communicators::getInstance();
@@ -318,6 +319,11 @@ void MainWindow::mpiWaitForUpdates()
         int y = tempPoints.getY();
         int value = tempPoints.getValue();
         pointTemps.push_back(std::make_pair(std::make_pair(x,y), value));
+      }else if(command_factories.find(object.type) != command_factories.end()){
+        Command* command = command_factories[object.type]->create();
+        command->load(object.JSON);
+        command->run();
+        delete command;
       }
   }
   return;

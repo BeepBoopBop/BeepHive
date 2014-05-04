@@ -14,7 +14,7 @@ SyncLayer::SyncLayer(double event_frequency) : DiscreteTimeLayer(event_frequency
 
 void SyncLayer::update(const Event* event, World* world)
 {
-  DEBUG("Updating SyncLayer");
+  DEBUG_OUT("Updating SyncLayer");
   DiscreteTimeLayer::update(event, world);
   Communicators& communicators = Communicators::getInstance();
   Factories<Command>& command_factory = Factories<Command>::getInstance();

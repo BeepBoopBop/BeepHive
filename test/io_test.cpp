@@ -21,30 +21,30 @@ int main(int argc, char** argv)
 
   FactoryParams params = {"file.bh"};
   Communicator* save = communicator_factories["OutFileCommunicator"]->create(params);
-  DEBUG("CREATED INPUT COMMUNICATOR");
+  DEBUG_OUT("CREATED INPUT COMMUNICATOR");
 
   communicators.addCommunicator("save",save);
 
   //create a command
   params = {"MyBeep", "Beep"};
   Command* command = command_factories["CustomBeepCommand"]->create(params);
-  DEBUG("CREATED COMMAND");
+  DEBUG_OUT("CREATED COMMAND");
 
 
   //output the ocmmand to a file
   communicators.addToOutput(command->save());
   communicators.run();
-  DEBUG("RAN INPUT COMMUNICATOR");
+  DEBUG_OUT("RAN INPUT COMMUNICATOR");
 
   //load file
   params = {"file.bh"};
   Communicator* load = communicator_factories["InFileCommunicator"]->create(params);
   communicators.addCommunicator("load",load);
-  DEBUG("CREATED OUTPUT COMMUNICATOR");
+  DEBUG_OUT("CREATED OUTPUT COMMUNICATOR");
 
   communicators.run();
 
-  DEBUG("RAN OUTPUT COMMUNICATOR");
+  DEBUG_OUT("RAN OUTPUT COMMUNICATOR");
 
   //check results
   assert(!communicators.isEmpty());
@@ -52,7 +52,7 @@ int main(int argc, char** argv)
 
   assert(object.JSON == command->save());
 
-  DEBUG("PASSED TEST");
+  DEBUG_OUT("PASSED TEST");
 
   delete command;
 

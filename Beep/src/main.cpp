@@ -44,7 +44,7 @@ int main(int argc, char** argv)
     }
 #endif
     else{
-      DEBUG("I am the GUI!");
+      DEBUG_OUT("I am the GUI!");
       bool run=true;
 
       while(run){
@@ -57,18 +57,18 @@ int main(int argc, char** argv)
             run=false;
           }
         }
-        DEBUG("Exiting frontend");
+        DEBUG_OUT("Exiting frontend");
       }
       return 0;
     }
   }else{
     World world;
     world.start();
-    DEBUG("Exiting backend");
+    DEBUG_OUT("Exiting backend");
     return 0;
   }
 
-  DEBUG("This should never print. Either gui or back-end should have returned");
+  DEBUG_OUT("This should never print. Either gui or back-end should have returned");
   return 0;
 }
 
