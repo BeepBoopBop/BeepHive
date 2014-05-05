@@ -221,8 +221,8 @@ void MainWindow::updateTemperatures(){
 
   //go through all the pointTemps and add their values to the locations around them
   for(int i=0;i<pointTemps.size();i++){
-    for(int j = -2; j < 3; j++)
-        for(int k = -2; k < 3; k++){
+    for(int j = -8; j < 8; j++)
+        for(int k = -8; k < 8; k++){
           int x = pointTemps[i].first.first + j;
           int y = pointTemps[i].first.second + k;
           if(x < 0) x = 0;

@@ -70,12 +70,14 @@ LayerCommand::LayerCommand(FactoryParams params)
 
 void LayerCommand::run(World* world)
 {
-  double val;
-  std::stringstream stream(frequency);
-  stream >> val;
+  if(world != NULL){
+    double val;
+    std::stringstream stream(frequency);
+    stream >> val;
 
-  Layer* layer = Factories<Layer>::getInstance()[concrete_type]->create();
-  world->addLayer(name, layer, val);
+    Layer* layer = Factories<Layer>::getInstance()[concrete_type]->create();
+    world->addLayer(name, layer, val);
+  }
 }
 
 
