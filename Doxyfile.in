@@ -649,8 +649,8 @@ WARN_LOGFILE           =
 # documented source files. You may enter file names like "myfile.cpp" or
 # directories like "/usr/src/myproject". Separate the files or directories
 # with spaces.
-INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/include \
-                         @CMAKE_CURRENT_SOURCE_DIR@/src \
+INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/Beep/include \
+                         @CMAKE_CURRENT_SOURCE_DIR@/Beep/src \
                          @CMAKE_CURRENT_SOURCE_DIR@/GUI/include \
                          @CMAKE_CURRENT_SOURCE_DIR@/GUI/src
                          @CMAKE_CURRENT_SOURCE_DIR@/Plugin/include \
