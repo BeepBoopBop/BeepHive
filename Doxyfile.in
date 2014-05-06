@@ -653,6 +653,8 @@ INPUT                  = @CMAKE_CURRENT_SOURCE_DIR@/include \
                          @CMAKE_CURRENT_SOURCE_DIR@/src \
                          @CMAKE_CURRENT_SOURCE_DIR@/GUI/include \
                          @CMAKE_CURRENT_SOURCE_DIR@/GUI/src
+                         @CMAKE_CURRENT_SOURCE_DIR@/Plugin/include \
+                         @CMAKE_CURRENT_SOURCE_DIR@/Plugin/src
 
 # This tag can be used to specify the character encoding of the source files
 # that doxygen parses. Internally doxygen uses the UTF-8 encoding, which is
