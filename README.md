@@ -11,8 +11,10 @@ Currently the parallel backend has not been completed so two processes should be
 started, one for the GUI and one for the backend.
 ### Flags
 |Flag|Abbreviation|Description|
-|:----|:------|:-------------|
-|`--nogui`|-n|Disables the GUI|
+|:----------------|:------|:-------------|
+|`--nogui`        |-n|Disables the GUI|
+|`--input <file>` |-i|Load file for input|
+|`--output <file>`|-o|Load file for output|
 ## Build Instructions
 ### Make and enter build directory:
 ```
@@ -48,6 +50,11 @@ Make sure that Boost is installed, including:
 * Boost-mpi: Boost-mpi simplifies the dirty work of mpi and makes developments
     of plugins easier
 
+###CMake
+This project uses CMake 2.8.9 because this is required by Qt.
+This version of CMake is likely newer than what is included in repositories,
+downloading a newer version from www.cmake.org may be necessary
+
 ###Deal.II
 Library to solve PDE's download from here http://www.dealii.org/
 
@@ -75,3 +82,6 @@ This is not necessary to get the project to build though
 
 ###pdflatex
 If you would like to build a pdf of the documentation you will need pdflatex
+
+###Qt
+Qt 5.2 is required to build the GUI library. This can be found at qt-project.org
