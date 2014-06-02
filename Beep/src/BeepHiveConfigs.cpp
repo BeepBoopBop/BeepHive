@@ -1,12 +1,12 @@
-#include <iostream>
 #include <getopt.h>
+#include <iostream>
 #include <stdlib.h>
 
 #include "BeepHive.h"
-#include "Factory.h"
+#include "BeepHiveConfigs.h"
 #include "Command.h"
 #include "Communicator.h"
-#include "BeepHiveConfigs.h"
+#include "Factory.h"
 
 BeepHiveConfigs::BeepHiveConfigs() 
   : time_limit(-1), gui_enabled(true), load_standard_plugin(true) {}
@@ -66,14 +66,10 @@ void BeepHiveConfigs::initialize(const int argc, char** argv)
   }
 }
 
-
-
 void BeepHiveConfigs::setTimeLimit(double time_limit)
 {
   this->time_limit=time_limit;
 }
-
-
 
 double BeepHiveConfigs::getTimeLimit()
 {

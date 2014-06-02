@@ -5,14 +5,10 @@ RectanglePattern::RectanglePattern(unsigned width, unsigned height,
                                    double distance)
   : width(width), height(height), distance(distance), index(0) {}
 
-
-
 long int RectanglePattern::size()
 {
   return width * height;
 }
-
-
 
 FactoryParams RectanglePattern::getNext()
 {
@@ -41,14 +37,10 @@ FactoryParams RectanglePattern::getNext()
   return params;
 }
 
-
-
 bool RectanglePattern::isEmpty()
 {
   return !(index < width * height);
 }
-
-
 
 Pattern* RectanglePatternFactory::create()
 {
@@ -56,8 +48,6 @@ Pattern* RectanglePatternFactory::create()
   params.push_back("10 10 10");
   return this->create(params);
 }
-
-
 
 Pattern* RectanglePatternFactory::create(FactoryParams& params)
 {
@@ -69,7 +59,5 @@ Pattern* RectanglePatternFactory::create(FactoryParams& params)
 
   return new RectanglePattern(width, height, distance);
 }
-
-
 
 ADD_TO_FACTORIES(RectanglePattern, Pattern);

@@ -1,10 +1,7 @@
 #ifndef LIGHTSENSOR_H
 #define LIGHTSENSOR_H
 
-#include "BeepHive.h"
 #include "Sensor.h"
-
-
 
 class LightSensor : public Sensor
 {
@@ -22,4 +19,5 @@ class LightSensor : public Sensor
   protected:
     int x_off, y_off;
 };
+
 #endif

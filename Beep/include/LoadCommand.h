@@ -2,7 +2,6 @@
 #define LOADCOMMAND_H 
 
 #include "Command.h"
-#include "BeepHive.h"
 
 /*!
  * Class for loading plugins
@@ -27,4 +26,5 @@ class LoadCommand : public Command
 };
 
 DEFINE_FACTORY(LoadCommand, Command);
+
 #endif /* LOADCOMMAND_H */

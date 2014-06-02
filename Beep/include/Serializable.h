@@ -1,13 +1,12 @@
 #ifndef SERIALIZEABLE_H
 #define SERIALIZEABLE_H
 
-
-#include "BeepHive.h"
-#include <sstream>
-#include <map>
-#include <boost/property_tree/ptree.hpp>
-#include <boost/property_tree/json_parser.hpp>
 #include <boost/foreach.hpp>
+#include <boost/property_tree/json_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
+#include <map>
+#include <sstream>
+
 using boost::property_tree::ptree;
 using boost::property_tree::read_json;
 using boost::property_tree::write_json;
@@ -19,7 +18,6 @@ using boost::property_tree::write_json;
  * Inheriting classes should define the serialization function
  */
 class Serializable{
-
   public:
     std::string name;
 
@@ -33,7 +31,6 @@ class Serializable{
 
     //! should return the class and user is responsible for casting to the subclass
     virtual void load(std::string JSON) =0;
-
 };
 
 #endif /* SERIALIZEABLE_H */

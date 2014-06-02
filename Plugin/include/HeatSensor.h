@@ -1,10 +1,7 @@
 #ifndef HEATSENSOR_H
 #define HEATSENSOR_H
 
-#include "BeepHive.h"
 #include "Sensor.h"
-
-
 
 class HeatSensor : public Sensor
 {
@@ -22,4 +19,5 @@ class HeatSensor : public Sensor
   protected:
     int x_off, y_off;
 };
+
 #endif

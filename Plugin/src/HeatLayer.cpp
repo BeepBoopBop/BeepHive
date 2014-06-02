@@ -1,14 +1,14 @@
 #include "BeepHive.h"
-#include "HeatLayer.h"
+#include "Communicator.h"
+#include "DataPoint.h"
 #include "Dealii.h"
+#include "Event.h"
+#include "HeatLayer.h"
+#include "World.h"
 
 HeatLayer::HeatLayer() : initialized(false), DiscreteTimeLayer(){}
 
-
-
 HeatLayer::HeatLayer(double event_frequency) : initialized(false), DiscreteTimeLayer(event_frequency){}
-
-
 
 HeatLayer::~HeatLayer() {}
 
@@ -72,8 +72,6 @@ Layer* HeatLayerFactory::create()
   return new HeatLayer();
 }
 
-
-
 Layer* HeatLayerFactory::create(FactoryParams& params)
 {
   double event_frequency = 0;
@@ -83,8 +81,6 @@ Layer* HeatLayerFactory::create(FactoryParams& params)
   }
   return new HeatLayer(event_frequency);
 }
-
-
 
 void HeatLayer::write(){
   
@@ -102,6 +98,5 @@ void HeatLayer::write(){
   std::cout << std::endl;
 
 }
-
 
 ADD_TO_FACTORIES(HeatLayer, Layer);

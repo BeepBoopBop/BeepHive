@@ -2,7 +2,6 @@
 #define SYNCLAYER_H 
 
 #include "DiscreteTimeLayer.h"
-#include "Event.h"
 
 /*!
  * The sync layer implements syncronization with the GUI process

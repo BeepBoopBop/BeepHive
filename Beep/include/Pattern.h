@@ -1,8 +1,8 @@
 #ifndef PATTERN_H
 #define PATTERN_H 
 
-#include "Factory.h"
 #include "Command.h"
+#include "Factory.h"
 
 /*!
  * An abstract class for createing patterns of objects
@@ -38,8 +38,6 @@ class CreateWithPatternCommand : public CreateCommand
     //serialization
     std::string type() { return "CreateWithPatternCommand"; }
 };
-
-
 
 DEFINE_FACTORY(CreateWithPatternCommand, Command);
 

@@ -1,16 +1,16 @@
-#include "createenvironment.h"
+#include "CreateEnvironment.h"
 #include "ui_createenvironment.h"
 
 CreateEnvironment::CreateEnvironment(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::CreateEnvironment)
 {
-    ui->setupUi(this);
+  ui->setupUi(this);
 }
 
 CreateEnvironment::~CreateEnvironment()
 {
-    delete ui;
+  delete ui;
 }
 
 int CreateEnvironment::getX(){
@@ -20,7 +20,6 @@ int CreateEnvironment::getX(){
 int CreateEnvironment::getY(){
   return ui->lineEdit_2->text().toInt();
 }
-
 
 int CreateEnvironment::getWidth(){
   return ui->lineEdit_3->text().toInt();

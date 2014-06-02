@@ -1,18 +1,18 @@
 #ifndef NEWBEEPTYPE_H
 #define NEWBEEPTYPE_H
 
+#include "GuiIncludes.h"
 #include "ui_newbeeptype.h"
-#include "gui_includes.h"
 
-class newBeepType : public QDialog
+class NewBeepType : public QDialog
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
-    explicit newBeepType(QWidget *parent = 0);
+  public:
+    explicit NewBeepType(QWidget *parent = 0);
     void createNewBeepType();
 
-private:
+  private:
     Ui::newBeepType ui;
 };
 

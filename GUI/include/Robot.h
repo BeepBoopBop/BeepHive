@@ -1,12 +1,11 @@
 #ifndef ROBOT_H
 #define ROBOT_H
 
-#include "gui_includes.h"
-
+#include "GuiIncludes.h"
 
 class Robot
 {
-public:
+  public:
     Robot();
     Robot(int x, int y);
 
@@ -35,7 +34,7 @@ public:
     void resetColor();
     void highlightGreen();
 
-private:
+  private:
     int xCoordinate;
     int yCoordinate;
     QGraphicsEllipseItem * body;

@@ -1,7 +1,6 @@
 #ifndef BEEPHIVECONFIGS_H
 #define BEEPHIVECONFIGS_H 
 
-#include "BeepHive.h"
 #include "Singleton.h"
 
 /*!

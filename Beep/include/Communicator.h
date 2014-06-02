@@ -1,12 +1,10 @@
 #ifndef COMMUNICATOR_H
 #define COMMUNICATOR_H 
 
-#include "BeepHive.h"
-#include "Singleton.h"
-#include "Serializable.h"
-#include "Command.h"
 #include <queue>
 
+#include "Command.h"
+#include "Singleton.h"
 
 typedef struct so
 {
@@ -22,19 +20,11 @@ typedef struct so
  * communicators to serve dual purposes as input and output and allows for the
  * ordering constraints imposed by MPI
  */
-
-/*!
- * A generic class for sending and receiving data from some source
- *
- * This includes file IO, communication with a controller process, etc
- */
 class Communicator
 {
   public:
     virtual std::string run(std::string& message) = 0;
 };
-
-
 
 /*!
  * The communicators class is used for generalized sending and receiving to and

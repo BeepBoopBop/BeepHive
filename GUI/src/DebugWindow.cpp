@@ -1,4 +1,4 @@
-#include "debugwindow.h"
+#include "DebugWindow.h"
 #include "ui_debugwindow.h"
 
 DebugWindow::DebugWindow(QWidget *parent) :
@@ -8,7 +8,6 @@ DebugWindow::DebugWindow(QWidget *parent) :
   ui->setupUi(this);
   monitoredRobot = NULL;
   ui->textEdit->setText("test");
-
 }
 
 DebugWindow::~DebugWindow()
@@ -19,7 +18,6 @@ DebugWindow::~DebugWindow()
 void DebugWindow::setRobotToMonitor(Robot *robotToMonitor){
   monitoredRobot = robotToMonitor;
 }
-
 
 void DebugWindow::updateOutput(){
 

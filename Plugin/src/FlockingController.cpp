@@ -1,10 +1,10 @@
 #include "math.h"
 
-#include "Controller.h"
-#include "FlockingController.h"
 #include "Beep.h"
-#include "Manipulator.h"
+#include "Controller.h"
 #include "Factory.h"
+#include "FlockingController.h"
+#include "Manipulator.h"
 
 void FlockingController::run(Beep* beep)
 {
@@ -33,7 +33,5 @@ Controller* FlockingControllerFactory::create(FactoryParams& params)
 {
   return new FlockingController();
 }
-
-
 
 ADD_TO_FACTORIES(FlockingController,Controller);

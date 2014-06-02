@@ -4,7 +4,6 @@
 
 using boost::property_tree::ptree;
 
-
 void  DataPoint::load(std::string JSON)
 {
   if(JSON.size() > 0){

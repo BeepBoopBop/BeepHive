@@ -1,27 +1,18 @@
 #ifndef WORLD_H
 #define WORLD_H 
 
-#include <vector>
 #include <queue>
 #include <string>
+#include <vector>
 
 #include "BeepHive.h"
 #include "Event.h"
-#include "Layer.h"
-#include "Beep.h"
 #include "Stateful.h"
-#include "EnvObject.h"
 
-class Layer;
-class Event;
 class Beep;
-
-//! Used by World to compare events, does not compile if in Event files
-class EventComparator
-{
-  public:
-    bool operator()(const Event first, const Event second) const;
-};
+class EnvObject;
+class Event;
+class Layer;
 
 typedef std::vector<Beep*> Beeps;
 typedef std::vector<Layer*> LayerArray;
@@ -54,7 +45,7 @@ class World : public Stateful{
     typedef ObjectArray::const_iterator ObjectIterator;
     ObjectIterator objectBegin() const;
     ObjectIterator objectEnd() const;
-    void addObject( EnvObject* object);
+    void addObject( EnvObject* object );
 
     void quit();
   private:

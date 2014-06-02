@@ -1,21 +1,13 @@
+#include <boost/property_tree/ptree.hpp>
 #include <math.h>
 
+#include "Beep.h"
 #include "BeepHive.h"
+#include "Layer.h"
 #include "OmegaVelocityManipulator.h"
-#include "Factory.h"
+#include "World.h"
 
-#include <boost/property_tree/ptree.hpp>
-using boost::property_tree::ptree;
-
-
-
-OmegaVelocityManipulator::OmegaVelocityManipulator() : Manipulator()
-{
-  inputs.push_back(0);
-  inputs.push_back(0);
-}
-
-
+OmegaVelocityManipulator::OmegaVelocityManipulator() {}
 
 /*!
  * This method updates the state based on a radial and linear velocity
@@ -56,8 +48,6 @@ void OmegaVelocityManipulator::updateState(Beep* beep, World* world)
   beep->setState("theta",theta+delta_theta);
 }
 
-
-
 unsigned OmegaVelocityManipulator::getInputSize() const
 {
   return 2;
@@ -72,13 +62,9 @@ Manipulator* OmegaVelocityManipulatorFactory::create()
   return new OmegaVelocityManipulator();
 }
 
-
-
 Manipulator* OmegaVelocityManipulatorFactory::create(FactoryParams& params)
 {
   return this->create();
 }
-
-
 
 ADD_TO_FACTORIES(OmegaVelocityManipulator,Manipulator);

@@ -1,10 +1,10 @@
 #ifndef COMMAND_H
 #define COMMAND_H 
 
-#include <vector>
 #include <string>
-#include "Serializable.h"
+
 #include "Factory.h"
+#include "Serializable.h"
 
 class World;
 

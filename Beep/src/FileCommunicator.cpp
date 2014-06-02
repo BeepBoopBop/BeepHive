@@ -1,7 +1,7 @@
 #include <string>
 
-#include "FileCommunicator.h"
 #include "BeepHive.h"
+#include "FileCommunicator.h"
 
 std::string generateName(std::string file_name, std::string extension)
 {
@@ -17,8 +17,6 @@ InFileCommunicator::InFileCommunicator(std::string file_name) : file(file_name)
 #endif
 }
 
-
-
 /*!
  * Reads in data from file
  * \todo add time-stamping
@@ -33,14 +31,10 @@ std::string InFileCommunicator::run(std::string& message)
   return data;
 }
 
-
-
 Communicator* InFileCommunicatorFactory::create()
 {
   return new InFileCommunicator("in");
 }
-
-
 
 Communicator* InFileCommunicatorFactory::create(FactoryParams& params)
 {
@@ -53,16 +47,12 @@ Communicator* InFileCommunicatorFactory::create(FactoryParams& params)
 
 ADD_TO_FACTORIES(InFileCommunicator,Communicator);
 
-
-
 OutFileCommunicator::OutFileCommunicator(std::string file_name) : file(file_name)
 {
 #ifdef DEBUG
   std::cout << "OPENING " << file_name << " FOR WRITE" << std::endl;
 #endif
 }
-
-
 
 //! Sends data to output file
 std::string OutFileCommunicator::run(std::string& message)
@@ -75,15 +65,10 @@ std::string OutFileCommunicator::run(std::string& message)
   return std::string();
 }
 
-
-
-
 Communicator* OutFileCommunicatorFactory::create()
 {
   return new OutFileCommunicator("in");
 }
-
-
 
 Communicator* OutFileCommunicatorFactory::create(FactoryParams& params)
 {

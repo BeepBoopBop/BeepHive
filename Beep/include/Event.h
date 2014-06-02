@@ -1,9 +1,6 @@
 #ifndef EVENT_H
 #define EVENT_H 
 
-#include "BeepHive.h"
-#include "Layer.h"
-
 class Layer;
 
 /*!
@@ -23,6 +20,17 @@ class Event {
   private:
     double time;
     Layer* layer;
+};
+
+/*!
+ * Comparison operator for Events
+ *
+ * Compares Events by time
+ */
+class EventComparator
+{
+  public:
+    bool operator()(const Event first, const Event second) const;
 };
 
 #endif /* EVENT_H */

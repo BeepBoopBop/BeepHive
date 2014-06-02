@@ -1,5 +1,5 @@
-#include "Pattern.h"
 #include "Command.h"
+#include "Pattern.h"
 
 CreateWithPatternCommand::CreateWithPatternCommand(FactoryParams params)
   : CreateCommand(params) {}
@@ -46,20 +46,15 @@ void CreateWithPatternCommand::run(World* world)
 }
 
 
-
 Command* CreateWithPatternCommandFactory::create()
 {
   FactoryParams params;
   return new CreateWithPatternCommand();
 }
 
-
-
 Command* CreateWithPatternCommandFactory::create(FactoryParams& params)
 {
   return new CreateWithPatternCommand(params);
 }
-
-
 
 ADD_TO_FACTORIES(CreateWithPatternCommand, Command);

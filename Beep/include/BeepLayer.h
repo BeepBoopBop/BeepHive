@@ -4,7 +4,6 @@
 #include <vector>
 
 #include "DiscreteTimeLayer.h"
-#include "Beep.h"
 
 class Beep;
 

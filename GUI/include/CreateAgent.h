@@ -2,24 +2,25 @@
 #define CREATEAGENT_H
 
 #include <QDialog>
-#include "gui_includes.h"
+
+#include "GuiIncludes.h"
 
 namespace Ui {
-class CreateAgent;
+  class CreateAgent;
 }
 
 class CreateAgent : public QDialog
 {
-    Q_OBJECT
+  Q_OBJECT
 
-public:
+  public:
     explicit CreateAgent(QWidget *parent = 0);
     ~CreateAgent();
     int getX();
     int getY();
     std::string getBeepType();
 
-private:
+  private:
     Ui::CreateAgent *ui;
 };
 

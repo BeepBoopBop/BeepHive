@@ -1,7 +1,6 @@
-#include "Communicator.h"
 #include "BeepHive.h"
+#include "Communicator.h"
 #include "Serializable.h"
-
 
 Communicators::Communicators()
 {
@@ -9,14 +8,10 @@ Communicators::Communicators()
   reset(input_tree);
 }
 
-
-
 void Communicators::reset(ptree& tree)
 {
   tree.clear();
 }
-
-
 
 void Communicators::run()
 {
@@ -45,8 +40,6 @@ void Communicators::run()
   constructStack();
 }
 
-
-
 void Communicators::constructStack()
 {
   BOOST_FOREACH(ptree::value_type &v, input_tree)
@@ -59,14 +52,10 @@ void Communicators::constructStack()
   }
 }
 
-
-
 void Communicators::addCommunicator(std::string name, Communicator* communicator)
 {
   communicators[name]=communicator;
 }
-
-
 
 std::string Communicators::getInput()
 {
@@ -75,8 +64,6 @@ std::string Communicators::getInput()
   return temp;
 }
 
-
-
 SerialObject Communicators::popObject()
 {
   SerialObject so;
@@ -84,8 +71,6 @@ SerialObject Communicators::popObject()
   input_queue.pop();
   return so;
 }
-
-
 
 void Communicators::addToInput(std::string object)
 {
@@ -97,8 +82,6 @@ void Communicators::addToInput(std::string object)
   }
 }
 
-
-
 void Communicators::addToOutput(std::string object)
 {
   if(object.size() > 0){
@@ -108,8 +91,6 @@ void Communicators::addToOutput(std::string object)
     output_tree.add_child(array, p);
   }
 }
-
-
 
 std::string Communicators::getStringOutput()
 {
@@ -123,8 +104,6 @@ bool Communicators::isEmpty(){
 CommunicatorCommand::CommunicatorCommand(FactoryParams params)
   : CreateCommand(params) {}
 
-
-
 void CommunicatorCommand::run(World* world)
 {
   Factories<Communicator>& factories = Factories<Communicator>::getInstance();
@@ -132,15 +111,11 @@ void CommunicatorCommand::run(World* world)
   Communicators::getInstance().addCommunicator(params[0], communicator);
 }
 
-
-
 Command* CommunicatorCommandFactory::create()
 {
   FactoryParams temp;
   return new CommunicatorCommand(temp);
 }
-
-
 
 Command* CommunicatorCommandFactory::create(FactoryParams& params)
 {

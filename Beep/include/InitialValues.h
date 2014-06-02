@@ -2,7 +2,6 @@
 #define INITIAL_VALUES_H
 
 #include "Dealii.h"
-#include "BeepHive.h"
 
 using namespace dealii;
 

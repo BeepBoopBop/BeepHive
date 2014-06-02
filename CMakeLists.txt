@@ -107,28 +107,28 @@ set(PLUGIN_SOURCES
 )
 if(GUI)
   set(GUI_HEADERS
-    GUI/include/createagent.h
-    GUI/include/gui_includes.h
-    GUI/include/mainwindow.h
-    GUI/include/robot.h
+    GUI/include/CreateAgent.h
+    GUI/include/GuiIncludes.h
+    GUI/include/MainWindow.h
+    GUI/include/Robot.h
     GUI/include/ui_mainwindow.h
     GUI/include/ui_debugwindow.h
-    GUI/include/debugwindow.h
-    GUI/include/createenvironment.h
-    GUI/include/environmentobject.h
+    GUI/include/DebugWindow.h
+    GUI/include/CreateEnvironment.h
+    GUI/include/EnvironmentObject.h
     GUI/include/ui_createagent.h
     GUI/include/ui_createenvironment.h
-    GUI/include/newbeeptype.h
+    GUI/include/NewBeepType.h
   )
 
   set(GUI_SOURCES
-    GUI/src/mainwindow.cpp
-    GUI/src/robot.cpp
-    GUI/src/debugwindow.cpp
-    GUI/src/createagent.cpp
-    GUI/src/createenvironment.cpp
-    GUI/src/environmentobject.cpp
-    GUI/src/newbeeptype.cpp
+    GUI/src/MainWindow.cpp
+    GUI/src/Robot.cpp
+    GUI/src/DebugWindow.cpp
+    GUI/src/CreateAgent.cpp
+    GUI/src/CreateEnvironment.cpp
+    GUI/src/EnvironmentObject.cpp
+    GUI/src/NewBeepType.cpp
   )
 endif(GUI)
 

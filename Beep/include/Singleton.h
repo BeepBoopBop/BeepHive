@@ -16,8 +16,10 @@ class Singleton
       static T instance;
       return instance;
     }
+
   protected:
     Singleton<T>() {}
+
   private:
     Singleton<T>(const Singleton<T>& copy) {}
     Singleton<T>& operator=(const Singleton<T>& copy) {}

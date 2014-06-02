@@ -2,10 +2,8 @@
 #define FLOCKINGCONTROLLER_H 
 
 #include "Controller.h"
-#include "Beep.h"
 #include "Factory.h"
 
-class Controller;
 class Beep;
 
 /*!
@@ -21,8 +19,6 @@ class FlockingController : public Controller
   public:
     virtual void run(Beep* beep);
 };
-
-
 
 DEFINE_FACTORY(FlockingController, Controller);
 

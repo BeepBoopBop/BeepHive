@@ -1,4 +1,4 @@
-#include "createagent.h"
+#include "CreateAgent.h"
 #include "ui_createagent.h"
 
 CreateAgent::CreateAgent(QWidget *parent) :
@@ -29,4 +29,8 @@ int CreateAgent::getX(){
 
 int CreateAgent::getY(){
   return ui->lineEdit_2->text().toInt();
+}
+
+std::string CreateAgent::getBeepType(){
+    return ui->comboBox->currentText().toUtf8().constData();
 }

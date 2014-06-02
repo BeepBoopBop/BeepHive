@@ -5,8 +5,6 @@
 #ifndef LAYER_H
 #define LAYER_H 
 
-#include "Event.h"
-#include "World.h"
 #include "Command.h"
 
 class Event;

@@ -1,14 +1,8 @@
 #ifndef SENSOR_H
 #define SENSOR_H 
 
-#include "BeepHive.h"
-#include "Layer.h"
-#include "World.h"
-#include "Serializable.h"
-
-
 class Beep;
-
+class Layer;
 class World;
 
 /*!
@@ -25,13 +19,10 @@ class Sensor //: public Serializable
     Sensor(Layer* m, Beep* b){layer = m; beep = b;}
     Sensor(){};
 
-
     //! Gets and stores reading from the layer/World
     virtual void readLayer(const World* world) = 0;
     //! Returns the last stored reading
     double getReading() {return reading;}
-
-
   
   protected:
     //the layer that the sensor can read from

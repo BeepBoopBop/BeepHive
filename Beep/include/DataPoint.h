@@ -1,14 +1,11 @@
 #ifndef DATA_POINT_H
 #define DATA_POINT_H
 
-#include "Layer.h"
 #include "Serializable.h"
 
 class DataPoint : public Serializable
 {
-
   public:
-
     DataPoint(){};
     DataPoint( double xVal, double yVal ){ x = xVal; y = yVal; };
 

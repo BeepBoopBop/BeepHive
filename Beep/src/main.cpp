@@ -1,25 +1,23 @@
-#include <string>
-#include <sstream>
-#include <vector>
-#include <boost/serialization/base_object.hpp>
 #include <boost/mpi.hpp>
+#include <boost/serialization/base_object.hpp>
 #include <iostream>
+#include <sstream>
+#include <string>
+#include <vector>
 
 #ifdef GUI
-#include "mainwindow.h"
+#include "MainWindow.h"
 #include <QApplication>
 #endif
 
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
-#include "World.h"
-#include "Communicator.h"
 #include "CentralCommunicator.h"
+#include "Communicator.h"
 #include "FileCommunicator.h"
+#include "World.h"
 
 namespace mpi=boost::mpi;
-
-
 
 int main(int argc, char** argv)
 {

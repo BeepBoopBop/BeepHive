@@ -1,8 +1,8 @@
 #ifndef RECTANGLEPATTERN_H
 #define RECTANGLEPATTERN_H 
 
-#include "Pattern.h"
 #include "Factory.h"
+#include "Pattern.h"
 
 /*!
  * Generates a rectangular array of indices

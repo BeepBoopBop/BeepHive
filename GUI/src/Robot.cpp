@@ -1,4 +1,4 @@
-#include "robot.h"
+#include "Robot.h"
 
 //used to generate random starting positions for the robots
 int randInt(int low, int high)

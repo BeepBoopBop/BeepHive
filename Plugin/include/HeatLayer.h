@@ -1,20 +1,19 @@
 #ifndef HEATLAYER_H
 #define HEATLAYER_H 
 
-#include "DiscreteTimeLayer.h"
-#include "HeatEquation.h"
-#include "Factory.h"
-#include "EnvObject.h"
 #include <vector>
-#include "DataPoint.h"
+
+#include "DiscreteTimeLayer.h"
+#include "Factory.h"
+#include "HeatEquation.h"
+
+class DataPoint;
 
 /*!
  * This layer updates the heat equation for the simulation.
  */
 class HeatLayer : public DiscreteTimeLayer
 {
-
-  friend class World;
   public:
 
     virtual ~HeatLayer();
@@ -34,7 +33,6 @@ class HeatLayer : public DiscreteTimeLayer
     HeatEquation<2> discretization;
     void setup(World* world);
     void getOutput();
-
 };
 
 DEFINE_FACTORY(HeatLayer,Layer);

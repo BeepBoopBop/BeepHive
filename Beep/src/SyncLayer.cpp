@@ -1,12 +1,14 @@
-#include <string>
-#include <boost/serialization/base_object.hpp>
 #include <boost/mpi.hpp>
+#include <boost/serialization/base_object.hpp>
+#include <string>
 
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
-#include "SyncLayer.h"
 #include "Communicator.h"
+#include "Event.h"
 #include "Factory.h"
+#include "SyncLayer.h"
+#include "World.h"
 
 SyncLayer::SyncLayer() : DiscreteTimeLayer(1) {}
 

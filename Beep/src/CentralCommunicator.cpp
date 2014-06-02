@@ -1,10 +1,11 @@
-#include <boost/serialization/base_object.hpp>
 #include <boost/mpi.hpp>
+#include <boost/serialization/base_object.hpp>
 #include <vector>
-#include "World.h"
+
+#include "BeepHive.h"
 #include "BeepHiveConfigs.h"
 #include "CentralCommunicator.h"
-#include "BeepHive.h"
+#include "World.h"
 
 std::string CentralCommunicator::run(std::string& message)
 {

@@ -1,18 +1,13 @@
+#include "Beep.h"
 #include "BeepHive.h"
 #include "BeepLayer.h"
-#include "Beep.h"
+#include "World.h"
 
 BeepLayer::BeepLayer() : DiscreteTimeLayer() {}
 
-
-
 BeepLayer::BeepLayer(double event_frequency) : DiscreteTimeLayer(event_frequency) {}
 
-
-
 BeepLayer::~BeepLayer() {}
-
-
 
 void BeepLayer::update(const Event* event, World* world)
 {

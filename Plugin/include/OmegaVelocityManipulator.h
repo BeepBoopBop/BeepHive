@@ -1,7 +1,6 @@
 #ifndef OMEGAVELOCITYMANIPULATOR_H
 #define OMEGAVELOCITYMANIPULATOR_H 
 
-#include "BeepHive.h"
 #include "Manipulator.h"
 
 /*!
@@ -16,8 +15,6 @@ class OmegaVelocityManipulator : public Manipulator {
     //std::string  save();
     //void load(std::string JSON);
 };
-
-
 
 DEFINE_FACTORY(OmegaVelocityManipulator,Manipulator);
 

@@ -1,36 +1,30 @@
 #include <sstream>
+
+#include "Event.h"
 #include "Layer.h"
+#include "World.h"
 
 Layer::Layer()
 {
   time = 0; 
 }
 
-
-
 Layer::Layer(double event_frequency)
 {
   time = 0;
 }
 
-
-
 Layer::~Layer() {}
-
 
 double Layer::getTime() const
 {
   return time; 
 }
 
-
-
 void Layer::setTime(double new_time)
 { 
   time = new_time;
 }
-
-
 
 //! this is just here to make the compiler happy
 double Layer::timeSinceLastUpdate()
@@ -38,22 +32,17 @@ double Layer::timeSinceLastUpdate()
   return -1;
 }
 
-
-
 //! this is just here to make the compiler happy
 double Layer::getValue(double x, double y)
 {
   return -1;
 }
 
-
-
 void Layer::update(const Event* event, World* world)
 {
   this->setTime(event->getTime());
   //-- std::cout << "Layer updating! Time is now: " << event->getTime() << std::endl;
 }
-
 
 
 LayerCommand::LayerCommand(FactoryParams params)
@@ -67,7 +56,6 @@ LayerCommand::LayerCommand(FactoryParams params)
   }
 }
 
-
 void LayerCommand::run(World* world)
 {
   if(world != NULL){
@@ -80,8 +68,6 @@ void LayerCommand::run(World* world)
   }
 }
 
-
-
 void  LayerCommand::saveHelper(ptree& tree)
 {
   tree.put("frequency", this->frequency);
@@ -89,8 +75,6 @@ void  LayerCommand::saveHelper(ptree& tree)
   tree.put("concrete_type", this->concrete_type);
   return;
 }
-
-
 
 void LayerCommand::load(std::string JSON)
 {
@@ -103,21 +87,15 @@ void LayerCommand::load(std::string JSON)
 }
 
 
-
-
 Command* LayerCommandFactory::create()
 {
   FactoryParams temp;
   return this->create(temp);
 }
 
-
-
 Command* LayerCommandFactory::create(FactoryParams& params)
 {
   return new LayerCommand(params);
 }
-
-
 
 ADD_TO_FACTORIES(LayerCommand, Command);

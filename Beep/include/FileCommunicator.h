@@ -1,11 +1,10 @@
 #ifndef FILECOMMUNICATOR_H
 #define FILECOMMUNICATOR_H 
 
-#include <string>
 #include <fstream>
+#include <string>
 
 #include "Communicator.h"
-#include "Command.h"
 #include "Factory.h"
 
 class World;
@@ -20,8 +19,6 @@ class InFileCommunicator : public Communicator
 };
 
 DEFINE_FACTORY(InFileCommunicator, Communicator);
-
-
 
 /*!
  * Use this command to instruct another process to save data to a file

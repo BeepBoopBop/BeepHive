@@ -15,15 +15,15 @@ find_package(Qt5Widgets)
 
 set(GUI_HEADERS
   include/gui_includes.h
-  include/mainwindow.h
-  include/robot.h
-  include/ui_mainwindow.h
-  include/ui_debugwindow.h
-  include/debugwindow.h
+  include/MainWindow.h
+  include/Robot.h
+  include/ui_MainWindow.h
+  include/ui_DebugWindow.h
+  include/DebugWindow.h
 )
 set(GUI_SOURCES
   src/mainwindow.cpp
-  src/robot.cpp
+  src/Robot.cpp
   src/debugwindow.cpp
 )
 

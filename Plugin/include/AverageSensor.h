@@ -1,10 +1,10 @@
 #ifndef AVERAGESENSOR_H
 #define AVERAGESENSOR_H 
 
-#include "BeepHive.h"
-#include "World.h"
+#include "Factory.h"
 #include "Sensor.h"
 
+class World;
 
 /*!
  * The average sensor is a sensor that can be configured to take the average of

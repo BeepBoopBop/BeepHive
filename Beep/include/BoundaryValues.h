@@ -1,8 +1,8 @@
 #ifndef BOUNDARY_VAL_H
 #define BOUNDARY_VAL_H
 
-#include "Dealii.h"
 #include "BeepHive.h"
+#include "Dealii.h"
 
 /*!
  * This class defines the boundary values for the HeatEquation class
@@ -15,24 +15,23 @@
 using namespace dealii;
 
 template<int dim>
-  class BoundaryValues : public Function<dim>
-  {
-  public:
-    virtual double value (const Point<dim>  &p,
-			  const unsigned int component = 0) const;
-  };
+class BoundaryValues : public Function<dim>
+{
+public:
+  virtual double value (const Point<dim>  &p,
+      const unsigned int component = 0) const;
+};
 
 /*! 
  * Template function to return point value will always return the base 
  * environment value (currently 0 by default)
  */
-  
-  template<int dim>
-  double BoundaryValues<dim>::value (const Point<dim> &/*p*/,
-				     const unsigned int component) const
-  {
-    Assert(component == 0, ExcInternalError());
-    return 50;
-  }
+template<int dim>
+double BoundaryValues<dim>::value (const Point<dim> &/*p*/,
+           const unsigned int component) const
+{
+  Assert(component == 0, ExcInternalError());
+  return 50;
+}
 
 #endif

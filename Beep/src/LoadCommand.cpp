@@ -1,14 +1,12 @@
 #include <dlfcn.h>
 
-#include "Serializable.h"
-#include "LoadCommand.h"
 #include "BeepHive.h"
+#include "LoadCommand.h"
+#include "Serializable.h"
 #include "World.h"
 
 LoadCommand::LoadCommand(std::string file_name)
   : file_name(file_name) {}
-
-
 
 void LoadCommand::run(World* world)
 {
@@ -23,15 +21,11 @@ void LoadCommand::run(World* world)
   return;
 }
 
-
-
 void  LoadCommand::saveHelper(ptree& tree)
 {
   tree.put("file_name", this->file_name);
   return;
 }
-
-
 
 void LoadCommand::load(std::string JSON)
 {
@@ -43,13 +37,10 @@ void LoadCommand::load(std::string JSON)
 }
 
 
-
 Command* LoadCommandFactory::create()
 {
   return new LoadCommand("");
 }
-
-
 
 Command* LoadCommandFactory::create(FactoryParams& params)
 {

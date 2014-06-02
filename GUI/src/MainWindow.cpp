@@ -1,12 +1,12 @@
 #include <boost/serialization/base_object.hpp>
-#include <string>
 #include <iostream>
 #include <sstream>
+#include <string>
 
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "robot.h"
 #include "DataPoint.h"
+#include "MainWindow.h"
+#include "Robot.h"
+#include "ui_mainwindow.h"
 
 namespace mpi=boost::mpi;
 
@@ -92,6 +92,7 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
   int yLoc = event->pos().y();
   int minDistance = 9999;
   Robot* minRobot = NULL;
+
   for(unsigned i = 0; i < robots.size(); i++){
     robots[i].resetColor();
     int tempDistance = robots[i].distanceFromPoint(xLoc, yLoc);
@@ -100,11 +101,11 @@ void MainWindow::mousePressEvent(QMouseEvent *event)
       minRobot = &robots[i];
     }
   }
+
   newDebug->setRobotToMonitor(minRobot);
   minRobot->highlightGreen();
   return;
 }
-
 
 MainWindow::~MainWindow()
 {
@@ -145,7 +146,7 @@ void MainWindow::createNewEnvironmentWindow(){
 
 void MainWindow::createNewBeepTypeWindow(){
   if(newBeep) delete newBeep;
-  newBeep = new newBeepType();
+  newBeep = new NewBeepType();
   newBeep->show();
   connect(newBeep, SIGNAL(accepted()), this, SLOT(newBeepTypeCreated()));
 }
@@ -171,8 +172,11 @@ void MainWindow::newAgentCreated(){
 }
 
 void MainWindow::newEnvironmentCreated(){
-  EnvironmentObject tempEnvironmentObject(newEnvironment->getX(), newEnvironment->getY(),
-                                          newEnvironment->getWidth(), newEnvironment->getHeight(), newEnvironment->getSource());
+  EnvironmentObject tempEnvironmentObject(newEnvironment->getX(),
+                                          newEnvironment->getY(),
+                                          newEnvironment->getWidth(),
+                                          newEnvironment->getHeight(),
+                                          newEnvironment->getSource());
   environmentObjects.push_back(tempEnvironmentObject);
   reDraw();
 }
@@ -205,14 +209,13 @@ QPen MainWindow::getPenFromTemp(int temp){
   //to make white
   int otherComponent = 0;
   if(redComponent > 180)
-     otherComponent = redComponent - 180;
+    otherComponent = redComponent - 180;
 
   QColor myColor( redComponent, 100+otherComponent, 100+otherComponent,  255 );
   QBrush myBrush(  myColor, Qt::SolidPattern );
   QPen pen(myBrush, 1, Qt::SolidLine, Qt::RoundCap, Qt::RoundJoin);
   return pen;
 }
-
 
 //We will have a set number of points to draw temperatures for
 //there will be fewer points than there are pixels on the graphics view
@@ -222,39 +225,39 @@ void MainWindow::updateTemperatures(){
   //go through all the pointTemps and add their values to the locations around them
   for(int i=0;i<pointTemps.size();i++){
     for(int j = -8; j < 8; j++)
-        for(int k = -8; k < 8; k++){
-          int x = pointTemps[i].first.first + j;
-          int y = pointTemps[i].first.second + k;
-          if(x < 0) x = 0;
-          if(y < 0) y = 0;
-          std::pair<int, int> coordinate=std::make_pair (x,y);
-          std::map<std::pair<int, int>, int > ::iterator it = mixValues.find(coordinate);
+      for(int k = -8; k < 8; k++){
+        int x = pointTemps[i].first.first + j;
+        int y = pointTemps[i].first.second + k;
+        if(x < 0) x = 0;
+        if(y < 0) y = 0;
+        std::pair<int, int> coordinate=std::make_pair (x,y);
+        std::map<std::pair<int, int>, int > ::iterator it = mixValues.find(coordinate);
 
-          //check to see if there is a value for the point assigned already
-          if(it == mixValues.end())
-          {
-             mixValues[coordinate] = pointTemps[i].second;
-             countValues[coordinate] = 1;
-          }
-          //otherwise the value already exists, do rudimentary mixing (average existing value and new value)
-          else{
-            mixValues[coordinate] = (mixValues[coordinate] + pointTemps[i].second);
-            int temp = mixValues[coordinate];
-            countValues[coordinate] += 1;
-            int tempCount = countValues[coordinate];
-            tempCount++;
-          }
+        //check to see if there is a value for the point assigned already
+        if(it == mixValues.end())
+        {
+          mixValues[coordinate] = pointTemps[i].second;
+          countValues[coordinate] = 1;
         }
+        //otherwise the value already exists, do rudimentary mixing (average existing value and new value)
+        else{
+          mixValues[coordinate] = (mixValues[coordinate] + pointTemps[i].second);
+          int temp = mixValues[coordinate];
+          countValues[coordinate] += 1;
+          int tempCount = countValues[coordinate];
+          tempCount++;
+        }
+      }
   }
 
   //draw the colors on the map
   for(std::map<std::pair<int, int>, int > ::iterator it = mixValues.begin(); it != mixValues.end(); it++){
-     int x = it->first.first;
-     int y = it->first.second;
-     std::pair<int, int> coordinate=std::make_pair (x,y);
-     int numTimesAssigned = countValues[coordinate];
-     QPen color = getPenFromTemp(it->second/numTimesAssigned);
-     scene->addLine(x,y,x,y, color);
+    int x = it->first.first;
+    int y = it->first.second;
+    std::pair<int, int> coordinate=std::make_pair (x,y);
+    int numTimesAssigned = countValues[coordinate];
+    QPen color = getPenFromTemp(it->second/numTimesAssigned);
+    scene->addLine(x,y,x,y, color);
   }
 }
 
@@ -278,13 +281,13 @@ void MainWindow::reDraw(){
   for(unsigned i = 0; i<robots.size(); i++){
     //robots[i].randUpdateDrawPosition(scene);
     robots[i].updateDrawPosition(scene);
-   }
+  }
 
   //redraw environment objects
   for(unsigned i = 0; i<environmentObjects.size(); i++){
     environmentObjects[i].updateDrawPosition(scene);
   }
- }
+}
 
 //code to start the backend, you will need to pass robot info to it
 void MainWindow::mpiStart()

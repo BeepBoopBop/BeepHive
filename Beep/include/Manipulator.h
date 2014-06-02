@@ -3,13 +3,7 @@
 
 #include <vector>
 
-#include "Layer.h"
-#include "Beep.h"
-#include "World.h"
-#include "Serializable.h"
-
 class Beep;
-class Layer;
 class World;
 
 /*!

@@ -1,16 +1,14 @@
-#include "Stateful.h"
 #include "BeepHive.h"
 #include "Command.h"
-#include "World.h"
 #include "Factory.h"
 #include "Serializable.h"
+#include "Stateful.h"
+#include "World.h"
 
 void Stateful::setState(std::string state_name, double initial_state)
 {
   states[state_name]=initial_state;
 }
-
-
 
 double Stateful::getState(std::string state_name)
 {
@@ -20,14 +18,10 @@ double Stateful::getState(std::string state_name)
   return states[state_name];
 }
 
-
-
 void Stateful::addChild(std::string stateful_name, Stateful* stateful)
 {
   children[stateful_name]=stateful;
 }
-
-
 
 Stateful* Stateful::getChild(std::string stateful_name)
 {
@@ -36,8 +30,6 @@ Stateful* Stateful::getChild(std::string stateful_name)
   assert(it != children.end());
   return it->second;
 }
-
-
 
 //!This is not yet complete
 void  Stateful::saveHelper(ptree& tree)
@@ -55,8 +47,6 @@ void  Stateful::saveHelper(ptree& tree)
   return;
 }
 
-
-
 void Stateful::load(std::string JSON)
 {
   if(JSON.size() > 0){
@@ -73,9 +63,6 @@ void Stateful::load(std::string JSON)
     }
   }
 }
-
-
-
 
 Map<double>::iterator Stateful::findState(std::string state_name)
 {

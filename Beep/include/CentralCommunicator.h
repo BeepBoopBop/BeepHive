@@ -1,7 +1,8 @@
 #ifndef CENTRALCOMMUNICATOR_H
 #define CENTRALCOMMUNICATOR_H 
-#include <string>
+
 #include <fstream>
+#include <string>
 
 #include "Communicator.h"
 

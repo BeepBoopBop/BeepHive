@@ -1,15 +1,13 @@
 #ifndef FACTORY_H
 #define FACTORY_H 
 
+#include <iostream>
+#include <list>
 #include <string>
 #include <vector>
-#include <list>
-#include <iostream>
 
 #include "BeepHive.h"
 #include "Singleton.h"
-
-
 
 /*!
  * Macro for the definition of factories is intended to return pointers of
@@ -46,8 +44,6 @@ class _type##Factory : public Factory<base> \
     _type##Factory() {}; \
 };
 
-
-
 /*!
  * This macro does the dirty work to add a concrete factory to the multiton
  * associated with the base class.
@@ -71,11 +67,7 @@ class type##FactoryProxy \
 /* Instantiating the proxy adds the factory to Factories */ \
 type##FactoryProxy type##_factory_proxy; \
 
-
-
 typedef std::vector<std::string> FactoryParams;
-
-
 
 /*!
  * This is the template for all factories used within BeepHive.
@@ -95,8 +87,6 @@ class Factory
     virtual T* create(FactoryParams& params) = 0;
 };
 
-
-
 /*!
  * Struct to store factories with params
  *
@@ -115,8 +105,6 @@ class FactoryAndParams
     FactoryParams params;
 };
 
-
-
 /*!
  * This is multiton of factories templated on the type of factory for
  * subclassing
@@ -131,14 +119,10 @@ class BasicFactories
   public:
     typedef typename Map<T*>::iterator iterator;
 
-
-
     iterator find(std::string type)
     {
       return factories.find(type);
     }
-
-
 
     /*!
      * \todo
@@ -159,14 +143,10 @@ class BasicFactories
       return factory->second;
     }
 
-
-
     T* operator[](std::string type)
     {
       return getFactory(type);
     }
-
-
 
     void addFactory(T& factory)
     {
@@ -174,14 +154,10 @@ class BasicFactories
       factories[factory.type()] = &factory;
     }
 
-
-
     iterator begin()
     {
       return factories.begin();
     }
-
-
 
     iterator end()
     {
@@ -253,8 +229,6 @@ class CustomFactory : public Factory<T>
       this->factory=FactoryAndParams<T>(factory,params);
       factories.addFactory(*this);
     }
-
-
 
     std::string type()
     {

@@ -1,6 +1,6 @@
-#include "Controller.h"
 #include "BasicController.h"
 #include "Beep.h"
+#include "Controller.h"
 #include "Manipulator.h"
 
 void BasicController::run(Beep* beep)
@@ -12,20 +12,14 @@ void BasicController::run(Beep* beep)
   omega_velocity->setInputs(inputs);
 }
 
-
-
 Controller* BasicControllerFactory::create()
 {
   return new BasicController();
 }
 
-
-
 Controller* BasicControllerFactory::create(FactoryParams& params)
 {
   return new BasicController();
 }
-
-
 
 ADD_TO_FACTORIES(BasicController, Controller);

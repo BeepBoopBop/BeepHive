@@ -2,8 +2,6 @@
 
 #include "CustomBeepFactory.h"
 
-
-
 CustomBeepFactory::CustomBeepFactory(std::string type_name, std::string base_factory,
     FactoryParams params)
 : CustomFactory<Beep>(type_name, base_factory, params)
@@ -15,8 +13,6 @@ CustomBeepFactory::CustomBeepFactory(std::string type_name, std::string base_fac
   assert(CustomBeepFactories::getInstance()[type_name]);
   assert(Factories<Beep>::getInstance()[type_name]);
 }
-
-
 
 Beep* CustomBeepFactory::create()
 {
@@ -49,14 +45,11 @@ Beep* CustomBeepFactory::create()
   return beep;
 }
 
-
-
 Beep* CustomBeepFactory::create(FactoryParams& params)
 {
   this->factory.params=params;
   return this->create();
 }
-
 
 
 void CustomBeepFactory::addSensor(std::string instance_name, std::string base_type,
@@ -66,8 +59,6 @@ void CustomBeepFactory::addSensor(std::string instance_name, std::string base_ty
   sensors[instance_name]=FactoryAndParams<Sensor>(factories[base_type], params);
 }
 
-
-
 void CustomBeepFactory::addManipulator(std::string instance_name, std::string base_type,
     FactoryParams params)
 {
@@ -76,16 +67,12 @@ void CustomBeepFactory::addManipulator(std::string instance_name, std::string ba
     FactoryAndParams<Manipulator>(factories[base_type], params);
 }
 
-
-
 void CustomBeepFactory::setController(std::string base_type,
     FactoryParams params)
 {
   Factories<Controller>& factories=Factories<Controller>::getInstance();
   controller=FactoryAndParams<Controller>(factories[base_type], params);
 }
-
-
 
 
   CustomBeepCommand::CustomBeepCommand(FactoryParams params)
@@ -102,14 +89,10 @@ void CustomBeepFactory::setController(std::string base_type,
      */
 }
 
-
-
 void CustomBeepCommand::run(World* world)
 {
   CustomBeepFactory* factory = new CustomBeepFactory(concrete_type, base);
 }
-
-
 
 void  CustomBeepCommand::saveHelper(ptree& tree)
 {
@@ -117,8 +100,6 @@ void  CustomBeepCommand::saveHelper(ptree& tree)
   tree.put("base", this->base);
   return;
 }
-
-
 
 void CustomBeepCommand::load(std::string JSON)
 {
@@ -130,24 +111,18 @@ void CustomBeepCommand::load(std::string JSON)
 }
 
 
-
 Command* CustomBeepCommandFactory::create()
 {
   FactoryParams params = {"",""};
   return create(params);
 }
 
-
-
 Command* CustomBeepCommandFactory::create(FactoryParams& params)
 {
   return new CustomBeepCommand(params);
 }
 
-
-
 ADD_TO_FACTORIES(CustomBeepCommand, Command);
-
 
 
 static std::string valOrBlank(size_t i, FactoryParams& params)
@@ -158,7 +133,6 @@ static std::string valOrBlank(size_t i, FactoryParams& params)
     return "";
   }
 }
-
 
 
 CustomBeepFeatureCommand::CustomBeepFeatureCommand(FactoryParams params)
@@ -175,8 +149,6 @@ CustomBeepFeatureCommand::CustomBeepFeatureCommand(FactoryParams params)
   }
 }
 
-
-
 void CustomBeepFeatureCommand::run(World* world)
 {
   CustomBeepFactories& factories = CustomBeepFactories::getInstance();
@@ -188,8 +160,6 @@ void CustomBeepFeatureCommand::run(World* world)
     factories[beep_type]->setController(concrete_component);
   }
 }
-
-
 
 void  CustomBeepFeatureCommand::saveHelper(ptree& tree)
 {
@@ -207,8 +177,6 @@ void  CustomBeepFeatureCommand::saveHelper(ptree& tree)
 
   return;
 }
-
-
 
 void CustomBeepFeatureCommand::load(std::string JSON)
 {
@@ -228,14 +196,11 @@ void CustomBeepFeatureCommand::load(std::string JSON)
 }
 
 
-
 Command* CustomBeepFeatureCommandFactory::create()
 {
   FactoryParams params;
   return create(params);
 }
-
-
 
 Command* CustomBeepFeatureCommandFactory::create(FactoryParams& params)
 {

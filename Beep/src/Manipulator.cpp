@@ -1,6 +1,5 @@
-#include "Manipulator.h"
 #include "BeepHive.h"
-
+#include "Manipulator.h"
 
 void Manipulator::setInputs(const std::vector<double>& in)
 {

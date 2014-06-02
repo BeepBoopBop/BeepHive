@@ -1,4 +1,4 @@
-#include "environmentobject.h"
+#include "EnvironmentObject.h"
 
 EnvironmentObject::EnvironmentObject(int x, int y, int widthIn, int heightIn, bool source)
 {
@@ -8,7 +8,6 @@ EnvironmentObject::EnvironmentObject(int x, int y, int widthIn, int heightIn, bo
   height = heightIn;
   heatSource = source;
 }
-
 
 void EnvironmentObject::updateDrawPosition(QGraphicsScene* newScene){
   scene = newScene;

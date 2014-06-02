@@ -1,27 +1,16 @@
 #include <iostream>
-#include <string>
 #include <sstream>
+#include <string>
 
-#include "AverageSensor.h"
+#include "Beep.h"
 #include "BeepHive.h"
 #include "BeepHiveConfigs.h"
 #include "BeepLayer.h"
+#include "Communicator.h"
+#include "EnvObject.h"
+#include "Event.h"
 #include "SyncLayer.h"
 #include "World.h"
-#include "BasicController.h"
-#include "FlockingController.h"
-#include "Factory.h"
-#include "OmegaVelocityManipulator.h"
-#include "CustomBeepFactory.h"
-#include "Communicator.h"
-
-
-bool EventComparator::operator()(const Event first, const Event second) const
-{
-  return second < first;
-}
-
-
 
 World::World() : layers(), event_queue(), running(true)
 {
@@ -37,11 +26,7 @@ World::World() : layers(), event_queue(), running(true)
   this->addObject(Obj2);
 }
 
-
-
 World::~World() {}
-
-
 
 int World::step()
 {
@@ -57,8 +42,6 @@ int World::step()
   return this->running==false;
 }
 
-
-
 int World::start()
 {
   int ret=0;
@@ -69,22 +52,16 @@ int World::start()
   return ret;
 }
 
-
-
 void World::addLayer(std::string layer_name, Layer* layer, double start_time){
   std::cout << "Adding: " << layer_name << std::endl;
   layers[layer_name]=layer;
   event_queue.push(Event(layer,start_time));
 }
 
-
-
 Layer* World::getLayer(std::string layer_name)
 {
   return layers[layer_name];
 }
-
-
 
 void World::write()
 {
@@ -97,14 +74,10 @@ void World::write()
   }
 }
 
-
-
 World::BeepIterator World::beepBegin() const
 {
   return beeps.begin();
 }
-
-
 
 World::BeepIterator World::beepEnd() const
 {

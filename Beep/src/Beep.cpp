@@ -1,12 +1,10 @@
-#include "Communicator.h"
-#include "Command.h"
-#include "BeepHive.h"
 #include "Beep.h"
+#include "BeepHive.h"
+#include "Communicator.h"
+#include "Controller.h"
 #include "World.h"
 
 Beep::Beep() : controller(0), sensors(), manipulators(), states() {}
-
-
 
 Beep::~Beep()
 {
@@ -21,8 +19,6 @@ Beep::~Beep()
   }
 }
 
-
-
 void Beep::readSensors(World* world)
 {
   Map<Sensor*>::iterator it;
@@ -30,8 +26,6 @@ void Beep::readSensors(World* world)
     it->second->readLayer(world);
   }
 }
-
-
 
 void Beep::runController()
 {
@@ -49,35 +43,25 @@ void Beep::runManipulators(World* world)
   std::stringstream message;
 }
 
-
-
 void Beep::setController(Controller* controller)
 {
   this->controller=controller;
 }
-
-
 
 void Beep::addSensor(std::string sensor_name, Sensor* sensor)
 {
   sensors[sensor_name]=sensor;
 }
 
-
-
 Sensor* Beep::getSensor(std::string sensor_name)
 {
   return sensors[sensor_name];
 }
 
-
-
 void Beep::addManipulator(std::string manipulator_name, Manipulator* manipulator)
 {
   manipulators[manipulator_name] = manipulator;
 }
-
-
 
 Manipulator* Beep::getManipulator(std::string manipulator_name)
 {
@@ -89,8 +73,6 @@ Beep* BeepFactory::create()
 {
   return new Beep();
 }
-
-
 
 Beep* BeepFactory::create(FactoryParams& params)
 {
@@ -109,11 +91,7 @@ Beep* BeepFactory::create(FactoryParams& params)
 
 ADD_TO_FACTORIES(Beep,Beep);
 
-
-
 BeepCommand::BeepCommand(FactoryParams params) : CreateCommand(params) {}
-
-
 
 void BeepCommand::run(World* world)
 {
@@ -123,14 +101,10 @@ void BeepCommand::run(World* world)
   }
 }
 
-
-
 Command* BeepCommandFactory::create()
 {
   return new BeepCommand();
 }
-
-
 
 Command* BeepCommandFactory::create(FactoryParams& params)
 {

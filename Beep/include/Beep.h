@@ -3,19 +3,16 @@
 
 #include <iostream>
 
-#include "BeepHive.h"
-#include "World.h"
 #include "Command.h"
+#include "Factory.h"
 #include "Manipulator.h"
 #include "Sensor.h"
-#include "Controller.h"
-#include "Factory.h"
 #include "Stateful.h"
 
-class World;
 class Controller;
 class Manipulator;
 class Sensor;
+class World;
 
 /*!
  * The Beep class is a template for robots in BeepHive

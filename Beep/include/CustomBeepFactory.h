@@ -4,8 +4,8 @@
 #include <string>
 
 #include "Beep.h"
-#include "Factory.h"
 #include "Command.h"
+#include "Factory.h"
 
 class CustomBeepFactory : public CustomFactory<Beep>
 {
@@ -30,12 +30,8 @@ class CustomBeepFactory : public CustomFactory<Beep>
     FactoryAndParams<Controller> controller;
 };
 
-
-
 class CustomBeepFactories : public BasicFactories<CustomBeepFactory>, 
                             public Singleton<CustomBeepFactories> {};
-
-
 
 class World;
 
@@ -54,8 +50,6 @@ class CustomBeepCommand : public Command
 };
 
 DEFINE_FACTORY(CustomBeepCommand, Command);
-
-
 
 class CustomBeepFeatureCommand : public Command
 {
@@ -76,4 +70,5 @@ class CustomBeepFeatureCommand : public Command
 };
 
 DEFINE_FACTORY(CustomBeepFeatureCommand, Command);
+
 #endif /* CUSTOMBEEPFACTORY_H */
